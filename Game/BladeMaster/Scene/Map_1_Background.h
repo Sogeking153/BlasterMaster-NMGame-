@@ -13,6 +13,5 @@ public:
 
 private:
 	int tilemap[17000];
-	int tileset[150];
 	//int gunner;
 };

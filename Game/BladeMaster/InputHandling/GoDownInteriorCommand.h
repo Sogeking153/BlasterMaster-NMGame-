@@ -1,4 +1,5 @@
-#include "GoDownInteriorCommand.h"
-void GoDownInteriorCommand::execute() {
-
-}
+#pragma once
+#include "Core/Command.h"
+class GoDownInteriorCommand : public Command {
+    void execute(int EntityID);
+};

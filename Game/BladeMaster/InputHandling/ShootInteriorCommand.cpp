@@ -1,4 +1,6 @@
 #include "ShootInteriorCommand.h"
-void ShootInteriorCommand::execute() {
-
+//For testing purpose
+#include "../Debug.h"
+void ShootInteriorCommand::execute(int EntityID) {
+    DebugOut(L"Shoot Interior Command\n");
 }

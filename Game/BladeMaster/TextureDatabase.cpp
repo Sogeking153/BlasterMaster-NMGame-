@@ -1,6 +1,7 @@
 #include "TextureDatabase.h"
 #include "Debug.h"
 #include "Engine.h"
+#include "SpriteDatabase.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -19,15 +20,18 @@ TextureDatabase* TextureDatabase::GetInstance()
 */
 void TextureDatabase::ReadDataFromFile(LPCWSTR filePath)
 {
+	SpriteDatabase* spriteDb = SpriteDatabase::GetInstance();
 	std::fstream input;
 	input.open(filePath, std::ios::in);
 	if (input.is_open()) {
 		std::string str;
 		char delimiter = '|';
+		char skipChar = '#';
 		while (std::getline(input, str)) {
+			if(str[0] == skipChar) continue;
 			TextureID id;
 			LPCWSTR texturePath;
-			unsigned int columns, rows, size = 0;
+			unsigned int columns, rows = 0;
 
 			//String manipulation
 			unsigned int current, previous = 0;
@@ -45,9 +49,6 @@ void TextureDatabase::ReadDataFromFile(LPCWSTR filePath)
 				previous = current + 1;
 				current = str.find(delimiter, previous);
 
-				size = std::stoul(str.substr(previous, current - previous)); //Convert String -> unsigned int 
-				previous = current + 1;
-				current = str.find(delimiter, previous);
 			}
 
 			//Convert std::string -> std::wstring -> LPCWSTR
@@ -55,7 +56,13 @@ void TextureDatabase::ReadDataFromFile(LPCWSTR filePath)
 			std::wstring wideString = std::wstring(temp.begin(), temp.end());
 			texturePath = wideString.c_str();
 
+			DebugOut(L"[INFO] Start loading %s file to database\n", texturePath);
+
 			LoadTextureFromPath(id, columns, rows, texturePath);
+
+			spriteDb->AddSprite(id);
+
+			DebugOut(L"[INFO] Loading successfully %s to Sprite Database\n", texturePath);
 		}
 		input.close();
 	}
@@ -107,7 +114,6 @@ void TextureDatabase::LoadTextureFromPath(TextureID id,
 	textureData.rows = rows;
 	textureData.size_width = info.Width / columns;
 	textureData.size_height = info.Height / rows;
-
 
 	mDatabase.emplace(id, std::make_shared<TextureData>(textureData));
 

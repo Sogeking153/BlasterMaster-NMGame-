@@ -6,6 +6,7 @@
 #include "GoDownInteriorCommand.h"
 #include "TossGrenadeCommand.h"
 #include "ShootInteriorCommand.h"
+#include "Core/InputContext.h"
 #include<dinput.h>
 
 InteriorTopDownContext::InteriorTopDownContext() {
@@ -20,22 +21,28 @@ InteriorTopDownContext::InteriorTopDownContext() {
 
 bool InteriorTopDownContext::Handle(MappedInput & mappedInput) {
     if(!isActive) return false;
-    if(mappedInput.bufferedKeyEvent[DIK_RETURN]) {
-        start_button->execute();
-    } if(mappedInput.bufferedKeyEvent[DIK_Z]) {
-        a_button->execute();
-    } else if(mappedInput.bufferedKeyEvent[DIK_X]) {
-        b_button->execute();
+    InputContext* input = InputContext::GetInstance();
+    int actorID = input->GetPlayerID();
+    if (mappedInput.KeyCode != -1 && (mappedInput.KeyData & 0x80) > 0) {
+        if (mappedInput.KeyCode == DIK_RETURN) {
+            start_button->execute(actorID);
+        } else if (mappedInput.KeyCode ==DIK_Z) {
+            a_button->execute(actorID);
+        }
+        else if (mappedInput.KeyCode == DIK_X) {
+            b_button->execute(actorID);
+        }
     }
+    
 
     if(mappedInput.keyStates[DIK_UP] & 0x80) {
-        up->execute();
+        up->execute(actorID);
     } else if(mappedInput.keyStates[DIK_LEFT] & 0x80) {
-        left->execute();
+        left->execute(actorID);
     } else if(mappedInput.keyStates[DIK_RIGHT] & 0x80) {
-        right->execute();
+        right->execute(actorID);
     } else if (mappedInput.keyStates[DIK_DOWN] & 0x80) {
-        down->execute();
+        down->execute(actorID);
     }
 
     return true;
