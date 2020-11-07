@@ -27,7 +27,7 @@ public:
 
 	void RemoveData(EntityID entityID) {
 		if (mSparse.find(entityID) == mSparse.end()) {
-			DebugOut(L"Entity is not exists");
+			DebugOut(L"Entity %d is not exists\n", entityID);
 			return;
 		}
 		
@@ -39,7 +39,7 @@ public:
 
 	T& GetData(EntityID entityID) {
 		if (mSparse.find(entityID) == mSparse.end()) {
-			DebugOut(L"Entity is not exists");
+			DebugOut(L"Entity %d is not exists\n", entityID);
 			return T();
 		}
 

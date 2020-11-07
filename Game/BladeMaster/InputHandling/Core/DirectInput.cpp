@@ -3,14 +3,13 @@
 #include "../../System/InputSystem.h"
 #include "MappedInput.h"
 #include "InputContext.h"
-DirectInput* DirectInput::__instance = NULL;
 
 /*int DirectInput::IsKeyDown(int KeyCode)
 {
 	return (keyStates[KeyCode] & 0x80) > 0;
 }*/
 
-void DirectInput::ProcessKeyboard()
+MappedInput DirectInput::ProcessKeyboard()
 {
 	HRESULT hr;
 	MappedInput mappedInput;
@@ -18,7 +17,7 @@ void DirectInput::ProcessKeyboard()
 	hr = didv->GetDeviceState(sizeof(mappedInput.keyStates), mappedInput.keyStates);
 	if (FAILED(hr))
 	{
-		 If the keyboard lost focus or was not acquired then try to get control back.
+		 //If the keyboard lost focus or was not acquired then try to get control back.
 		if ((hr == DIERR_INPUTLOST) || (hr == DIERR_NOTACQUIRED))
 		{
 			HRESULT h = didv->Acquire();
@@ -26,12 +25,12 @@ void DirectInput::ProcessKeyboard()
 			{
 				DebugOut(L"[INFO] Keyboard re-acquired!\n");
 			}
-			else return;
+			else return MappedInput();
 		}
 		else
 		{
 			DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", hr);
-			return;
+			return MappedInput();
 		}
 	}
 
@@ -41,21 +40,22 @@ void DirectInput::ProcessKeyboard()
 	if (FAILED(hr))
 	{
 		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
-		return;
+		return MappedInput();
 	}
 
 	for (DWORD i = 0; i < dwElements; i++)
 	{
-		int KeyCode = keyEvents[i].dwOfs;
+		/*int KeyCode = keyEvents[i].dwOfs;
 		int KeyState = keyEvents[i].dwData;
-		mappedInput.bufferedKeyEvent[KeyCode] = (KeyState & 0x80) > 0 ? true : false;
-		/*if ((KeyState & 0x80) > 0)
+		if ((KeyState & 0x80) > 0)
 			inputSys->OnKeyDown(KeyCode);
 		else
 			inputSys->OnKeyUp(KeyCode);*/
+		mappedInput.KeyCode = keyEvents[i].dwOfs;
+		mappedInput.KeyData = keyEvents[i].dwData;
 	}
 
-	inputContext->Dispatch(mappedInput);
+	return mappedInput;
 }
 
 void DirectInput::InitKeyboard(HWND hWnd)
@@ -124,10 +124,4 @@ void DirectInput::InitKeyboard(HWND hWnd)
 
 
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
-}
-
-DirectInput* DirectInput::GetInstance()
-{
-	if (__instance == NULL) __instance = new DirectInput();
-	return __instance;
 }

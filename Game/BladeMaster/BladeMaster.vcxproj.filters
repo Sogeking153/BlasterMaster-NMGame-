@@ -46,11 +46,17 @@
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{a913cb13-5ee3-4848-9667-1c4e986012a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\InputHandling">
+      <UniqueIdentifier>{07f29166-c3b1-4918-aa67-836e6ec03d63}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\InputHandling">
       <UniqueIdentifier>{5659cfc8-50f8-42ca-b1d1-9a51dd77241c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\InputHandling">
-      <UniqueIdentifier>{07f29166-c3b1-4918-aa67-836e6ec03d63}</UniqueIdentifier>
+    <Filter Include="Header Files\InputHandling\Core">
+      <UniqueIdentifier>{39d03cad-ff1a-404a-9f8e-a79f36bd6575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputHandling\Core">
+      <UniqueIdentifier>{87ef261d-de0f-420c-bada-c5b142828900}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +78,7 @@
     <ClCompile Include="Core\SystemManager.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="System\GraphicSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="System\InputSystem.cpp">
+    <ClCompile Include="System\SpriteSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="TextureDatabase.cpp">
@@ -90,12 +93,6 @@
     <ClCompile Include="EventHandler\PhysicEvent.cpp">
       <Filter>Source Files\EventHandler</Filter>
     </ClCompile>
-    <ClCompile Include="ECS_Entity_Ex\Player.cpp">
-      <Filter>Source Files\ECS_Entity_Ex</Filter>
-    </ClCompile>
-    <ClCompile Include="ECS_Entity_Ex\PlayerInputComponent.cpp">
-      <Filter>Source Files\ECS_Entity_Ex</Filter>
-    </ClCompile>
     <ClCompile Include="System\MovementSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
@@ -108,11 +105,74 @@
     <ClCompile Include="Scene\Map_1_Background.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandling\DirectInput.cpp">
+    <ClCompile Include="SpriteDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\AimUpcommand.cpp">
       <Filter>Source Files\InputHandling</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandling\InputContext.cpp">
+    <ClCompile Include="InputHandling\ExteriorSideScrollingContext.cpp">
       <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoDownInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoLeftExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoLeftInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoRightExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoRightInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoUpInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\Core\InputContext.cpp">
+      <Filter>Source Files\InputHandling\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\InteriorTopDownContext.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\JumpCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\LayDownCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\ShootExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\ShootInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\Core\DirectInput.cpp">
+      <Filter>Source Files\InputHandling\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\SwitchModeCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\TossGrenadeCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\WeaponSelectCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Map_1_Actors.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="System\AnimationSystem.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS_Entity_Ex\Jason.cpp">
+      <Filter>Source Files\ECS_Entity_Ex</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS_Entity_Ex\Sophia.cpp">
+      <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +206,7 @@
     <ClInclude Include="Core\Type.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="System\GraphicSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSystem.h">
+    <ClInclude Include="System\SpriteSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="TextureDatabase.h">
@@ -160,24 +214,6 @@
     </ClInclude>
     <ClInclude Include="System\PhysicSystem.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler\EventBase.h">
-      <Filter>Header Files\EventHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler\EventHandling.h">
-      <Filter>Header Files\EventHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler\HandlerFunctionBase.h">
-      <Filter>Header Files\EventHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler\PhysicEvent.h">
-      <Filter>Header Files\EventHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ECS_Entity_Ex\Player.h">
-      <Filter>Header Files\ECS_Entity_Ex</Filter>
-    </ClInclude>
-    <ClInclude Include="ECS_Entity_Ex\PlayerInputComponent.h">
-      <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
     <ClInclude Include="Component\AnimationComponent.h">
       <Filter>Header Files\Component</Filter>
@@ -209,17 +245,95 @@
     <ClInclude Include="Scene\Map_1_Background.h">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\Context.h">
+    <ClInclude Include="SpriteDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\Command.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\Context.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\DirectInput.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\InputContext.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\MappedInput.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\AimUpCommand.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\DirectInput.h">
+    <ClInclude Include="InputHandling\ExteriorSideScrollingContext.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\InputContext.h">
+    <ClInclude Include="InputHandling\GoDownInteriorCommand.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\MappedInput.h">
+    <ClInclude Include="InputHandling\GoLeftExteriorCommand.h">
       <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoLeftInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoRightExteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoRightInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoUpInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler\EventBase.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler\EventHandling.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler\PhysicEvent.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\InteriorTopDownContext.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\JumpCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\LayDownCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\ShootExteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\ShootInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\SwitchModeCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\TossGrenadeCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\WeaponSelectCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler\HandlerFunctionBase.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Map_1_Actors.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="System\AnimationSystem.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS_Entity_Ex\Jason.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS_Entity_Ex\Sophia.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

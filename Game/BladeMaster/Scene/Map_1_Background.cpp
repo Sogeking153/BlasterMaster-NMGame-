@@ -3,8 +3,7 @@
 #include "../Component/PositionComponent.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/AnimationComponent.h"
-#include "../SpriteDatabase.h"
-#include "../System/GraphicSystem.h"
+#include "../System/SpriteSystem.h"
 #include "../TextureDatabase.h"
 #include <fstream>
 #include <iostream>
@@ -19,7 +18,7 @@ Map_1_Background::Map_1_Background(short id)
 	/*TextureDatabase* textureDb = TextureDatabase::GetInstance();
 	textureDb->LoadTextureFromPath(GUNNER, 4, 1, L"Resources/Worms.png");
 
-	std::shared_ptr<GraphicSystem> graphicSystem = coordinator.GetSystem<GraphicSystem>(SystemType::Graphic);
+	std::shared_ptr<SpriteSystem> SpriteSystem = coordinator.GetSystem<SpriteSystem>(SystemType::Sprite);
 
 	Position posTile;
 	Animation ani;
@@ -46,42 +45,27 @@ Map_1_Background::Map_1_Background(short id)
 	ani.currentFrame = 0;
 	coordinator.AddComponent(gunner, ani, ComponentType::Animation);
 
-	graphicSystem->AddEntity(gunner);*/
+	SpriteSystem->AddEntity(gunner);*/
 	
-	TextureDatabase * textureDb = TextureDatabase::GetInstance();
-	textureDb->LoadTextureFromPath(BRICK, 12, 12, L"lvl2_side.png");
+	//TextureDatabase * textureDb = TextureDatabase::GetInstance();
+	//textureDb->LoadTextureFromPath(BRICK, 12, 12, L"Resources/TileMap/lvl2_side.png");
 
-	std::shared_ptr<GraphicSystem> graphicSystem = coordinator.GetSystem<GraphicSystem>(SystemType::Graphic);
-
-	SpriteDatabase* spriteDb = SpriteDatabase::GetInstance();
-
-	int count = 0;
-	for (int i = 0; i < 12; i++)
-	{
-		for (int j = 0; j < 12; j++)
-		{
-			spriteDb->AddSprite(BRICK);
-
-			sp[count].textureID = BRICK;
-			sp[count].spriteID = count;
-
-			count++;
-		}
-	}
+	std::shared_ptr<SpriteSystem> spriteSystem = coordinator.GetSystem<SpriteSystem>(SystemType::Sprite);
 
 	int number;
 	int tempcount = 0;
 	Position posTile[17000];
+	Sprite spriteTile[17000];
 	int rowNumber = 0;
 	int colNumber = 0;
 
 	std::ifstream inFile;
 
-	inFile.open("lvl2_side_tilemap.txt");
+	inFile.open("Resources/Config/lvl2_side_tilemap.txt");
 	//inFile.open("test.txt");
 	if (!inFile)
 	{
-		std::cout << "Unable to open file";
+		DebugOut(L"[ERROR] Unable to open file");
 		exit(1);
 	}
 
@@ -96,7 +80,7 @@ Map_1_Background::Map_1_Background(short id)
 		posTile[tempcount].x = colNumber * 16;
 		posTile[tempcount].y = rowNumber * 16;
 		coordinator.AddComponent(tilemap[tempcount], posTile[tempcount], ComponentType::Position);
-		graphicSystem->AddEntity(tilemap[tempcount]);
+		spriteSystem->AddEntity(tilemap[tempcount]);
 		colNumber++;
 
 		tempcount++;
@@ -115,14 +99,13 @@ Map_1_Background::Map_1_Background(short id)
 
 void Map_1_Background::Update(DWORD dt)
 {
-	std::shared_ptr<GraphicSystem> graphicSystem = coordinator.GetSystem<GraphicSystem>(SystemType::Graphic);
-	graphicSystem->Update();
+
 }
 
 void Map_1_Background::Render()
 {
-	std::shared_ptr<GraphicSystem> graphicSystem = coordinator.GetSystem<GraphicSystem>(SystemType::Graphic);
-	graphicSystem->SpriteRender();
+	std::shared_ptr<SpriteSystem> spriteSystem = coordinator.GetSystem<SpriteSystem>(SystemType::Sprite);
+	spriteSystem->SpriteRender();
 }
 
 

@@ -22,14 +22,13 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 #include "Engine.h"
 #include "Debug.h"
 #include "Core/Coordinator.h"
-#include "System/GraphicSystem.h"
+#include "System/SpriteSystem.h"
 #include "TextureDatabase.h"
 #include "EventHandler/EventHandling.h"
 #include "Scene/SceneManager.h"
 #include "SpriteDatabase.h"
-#include "InputHandling/Core/DirectInput.h"
-
-using namespace std;
+#include "InputHandling/Core/InputContext.h"
+#include <thread>
 
 
 
@@ -56,12 +55,23 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 void LoadResource(HWND hWnd)
 {
-	DirectInput * input = DirectInput::GetInstance();
-	input->InitKeyboard(hWnd);
-
+	InputContext* input = InputContext::GetInstance();
+	//input->Init(hWnd);
+	textureDb = TextureDatabase::GetInstance();
+	
 	sceneManager = SceneManager::getInstance();
-	sceneManager->AddScene(0);
+	std::thread t1(&SceneManager::AddScene, &*sceneManager,MAP_1_BACKGROUND);
+	std::thread t2(&SceneManager::AddScene, &*sceneManager,MAP_1_ACTORS);
+	std::thread t3(&InputContext::Init, &*input, hWnd);
+	std::thread t4(&TextureDatabase::ReadDataFromFile, &*textureDb,L"Resources/Config/texture_config.txt");
+	//sceneManager->AddScene(0);
+	//sceneManager->AddScene(1);
 
+	t1.join();
+	t2.join();
+	t3.join();
+	t4.join();
+	
 }
 /*
 	Update world status for this frame
@@ -70,8 +80,8 @@ void LoadResource(HWND hWnd)
 	IMPORTANT: no render-related code should be used inside this function.
 */
 void Update(DWORD dt) {
-	DirectInput * input = DirectInput::GetInstance();
-	input->ProcessKeyboard();
+	InputContext* input = InputContext::GetInstance();
+	input->Dispatch();
 	sceneManager->Update(dt);
 
 }
@@ -86,7 +96,6 @@ void Render()
 	LPDIRECT3DDEVICE9 d3ddv = engine->GetDirect3DDevice();
 	LPDIRECT3DSURFACE9 bb = engine->GetBackBuffer();
 	LPD3DXSPRITE spriteHandler = engine->GetSpriteHandler();
-	std::shared_ptr<GraphicSystem> graphicSystem = coordinator.GetSystem<GraphicSystem>(SystemType::Graphic);
 
 	if (d3ddv->BeginScene())
 	{

@@ -1,5 +1,6 @@
 #include "SwitchModeCommand.h"
-
-void SwitchModeCommand::execute() {
-
+//For testing purpose
+#include "../Debug.h"
+void SwitchModeCommand::execute(int EntityID) {
+    DebugOut(L"Switch Mode Command\n");
 }

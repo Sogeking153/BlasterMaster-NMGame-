@@ -153,8 +153,8 @@
     <ClCompile Include="Core\EntityManager.cpp" />
     <ClCompile Include="Core\SystemBase.cpp" />
     <ClCompile Include="Core\SystemManager.cpp" />
-    <ClCompile Include="ECS_Entity_Ex\Player.cpp" />
-    <ClCompile Include="ECS_Entity_Ex\PlayerInputComponent.cpp" />
+    <ClCompile Include="ECS_Entity_Ex\Jason.cpp" />
+    <ClCompile Include="ECS_Entity_Ex\Sophia.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EventHandler\EventHandling.cpp" />
     <ClCompile Include="EventHandler\PhysicEvent.cpp" />
@@ -177,15 +177,16 @@
     <ClCompile Include="InputHandling\TossGrenadeCommand.cpp" />
     <ClCompile Include="InputHandling\WeaponSelectCommand.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene\Map_1_Actors.cpp" />
     <ClCompile Include="Scene\Map_1_Background.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="SpriteDatabase.cpp" />
+    <ClCompile Include="System\AnimationSystem.cpp" />
     <ClCompile Include="System\MovementSystem.cpp" />
     <ClCompile Include="System\PhysicSystem.cpp" />
     <ClCompile Include="TextureDatabase.cpp" />
-    <ClCompile Include="System\GraphicSystem.cpp" />
-    <ClCompile Include="System\InputSystem.cpp" />
+    <ClCompile Include="System\SpriteSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\AnimationComponent.h" />
@@ -198,13 +199,12 @@
     <ClInclude Include="Core\ComponentManager.h" />
     <ClInclude Include="Core\Coordinator.h" />
     <ClInclude Include="Core\EntityManager.h" />
-    <ClInclude Include="Core\Message.h" />
     <ClInclude Include="Core\SystemBase.h" />
     <ClInclude Include="Core\SystemManager.h" />
     <ClInclude Include="Core\Type.h" />
     <ClInclude Include="Debug.h" />
-    <ClInclude Include="ECS_Entity_Ex\Player.h" />
-    <ClInclude Include="ECS_Entity_Ex\PlayerInputComponent.h" />
+    <ClInclude Include="ECS_Entity_Ex\Jason.h" />
+    <ClInclude Include="ECS_Entity_Ex\Sophia.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EventHandler\EventBase.h" />
     <ClInclude Include="EventHandler\EventHandling.h" />
@@ -231,16 +231,17 @@
     <ClInclude Include="InputHandling\SwitchModeCommand.h" />
     <ClInclude Include="InputHandling\TossGrenadeCommand.h" />
     <ClInclude Include="InputHandling\WeaponSelectCommand.h" />
-    <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="Scene\Map_1_Actors.h" />
     <ClInclude Include="Scene\Map_1_Background.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="SpriteDatabase.h" />
+    <ClInclude Include="System\AnimationSystem.h" />
     <ClInclude Include="System\MovementSystem.h" />
     <ClInclude Include="System\PhysicSystem.h" />
     <ClInclude Include="TextureDatabase.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="System\GraphicSystem.h" />
+    <ClInclude Include="System\SpriteSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

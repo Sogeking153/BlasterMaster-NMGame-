@@ -2,7 +2,7 @@
 #include "SceneBase.h"
 #include "../Debug.h"
 #include "Map_1_Background.h"
-
+#include "Map_1_Actors.h"
 SceneManager * SceneManager::__instance = NULL;
 
 SceneManager::SceneManager()
@@ -76,8 +76,8 @@ SceneManager* SceneManager::getInstance()
 SceneBase* SceneManager::createScene(SceneID id)
 {
     switch (id) {
-    case MAP_1: return new Map_1_Background(MAP_1); break;
-
+    case MAP_1_BACKGROUND: return new Map_1_Background(MAP_1_BACKGROUND); break;
+    case MAP_1_ACTORS : return new Map_1_Actors(MAP_1_ACTORS); break;
     default:
         DebugOut(L"Scene with id %d is defined", id);
     }

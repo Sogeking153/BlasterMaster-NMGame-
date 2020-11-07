@@ -18,7 +18,8 @@
 	Use Facade or Mediator design pattern
 */
 using SceneID = short;
-#define MAP_1 0
+#define MAP_1_BACKGROUND 0
+#define MAP_1_ACTORS 1
 
 class SceneBase;
 class SceneManager
