@@ -221,9 +221,6 @@
     <ClInclude Include="Component\BoundingBoxComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Component\EntityTypeComponent.h">
-      <Filter>Header Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Component\PositionComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
@@ -334,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\Sophia.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TransformationComponent.h">
+      <Filter>Header Files\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

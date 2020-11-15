@@ -3,7 +3,6 @@
 #include "../EventHandler/PhysicEvent.h"
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
-extern Coordinator coordinator;
 MovementSystem::MovementSystem()
 {
 	Bitmask requirement;
@@ -14,8 +13,8 @@ MovementSystem::MovementSystem()
 
 void MovementSystem::onEvent(const CollisionEvent * _event)
 {
-	Position& pos = coordinator.GetComponent<Position>(_event->entityID, ComponentType::Position);
-	Velocity & speed = coordinator.GetComponent<Velocity>(_event->entityID, ComponentType::Speed);
+	Position& pos = coordinator->GetComponent<Position>(_event->entityID, ComponentType::Position);
+	Velocity & speed = coordinator->GetComponent<Velocity>(_event->entityID, ComponentType::Speed);
 
 
 	// block every object first!
@@ -33,8 +32,8 @@ void MovementSystem::onEvent(const CollisionEvent * _event)
 void MovementSystem::Update(DWORD dt)
 {
 	for (EntityID const & entity : mEntityList) {
-		Position& pos = coordinator.GetComponent<Position>(entity, ComponentType::Position);
-		Velocity& speed = coordinator.GetComponent<Velocity>(entity, ComponentType::Speed);
+		Position& pos = coordinator->GetComponent<Position>(entity, ComponentType::Position);
+		Velocity& speed = coordinator->GetComponent<Velocity>(entity, ComponentType::Speed);
 		speed.dx = speed.vx * dt;
 		speed.dy = speed.vy * dt;
 

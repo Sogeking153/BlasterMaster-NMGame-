@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "SceneBase.h"
 #include "../Debug.h"
+#include "../UtilHeader.h"
 #include "Map_1_Background.h"
 #include "Map_1_Actors.h"
 SceneManager * SceneManager::__instance = NULL;

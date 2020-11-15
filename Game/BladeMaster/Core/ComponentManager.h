@@ -6,7 +6,8 @@ enum class ComponentType {
 	Animation,
 	Position,
 	BoundingBox,
-	Speed
+	Speed,
+	Transformation
 };
 
 class ComponentManager

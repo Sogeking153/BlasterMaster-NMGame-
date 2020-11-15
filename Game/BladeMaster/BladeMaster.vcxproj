@@ -191,10 +191,10 @@
   <ItemGroup>
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="Component\BoundingBoxComponent.h" />
-    <ClInclude Include="Component\EntityTypeComponent.h" />
     <ClInclude Include="Component\PositionComponent.h" />
     <ClInclude Include="Component\SpeedComponent.h" />
     <ClInclude Include="Component\SpriteComponent.h" />
+    <ClInclude Include="Component\TransformationComponent.h" />
     <ClInclude Include="Core\ComponentArray.h" />
     <ClInclude Include="Core\ComponentManager.h" />
     <ClInclude Include="Core\Coordinator.h" />
@@ -242,6 +242,7 @@
     <ClInclude Include="TextureDatabase.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="System\SpriteSystem.h" />
+    <ClInclude Include="UtilHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
