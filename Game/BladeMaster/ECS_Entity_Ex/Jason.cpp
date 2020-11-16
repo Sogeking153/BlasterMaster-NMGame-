@@ -2,7 +2,7 @@
 #include "../Core/Coordinator.h"
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
-
+#include "../Debug.h"
 Jason::Jason() {
     //entityID = coordinator.CreateEntity();
 
@@ -15,4 +15,9 @@ Jason::Jason() {
 
 int Jason::GetID() {
     return entityID;
+}
+
+void Jason::Test()
+{
+    DebugOut(L"This is Jason\n");
 }

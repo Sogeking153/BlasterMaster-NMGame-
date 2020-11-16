@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 #include<memory>
 class Sophia;
+class Jason;
 class Coordinator;
 class Map_1_Actors : public SceneBase {
 public: 
@@ -12,5 +13,6 @@ public:
 
 private:
     Sophia * sophia;
+    Jason* jason;
     std::shared_ptr<Coordinator> coordinator;
 };

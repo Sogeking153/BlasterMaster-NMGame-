@@ -1,8 +1,11 @@
 #include "Map_1_Actors.h"
 #include "../ECS_Entity_Ex/Sophia.h"
+#include "../ECS_Entity_Ex/Jason.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
 #include "../Core/Coordinator.h"
+#include "../InputHandling/Core/InputContext.h"
+#include "../HelperHeader/PlayerType.h"
 Map_1_Actors::Map_1_Actors(short id) {
     this->id = id;
     coordinator = std::make_shared<Coordinator>();
@@ -12,6 +15,10 @@ Map_1_Actors::Map_1_Actors(short id) {
     spriteSystem->coordinator = coordinator;
 
     sophia = new Sophia(coordinator.get());
+    jason = new Jason();
+    InputContext* input = InputContext::GetInstance();
+    input->player->currentPlayerType = PlayerType::JASON;
+
 }
 
 void Map_1_Actors::Update(DWORD dt) {

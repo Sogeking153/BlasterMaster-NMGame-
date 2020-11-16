@@ -1,6 +1,6 @@
 #include "ShootExteriorCommand.h"
 //For testing purpose
 #include "../Debug.h"
-void ShootExteriorCommand::execute(int EntityID) {
+void ShootExteriorCommand::execute(PlayerType * player) {
     DebugOut(L"Shoot Exterior Command\n");
 }

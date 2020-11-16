@@ -13,14 +13,19 @@
 class Context;
 class DirectInput;
 typedef struct MappedInput;
+class Coordinator;
+typedef struct PlayerType;
 class InputContext {
 public:
   InputContext();
   void Dispatch();
   void Init(HWND);
-  void SetPlayerID(int);
-  int GetPlayerID();
   static InputContext* GetInstance();
+
+public:
+  Coordinator * coordinator;
+  //int playerID;
+  PlayerType* player;
 private:
   /*
     a simple ordered list: each context in the list is given the raw input for the frame. If the context can validly map that raw input
@@ -33,6 +38,5 @@ private:
   */
   std::list<std::unique_ptr<Context>> mListContexts;
   DirectInput * lowLevelHandler;
-  int playerID;
   static InputContext* __instance;
 };

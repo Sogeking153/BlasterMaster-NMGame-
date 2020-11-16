@@ -8,6 +8,7 @@
 #include "../UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
+#include "../Debug.h"
 
 Sophia::Sophia(Coordinator * coordinator) {
     entityID = coordinator->CreateEntity();
@@ -148,4 +149,9 @@ Sophia::Sophia(Coordinator * coordinator) {
 
 int Sophia::GetID() {
     return entityID;
+}
+
+void Sophia::Test()
+{
+    DebugOut(L"This is Sophia\n");
 }

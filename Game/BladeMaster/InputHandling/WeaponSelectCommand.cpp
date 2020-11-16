@@ -1,6 +1,6 @@
 #include "WeaponSelectCommand.h"
 //For testing purpose
 #include "../Debug.h"
-void WeaponSelectCommand::execute(int EntityID) {
+void WeaponSelectCommand::execute(PlayerType * player) {
     DebugOut(L"Weapon Select Command\n");
 }

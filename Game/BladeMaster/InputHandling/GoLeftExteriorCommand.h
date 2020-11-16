@@ -1,5 +1,5 @@
 #pragma once
 #include "Core/Command.h"
 class GoLeftExteriorCommand : public Command {
-    void execute(int EntityID);
+    void execute(PlayerType * EntityID);
 };
