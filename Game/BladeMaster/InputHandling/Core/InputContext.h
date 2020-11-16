@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <list>
+#include <dinput.h>
 //This is second layer in Input Handling System
 /*
   The second layer examines what game contexts are active, and maps the raw inputs into high-level actions, states, and ranges.
@@ -10,11 +11,16 @@
   https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/designing-a-robust-input-handling-system-for-games-r2975/
 */
 class Context;
+class DirectInput;
 typedef struct MappedInput;
 class InputContext {
 public:
-  void Dispatch(MappedInput &);
-
+  InputContext();
+  void Dispatch();
+  void Init(HWND);
+  void SetPlayerID(int);
+  int GetPlayerID();
+  static InputContext* GetInstance();
 private:
   /*
     a simple ordered list: each context in the list is given the raw input for the frame. If the context can validly map that raw input
@@ -25,5 +31,8 @@ private:
     More information about CoR:
     https://refactoring.guru/design-patterns/chain-of-responsibility
   */
-  std::list<std::unique_ptr<Context>> mListContext;
+  std::list<std::unique_ptr<Context>> mListContexts;
+  DirectInput * lowLevelHandler;
+  int playerID;
+  static InputContext* __instance;
 };

@@ -13,7 +13,7 @@
 class Command {
 public:
   virtual ~Command() {}
-  virtual void execute() = 0;
+  virtual void execute(int EntityID) = 0;
 public:
   bool isHold = false;
 };

@@ -1,9 +1,9 @@
 #include "SystemManager.h"
-#include "../System/GraphicSystem.h"
-#include "../System/InputSystem.h"
+#include "../System/SpriteSystem.h"
+#include "../System/AnimationSystem.h"
 SystemManager::SystemManager()
 {
-	mSystems.insert({ SystemType::Graphic, std::make_shared<GraphicSystem>() });
-	mSystems.insert({ SystemType::Input, std::make_shared<InputSystem>() });
+	mSystems.insert({ SystemType::Sprite, std::make_shared<SpriteSystem>() });
+	mSystems.insert({ SystemType::Animation, std::make_shared<AnimationSystem>() });
 
 }

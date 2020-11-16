@@ -1,0 +1,9 @@
+# format của file như sau
+# Note: không có dấu cách
+# id | column | rows | texture file path
+0|12|12|Resources/TileMap/lvl2_side.png
+1|3|1|Resources/Car/Body.png
+2|3|2|Resources/Car/Barrel.png
+3|2|2|Resources/Car/GetOutOfCar.png
+4|1|1|Resources/Car/Wheel.png
+5|1|1|Resources/Car/Axel.png

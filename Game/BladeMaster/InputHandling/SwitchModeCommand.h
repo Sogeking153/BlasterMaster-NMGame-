@@ -2,5 +2,5 @@
 #include "Core/Command.h"
 
 class SwitchModeCommand : public Command {
-    void execute();
+    void execute(int EntityID);
 };

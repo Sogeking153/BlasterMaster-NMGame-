@@ -41,14 +41,11 @@ SpriteDatabase* SpriteDatabase::GetInstance()
 	return __instance;
 }
 
-
-RECT SpriteDatabase::GetSprite(short textureID,unsigned int spriteID)
-{
-	if (mSpriteData.find(textureID) != mSpriteData.end()) 
-	{
+RECT SpriteDatabase::GetSprite(short textureID, unsigned int spriteID) {
+	if(mSpriteData.find(textureID) != mSpriteData.end()) {
 		return mSpriteData.at(textureID)[spriteID].area;
 	}
-	DebugOut(L"Texture id %d not found \n", textureID);
+	DebugOut(L"[ERROR] Can't find texture id %d ",textureID);
 	return RECT();
 }
 

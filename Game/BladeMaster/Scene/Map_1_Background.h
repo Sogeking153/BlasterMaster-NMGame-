@@ -1,8 +1,10 @@
 #pragma once
 #include "SceneBase.h"
+#include <memory>
 /*
 	This class's sole purepose is render background of world 1
 */
+class Coordinator;
 class Map_1_Background : public SceneBase {
 public:
 	Map_1_Background(){}
@@ -13,6 +15,6 @@ public:
 
 private:
 	int tilemap[17000];
-	int tileset[150];
 	//int gunner;
+	std::shared_ptr<Coordinator> coordinator;
 };

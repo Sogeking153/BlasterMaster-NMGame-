@@ -1,10 +1,10 @@
 #pragma once
+#include <dinput.h>
 
 struct MappedInput {
-  //BYTE  keyStates[256];
-  
-  //Assumed all key is up
-  //True - key is down
-  //False - key is up
-  bool  bufferedKeyEvent[256];
+  BYTE  keyStates[256];
+	
+  //Data for key buffered event
+  int KeyCode = -1;
+  int KeyData = -1;
 };

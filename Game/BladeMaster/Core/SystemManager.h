@@ -5,8 +5,8 @@
 #include<memory>
 
 enum class SystemType {
-	Graphic = 0,
-	Input
+	Sprite = 0,
+	Animation
 };
 
 class SystemManager
