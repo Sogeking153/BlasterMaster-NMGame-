@@ -52,6 +52,12 @@
     <Filter Include="Source Files\InputHandling">
       <UniqueIdentifier>{07f29166-c3b1-4918-aa67-836e6ec03d63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\InputHandling\Core">
+      <UniqueIdentifier>{102f4c19-7900-4836-9bf2-774212c9b47c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputHandling\Core">
+      <UniqueIdentifier>{d2dfecd8-dd27-419b-8c33-d139785a76c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,11 +114,62 @@
     <ClCompile Include="Scene\Map_1_Background.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandling\DirectInput.cpp">
+    <ClCompile Include="SpriteDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\AimUpcommand.cpp">
       <Filter>Source Files\InputHandling</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandling\InputContext.cpp">
+    <ClCompile Include="InputHandling\ExteriorSideScrollingContext.cpp">
       <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoDownInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoLeftExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoLeftInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoRightExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoRightInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\GoUpInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\InteriorTopDownContext.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\JumpCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\LayDownCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\ShootExteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\ShootInteriorCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\SwitchModeCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\TossGrenadeCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\WeaponSelectCommand.cpp">
+      <Filter>Source Files\InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\Core\InputContext.cpp">
+      <Filter>Source Files\InputHandling\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandling\Core\DirectInput.cpp">
+      <Filter>Source Files\InputHandling\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,17 +266,71 @@
     <ClInclude Include="Scene\Map_1_Background.h">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\Context.h">
+    <ClInclude Include="SpriteDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\AimUpCommand.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\DirectInput.h">
+    <ClInclude Include="InputHandling\ExteriorSideScrollingContext.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\InputContext.h">
+    <ClInclude Include="InputHandling\GoDownInteriorCommand.h">
       <Filter>Header Files\InputHandling</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandling\MappedInput.h">
+    <ClInclude Include="InputHandling\GoLeftExteriorCommand.h">
       <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoLeftInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoRightExteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoRightInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\GoUpInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\InteriorTopDownContext.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\JumpCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\LayDownCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\ShootExteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\ShootInteriorCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\SwitchModeCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\TossGrenadeCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\WeaponSelectCommand.h">
+      <Filter>Header Files\InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\Command.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\Context.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\DirectInput.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\InputContext.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandling\Core\MappedInput.h">
+      <Filter>Header Files\InputHandling\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
