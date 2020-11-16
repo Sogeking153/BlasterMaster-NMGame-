@@ -8,12 +8,14 @@
 #include "../UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
+#include "../Debug.h"
+
+/*Jason::Jason(Coordinator* coordinator) {
+    entityID = coordinator->CreateEntity();
+}*/
 
 Jason::Jason(Coordinator* coordinator) {
     entityID = coordinator->CreateEntity();
-#include "../Debug.h"
-Jason::Jason() {
-    //entityID = coordinator.CreateEntity();
 
     Position pos;
     pos.x = 100;

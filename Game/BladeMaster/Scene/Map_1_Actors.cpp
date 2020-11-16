@@ -5,8 +5,6 @@
 #include "../System/SpriteSystem.h"
 #include "../Core/Coordinator.h"
 #include "../InputHandling/Core/InputContext.h"
-
-
 #include "../HelperHeader/PlayerType.h"
 
 Map_1_Actors::Map_1_Actors(short id) {
@@ -22,9 +20,11 @@ Map_1_Actors::Map_1_Actors(short id) {
 
     jason = new Jason(coordinator.get());
 
-    jason = new Jason();
+    //jason = new Jason();
     InputContext* input = InputContext::GetInstance();
+    input->coordinator = coordinator.get();
     input->player->currentPlayerType = PlayerType::JASON;
+    input->player->jason = jason;
 
 
 }

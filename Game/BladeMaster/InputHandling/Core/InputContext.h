@@ -27,10 +27,6 @@ public:
   void SetCoordinator(Coordinator*);*/
 
   Coordinator* coordinator;
-  int playerID;
-public:
-  Coordinator * coordinator;
-  //int playerID;
   PlayerType* player;
 private:
   /*

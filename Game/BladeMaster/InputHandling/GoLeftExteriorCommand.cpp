@@ -9,7 +9,7 @@
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
 
-void GoLeftExteriorCommand::execute(int EntityID) 
+/*void GoLeftExteriorCommand::execute(PlayerType * EntityID) 
 {
     DebugOut(L"Go Left Exterior Command\n");
     InputContext* context = InputContext::GetInstance();
@@ -29,12 +29,16 @@ void GoLeftExteriorCommand::execute(int EntityID)
 
 
 void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
-    DebugOut(L"Go Left Exterior Command\n");
+    DebugOut(L"Go Left Exterior Command\n\n");
+    InputContext* context = InputContext::GetInstance();
     
     switch (EntityID->currentPlayerType) {
     case PlayerType::JASON:
-        EntityID->jason->Test();
+    {
+        Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
+        pos.x += 10;
         break;
+    }
     case PlayerType::SOPHIA:
         EntityID->sophia->Test();
         break;

@@ -3,7 +3,7 @@ class Coordinator;
 class Jason {
 public:
 	Jason(Coordinator*);
-	Jason();
+	//Jason();
 	int GetID();
 	void Test();
 private:
