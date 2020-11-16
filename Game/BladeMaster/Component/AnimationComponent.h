@@ -20,12 +20,7 @@
 	delay value, at which point the animation counter is reset. Current state of animation
 	must also be tracked
 */
-enum class StateID {
-	Idle = 0,
-	Go_Left,
-	Go_Right
-};
-
+using StateID = unsigned int;
 struct State {
 	unsigned int startFrame;
 	unsigned int endFrame;
@@ -37,6 +32,7 @@ struct Animation {
 	unsigned int textureID;
 	unsigned int currentFrame;
 	StateID currentState;
+	StateID defaultState;
 	bool isFinished;
 	std::unordered_map<StateID, State> stateDictionary;
 };

@@ -88,10 +88,10 @@ void PhysicSystem::FilterCollision(
 
 LPCOLLISIONEVENT PhysicSystem::SweptAABBEx(EntityID movingID, EntityID staticID, DWORD dt)
 {
-	BoundingBox & staticObject = coordinator.GetComponent<BoundingBox>(staticID, ComponentType::BoundingBox);;
-	BoundingBox & movingObject = coordinator.GetComponent<BoundingBox>(movingID, ComponentType::BoundingBox);
-	Velocity& movingObjectSpeed = coordinator.GetComponent<Velocity>(movingID, ComponentType::Speed);
-	Velocity & staticObjectSpeed = coordinator.GetComponent<Velocity>(staticID, ComponentType::Speed);
+	BoundingBox & staticObject = coordinator->GetComponent<BoundingBox>(staticID, ComponentType::BoundingBox);;
+	BoundingBox & movingObject = coordinator->GetComponent<BoundingBox>(movingID, ComponentType::BoundingBox);
+	Velocity& movingObjectSpeed = coordinator->GetComponent<Velocity>(movingID, ComponentType::Speed);
+	Velocity & staticObjectSpeed = coordinator->GetComponent<Velocity>(staticID, ComponentType::Speed);
 	float t, nx, ny;
 
 	// (rdx, rdy) is RELATIVE movement distance/velocity 

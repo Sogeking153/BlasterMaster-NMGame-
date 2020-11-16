@@ -1,6 +1,5 @@
 #include "DirectInput.h"
 #include "../../Debug.h"
-#include "../../System/InputSystem.h"
 #include "MappedInput.h"
 #include "InputContext.h"
 

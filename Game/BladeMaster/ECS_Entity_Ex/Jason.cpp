@@ -3,9 +3,8 @@
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
 
-extern Coordinator coordinator;
 Jason::Jason() {
-    entityID = coordinator.CreateEntity();
+    //entityID = coordinator.CreateEntity();
 
     Position pos;
     pos.x = 16;

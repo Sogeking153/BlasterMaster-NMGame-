@@ -28,6 +28,7 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 #include "Scene/SceneManager.h"
 #include "SpriteDatabase.h"
 #include "InputHandling/Core/InputContext.h"
+#include "UtilHeader.h"
 #include <thread>
 
 
@@ -35,7 +36,6 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 Engine* engine;
 TextureDatabase* textureDb;
 SpriteDatabase* spriteDb;
-Coordinator coordinator;
 EventHandling eventHandling;
 SceneManager* sceneManager;
 
@@ -56,7 +56,6 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 void LoadResource(HWND hWnd)
 {
 	InputContext* input = InputContext::GetInstance();
-	//input->Init(hWnd);
 	textureDb = TextureDatabase::GetInstance();
 	
 	sceneManager = SceneManager::getInstance();
@@ -64,11 +63,9 @@ void LoadResource(HWND hWnd)
 	std::thread t2(&SceneManager::AddScene, &*sceneManager,MAP_1_ACTORS);
 	std::thread t3(&InputContext::Init, &*input, hWnd);
 	std::thread t4(&TextureDatabase::ReadDataFromFile, &*textureDb,L"Resources/Config/texture_config.txt");
-	//sceneManager->AddScene(0);
-	//sceneManager->AddScene(1);
-
-	t1.join();
+	
 	t2.join();
+	t1.join();
 	t3.join();
 	t4.join();
 	

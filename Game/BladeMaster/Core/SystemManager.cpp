@@ -1,6 +1,5 @@
 #include "SystemManager.h"
 #include "../System/SpriteSystem.h"
-#include "../System/InputSystem.h"
 #include "../System/AnimationSystem.h"
 SystemManager::SystemManager()
 {

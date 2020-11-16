@@ -23,8 +23,7 @@
 */
 // Map texture id to something meaningful
 using TextureID = short;
-#define BRICK 0
-#define GUNNER 1
+
 
 struct TextureData {
 	LPDIRECT3DTEXTURE9 texture;
