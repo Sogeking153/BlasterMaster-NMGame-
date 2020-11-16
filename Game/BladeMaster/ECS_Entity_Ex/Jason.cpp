@@ -24,8 +24,8 @@ Jason::Jason(Coordinator* coordinator) {
     coordinator->AddComponent<Position>(entityID, pos, ComponentType::Position);
 
     Animation jason_Ani_Idle;
-    jason_Ani_Idle.textureID = JASON;
-    jason_Ani_Idle.delayValue = 1000;
+    jason_Ani_Idle.textureID = JASON_IDLE;
+    jason_Ani_Idle.delayValue = 100;
     jason_Ani_Idle.isFinished = false;
 
     State jasonState;

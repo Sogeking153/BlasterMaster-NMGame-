@@ -9,7 +9,7 @@
 
 #define GET_OUT_OF_CAR_ANI 3
 
-#define JASON 6
+#define JASON_IDLE 6
 #define JASON_WALK 7
 #define JASON_CRAWL 8
 #define JASON_CLIMB 9

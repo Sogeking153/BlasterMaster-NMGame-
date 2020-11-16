@@ -8,6 +8,7 @@
 #include "../Component/PositionComponent.h"
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
+#include "../UtilHeader.h"
 
 /*void GoLeftExteriorCommand::execute(PlayerType * EntityID) 
 {
@@ -37,6 +38,25 @@ void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
     {
         Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
         pos.x += 10;
+
+        Animation& animation = context->coordinator->GetComponent<Animation>(EntityID->jason->GetID(), ComponentType::Animation);
+        /*animation.currentState = JASON_GO_LEFT;
+        animation.currentFrame = 0;
+        animation.defaultState = JASON_IDLE_LEFT;*/
+
+        animation.textureID = JASON_WALK;
+        animation.delayValue = 100;
+        animation.isFinished = false;
+        State jasonState;
+        jasonState.endFrame = 3;
+        jasonState.startFrame = 0;
+        jasonState.isLoopable = true;
+        animation.stateDictionary.emplace(JASON_GO_LEFT, jasonState);
+
+        animation.currentState = JASON_GO_LEFT;
+        animation.currentFrame = 0;
+        animation.defaultState = JASON_GO_LEFT;
+
         break;
     }
     case PlayerType::SOPHIA:
