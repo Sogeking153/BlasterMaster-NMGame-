@@ -18,7 +18,7 @@ Map_1_Actors::Map_1_Actors(short id) {
 
     sophia = new Sophia(coordinator.get());
 
-    jason = new Jason(coordinator.get());
+    jason = new Jason(coordinator);
 
     //jason = new Jason();
     InputContext* input = InputContext::GetInstance();
@@ -32,6 +32,7 @@ Map_1_Actors::Map_1_Actors(short id) {
 void Map_1_Actors::Update(DWORD dt) {
     std::shared_ptr<AnimationSystem> animationSystem = coordinator->GetSystem<AnimationSystem>(SystemType::Animation);
     animationSystem->Update();
+
 }
 
 void Map_1_Actors::Render() {
