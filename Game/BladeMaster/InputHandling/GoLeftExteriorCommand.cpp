@@ -1,4 +1,5 @@
 #include "GoLeftExteriorCommand.h"
+#include "../HelperHeader/PlayerType.h"
 //For testing purpose
 #include "../Debug.h"
 #include "Core/InputContext.h"
@@ -25,5 +26,18 @@ void GoLeftExteriorCommand::execute(int EntityID)
     pos.x = pos.x + vel.vx;
     context->coordinator->AddComponent<Position>(EntityID, pos, ComponentType::Position);
     context->coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(EntityID);*/
+
+
+void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
+    DebugOut(L"Go Left Exterior Command\n");
+    
+    switch (EntityID->currentPlayerType) {
+    case PlayerType::JASON:
+        EntityID->jason->Test();
+        break;
+    case PlayerType::SOPHIA:
+        EntityID->sophia->Test();
+        break;
+    }
 
 }

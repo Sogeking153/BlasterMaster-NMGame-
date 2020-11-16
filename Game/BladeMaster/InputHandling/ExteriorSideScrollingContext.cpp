@@ -8,6 +8,7 @@
 #include "AimUpCommand.h"
 #include "LayDownCommand.h"
 #include "Core/InputContext.h"
+#include "../HelperHeader/PlayerType.h"
 #include <dinput.h>
 
 ExteriorSideScrollingContext::ExteriorSideScrollingContext() {
@@ -27,34 +28,34 @@ bool ExteriorSideScrollingContext::Handle(MappedInput & mappedInput) {
   int actorID = input->playerID;
   if (mappedInput.KeyCode != -1 && (mappedInput.KeyData & 0x80) > 0) {
       if (mappedInput.KeyCode == DIK_DOWN) {
-          down->execute(actorID);
+          down->execute(input->player);
       }
       else if (mappedInput.KeyCode == DIK_LSHIFT) {
-          select_button->execute(actorID);
+          select_button->execute(input->player);
       }
       else if (mappedInput.KeyCode == DIK_RETURN) {
-          start_button->execute(actorID);
+          start_button->execute(input->player);
       }
       else if (mappedInput.KeyCode == DIK_UP) {
-          up->execute(actorID);
+          up->execute(input->player);
       }
       else if (mappedInput.KeyCode == DIK_Z) {
-          a_button->execute(actorID);
+          a_button->execute(input->player);
       }
       else if (mappedInput.KeyCode == DIK_X) {
-          b_button->execute(actorID);
+          b_button->execute(input->player);
       }
   }
 
   if(mappedInput.keyStates[DIK_UP] & 0x80) {
-    up->execute(actorID);
+    up->execute(input->player);
     up->isHold = true;
   } else if(mappedInput.keyStates[DIK_LEFT] & 0x80) {
-    left->execute(actorID);
+    left->execute(input->player);
   } else if(mappedInput.keyStates[DIK_RIGHT] & 0x80) {
-    right->execute(actorID);
+    right->execute(input->player);
   } else if(mappedInput.keyStates[DIK_Z] & 0x80) {
-    a_button->execute(actorID);
+    a_button->execute(input->player);
     a_button->isHold = true;
   }
 

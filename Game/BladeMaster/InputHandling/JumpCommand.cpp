@@ -2,6 +2,6 @@
 //For testing purpose
 #include "../Debug.h"
 
-void JumpCommand::execute(int EntityID) {
+void JumpCommand::execute(PlayerType * player) {
     DebugOut(L"Jump Command\n");
 }

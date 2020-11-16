@@ -14,6 +14,7 @@ class Context;
 class DirectInput;
 typedef struct MappedInput;
 class Coordinator;
+typedef struct PlayerType;
 class InputContext {
 public:
   InputContext();
@@ -27,6 +28,10 @@ public:
 
   Coordinator* coordinator;
   int playerID;
+public:
+  Coordinator * coordinator;
+  //int playerID;
+  PlayerType* player;
 private:
   /*
     a simple ordered list: each context in the list is given the raw input for the frame. If the context can validly map that raw input

@@ -11,6 +11,9 @@
 
 Jason::Jason(Coordinator* coordinator) {
     entityID = coordinator->CreateEntity();
+#include "../Debug.h"
+Jason::Jason() {
+    //entityID = coordinator.CreateEntity();
 
     Position pos;
     pos.x = 100;
@@ -99,4 +102,9 @@ Jason::Jason(Coordinator* coordinator) {
 
 int Jason::GetID() {
     return entityID;
+}
+
+void Jason::Test()
+{
+    DebugOut(L"This is Jason\n");
 }

@@ -5,6 +5,8 @@
 #include "../InteriorTopDownContext.h"
 #include "DirectInput.h"
 #include "../../Core/Coordinator.h"
+#include "../../HelperHeader/PlayerType.h"
+
 InputContext * InputContext::__instance = NULL;
 InputContext::InputContext() {}
 
@@ -25,6 +27,8 @@ void InputContext::Init(HWND hWnd)
     mListContexts.front()->isActive = true;
     lowLevelHandler = new DirectInput();
     lowLevelHandler->InitKeyboard(hWnd);
+
+    player = new PlayerType();
 }
 InputContext* InputContext::GetInstance() {
     if (__instance == nullptr) __instance = new InputContext();

@@ -58,6 +58,9 @@
     <Filter Include="Source Files\InputHandling\Core">
       <UniqueIdentifier>{87ef261d-de0f-420c-bada-c5b142828900}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\HelperHeader">
+      <UniqueIdentifier>{c2453198-a1a2-460c-a159-7a1543546c2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,9 +179,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -332,11 +332,17 @@
     <ClInclude Include="ECS_Entity_Ex\Sophia.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
-    <ClInclude Include="UtilHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Component\TransformationComponent.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\HelperHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilHeader.h">
+      <Filter>Header Files\HelperHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperHeader\PlayerType.h">
+      <Filter>Header Files\HelperHeader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
