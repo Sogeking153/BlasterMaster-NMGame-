@@ -1,7 +1,8 @@
 #pragma once
-
+class Coordinator;
 class Jason {
-	Jason();
+public:
+	Jason(Coordinator*);
 	int GetID();
 private:
 	int entityID;

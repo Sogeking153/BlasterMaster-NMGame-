@@ -7,3 +7,7 @@
 3|2|2|Resources/Car/GetOutOfCar.png
 4|1|1|Resources/Car/Wheel.png
 5|1|1|Resources/Car/Axel.png
+6|2|1|Resources/Human/Standby.png
+7|8|1|Resources/Human/Walk.png
+8|4|1|Resources/Human/Crawl.png
+9|4|1|Resources/Human/Climb.png

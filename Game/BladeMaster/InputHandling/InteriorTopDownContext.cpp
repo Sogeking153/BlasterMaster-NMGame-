@@ -22,7 +22,7 @@ InteriorTopDownContext::InteriorTopDownContext() {
 bool InteriorTopDownContext::Handle(MappedInput & mappedInput) {
     if(!isActive) return false;
     InputContext* input = InputContext::GetInstance();
-    int actorID = input->GetPlayerID();
+    int actorID = input->playerID;
     if (mappedInput.KeyCode != -1 && (mappedInput.KeyData & 0x80) > 0) {
         if (mappedInput.KeyCode == DIK_RETURN) {
             start_button->execute(actorID);
