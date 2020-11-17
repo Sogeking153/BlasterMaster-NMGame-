@@ -15,8 +15,9 @@
 */
 class Context {
 public:
-  virtual bool Handle(MappedInput &) = 0;
-
+	virtual void KeyState(BYTE* state) = 0;
+	virtual void OnKeyDown(int KeyCode) = 0;
+	virtual void OnKeyUp(int KeyCode) = 0;
 public:
   bool isActive; //We need to track which 
 };

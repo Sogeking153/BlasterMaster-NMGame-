@@ -191,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="Component\BoundingBoxComponent.h" />
+    <ClInclude Include="Component\DirectionComponent.h" />
     <ClInclude Include="Component\PositionComponent.h" />
     <ClInclude Include="Component\SpeedComponent.h" />
     <ClInclude Include="Component\SpriteComponent.h" />

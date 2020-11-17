@@ -344,5 +344,8 @@
     <ClInclude Include="HelperHeader\PlayerType.h">
       <Filter>Header Files\HelperHeader</Filter>
     </ClInclude>
+    <ClInclude Include="Component\DirectionComponent.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

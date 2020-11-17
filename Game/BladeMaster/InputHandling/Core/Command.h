@@ -16,5 +16,9 @@ public:
   virtual ~Command() {}
   virtual void execute(PlayerType * EntityID) = 0;
 public:
-  bool isHold = false;
+	enum {
+		Press,
+		KeyDown,
+		KeyUp
+	} currentKeyEventType;
 };

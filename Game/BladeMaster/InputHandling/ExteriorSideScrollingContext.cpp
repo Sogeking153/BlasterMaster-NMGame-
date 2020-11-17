@@ -22,41 +22,81 @@ ExteriorSideScrollingContext::ExteriorSideScrollingContext() {
   down = new LayDownCommand();
 }
 
-bool ExteriorSideScrollingContext::Handle(MappedInput & mappedInput) {
-  if(!isActive) return false;
-  InputContext* input = InputContext::GetInstance();
-  if (mappedInput.KeyCode != -1 && (mappedInput.KeyData & 0x80) > 0) {
-      if (mappedInput.KeyCode == DIK_DOWN) {
-          down->execute(input->player);
-      }
-      else if (mappedInput.KeyCode == DIK_LSHIFT) {
-          select_button->execute(input->player);
-      }
-      else if (mappedInput.KeyCode == DIK_RETURN) {
-          start_button->execute(input->player);
-      }
-      else if (mappedInput.KeyCode == DIK_UP) {
-          up->execute(input->player);
-      }
-      else if (mappedInput.KeyCode == DIK_Z) {
-          a_button->execute(input->player);
-      }
-      else if (mappedInput.KeyCode == DIK_X) {
-          b_button->execute(input->player);
-      }
-  }
+void ExteriorSideScrollingContext::KeyState(BYTE* keyStates)
+{
+    InputContext* input = InputContext::GetInstance();
+    if (keyStates[DIK_UP] & 0x80) {
+        up->currentKeyEventType = Command::Press;
+        up->execute(input->player);
+    }
+    else if (keyStates[DIK_LEFT] & 0x80) {
+        left->currentKeyEventType = Command::Press;
+        left->execute(input->player);
+    }
+    else if (keyStates[DIK_RIGHT] & 0x80) {
+        right->currentKeyEventType = Command::Press;
+        right->execute(input->player);
+    }
+    else if (keyStates[DIK_Z] & 0x80) {
+        a_button->currentKeyEventType = Command::Press;
+        a_button->execute(input->player);
+    }
+}
 
-  if(mappedInput.keyStates[DIK_UP] & 0x80) {
-    up->execute(input->player);
-    up->isHold = true;
-  } else if(mappedInput.keyStates[DIK_LEFT] & 0x80) {
-    left->execute(input->player);
-  } else if(mappedInput.keyStates[DIK_RIGHT] & 0x80) {
-    right->execute(input->player);
-  } else if(mappedInput.keyStates[DIK_Z] & 0x80) {
-    a_button->execute(input->player);
-    a_button->isHold = true;
-  }
+void ExteriorSideScrollingContext::OnKeyDown(int KeyCode)
+{
+    InputContext* input = InputContext::GetInstance();
+    switch (KeyCode)
+    {
+    case DIK_DOWN:
+        down->currentKeyEventType = Command::KeyDown;
+        down->execute(input->player);
+        break;
+    case DIK_LSHIFT:
+        select_button->currentKeyEventType = Command::KeyDown;
+        select_button->execute(input->player);
+        break;
+    case DIK_RETURN:
+        start_button->currentKeyEventType = Command::KeyDown;
+        start_button->execute(input->player);
+        break;
+    case DIK_Z:
+        a_button->currentKeyEventType = Command::KeyDown;
+        a_button->execute(input->player);
+        break;
+    case DIK_X:
+        b_button->currentKeyEventType = Command::KeyDown;
+        b_button->execute(input->player);
+        break;
+    default:
+        break;
+    }
+}
 
-  return true;
+void ExteriorSideScrollingContext::OnKeyUp(int KeyCode)
+{
+    InputContext* input = InputContext::GetInstance();
+    switch (KeyCode)
+    {
+    case DIK_UP:
+        up->currentKeyEventType = Command::KeyUp;
+        up->execute(input->player);
+        break;
+    case DIK_LEFT:
+        left->currentKeyEventType = Command::KeyUp;
+        left->execute(input->player);
+        break;
+    case DIK_RIGHT:
+        right->currentKeyEventType = Command::KeyUp;
+        right->execute(input->player);
+        break;
+    case DIK_Z:
+        a_button->currentKeyEventType = Command::KeyUp;
+        a_button->execute(input->player);
+        break;
+
+    default:
+        break;
+    }
+
 }

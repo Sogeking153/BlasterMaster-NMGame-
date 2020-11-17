@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include <list>
+#include <map>
 #include <dinput.h>
 //This is second layer in Input Handling System
 /*
@@ -10,6 +10,10 @@
   More information:
   https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/designing-a-robust-input-handling-system-for-games-r2975/
 */
+enum class ContextType {
+    Exterior,
+    Interior
+};
 class Context;
 class DirectInput;
 typedef struct MappedInput;
@@ -20,12 +24,14 @@ public:
   InputContext();
   void Dispatch();
   void Init(HWND);
+  void HandleKeyState(BYTE*);
+  void OnKeyDown(int);
+  void OnKeyUp(int);
+  void SwitchContext(ContextType);
   static InputContext* GetInstance();
 
-  /*void SetPlayerID(int);
-  int GetPlayerID();
-  void SetCoordinator(Coordinator*);*/
 
+public:
   Coordinator* coordinator;
   PlayerType* player;
 private:
@@ -38,7 +44,8 @@ private:
     More information about CoR:
     https://refactoring.guru/design-patterns/chain-of-responsibility
   */
-  std::list<std::unique_ptr<Context>> mListContexts;
+  std::map<ContextType,std::unique_ptr<Context>> mListContexts;
+  ContextType currentContext;
   DirectInput * lowLevelHandler;
   static InputContext* __instance;
 };
