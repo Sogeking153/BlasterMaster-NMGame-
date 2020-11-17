@@ -1,4 +1,6 @@
-﻿  main.cpp
-C:\School\NMPTG\BlasterMaster-NMGame-\Game\BladeMaster\main.cpp(83,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\School\NMPTG\BlasterMaster-NMGame-\Game\BladeMaster\main.cpp(84,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  BladeMaster.vcxproj -> C:\School\NMPTG\BlasterMaster-NMGame-\Game\Debug\BladeMaster.exe
+﻿  GoRightExteriorCommand.cpp
+D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\Command.h(13,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(15,27): warning C4091: 'typedef ': ignored on left of 'MappedInput' when no variable is declared
+D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(17,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+  BladeMaster.vcxproj -> D:\Games\BlasterMaster-NMGame-\Game\Debug\BladeMaster.exe

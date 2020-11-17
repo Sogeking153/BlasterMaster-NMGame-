@@ -177,6 +177,9 @@
     <ClCompile Include="ECS_Entity_Ex\Sophia.cpp">
       <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
+    <ClCompile Include="ECS_Entity_Ex\JasonOW.cpp">
+      <Filter>Source Files\ECS_Entity_Ex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -326,9 +329,6 @@
     <ClInclude Include="System\AnimationSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="ECS_Entity_Ex\Jason.h">
-      <Filter>Header Files\ECS_Entity_Ex</Filter>
-    </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\Sophia.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
@@ -346,6 +346,11 @@
     </ClInclude>
     <ClInclude Include="Component\DirectionComponent.h">
       <Filter>Header Files\Component</Filter>
+    <ClInclude Include="ECS_Entity_Ex\Jason.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS_Entity_Ex\JasonOW.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

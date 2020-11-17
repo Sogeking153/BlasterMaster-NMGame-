@@ -22,12 +22,13 @@ Jason::Jason(std::shared_ptr<Coordinator> coordinator) {
 
     coordinator->AddComponent<Position>(entityID, pos, ComponentType::Position);
 
+    State jasonState;
+
     Animation jason_Ani_Idle;
     jason_Ani_Idle.textureID = JASON_IDLE;
     jason_Ani_Idle.delayValue = 100;
     jason_Ani_Idle.isFinished = false;
 
-    State jasonState;
     jasonState.endFrame = 0;
     jasonState.startFrame = 0;
     jasonState.isLoopable = true;
@@ -47,7 +48,7 @@ Jason::Jason(std::shared_ptr<Coordinator> coordinator) {
     coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(entityID);
 
     //Default Animation
-    currentAnimation = Jason::Idle;
+    currentAnimation = Jason::Idle_Left;
 }
 
 int Jason::GetID() {
@@ -71,104 +72,231 @@ void Jason::SwitchState(int aniID)
     Animation & animationNeedToSwap = coordinator->GetComponent<Animation>(entityID, ComponentType::Animation);
     switch (aniID)
     {
-    case (int)Jason::Idle: {
-        Animation jason_Ani_Idle;
-        jason_Ani_Idle.textureID = JASON_IDLE;
-        jason_Ani_Idle.delayValue = 100;
-        jason_Ani_Idle.isFinished = false;
+    case (int)Jason::Idle_Left: {
+        Animation jason_Ani_Idle_Left;
+        jason_Ani_Idle_Left.textureID = JASON_IDLE;
+        jason_Ani_Idle_Left.delayValue = 100;
+        jason_Ani_Idle_Left.isFinished = false;
 
         State jasonState;
         jasonState.endFrame = 0;
         jasonState.startFrame = 0;
         jasonState.isLoopable = true;
-        jason_Ani_Idle.stateDictionary.emplace(JASON_IDLE_LEFT, jasonState);
+        jason_Ani_Idle_Left.stateDictionary.emplace(JASON_IDLE_LEFT, jasonState);
 
-        jasonState.endFrame = 1;
-        jasonState.startFrame = 1;
-        jasonState.isLoopable = true;
-        jason_Ani_Idle.stateDictionary.emplace(JASON_IDLE_RIGHT, jasonState);
-
-        jason_Ani_Idle.currentState = JASON_IDLE_LEFT;
-        jason_Ani_Idle.currentFrame = 0;
-        jason_Ani_Idle.defaultState = JASON_IDLE_LEFT;
+        jason_Ani_Idle_Left.currentState = JASON_IDLE_LEFT;
+        jason_Ani_Idle_Left.currentFrame = 0;
+        jason_Ani_Idle_Left.defaultState = JASON_IDLE_LEFT;
 
         /*
            TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
        */
 
         //Swap Animation
-        animationNeedToSwap = jason_Ani_Idle;
-        currentAnimation = Jason::Idle;
+        animationNeedToSwap = jason_Ani_Idle_Left;
+        currentAnimation = Jason::Idle_Left;
 
         //For testing only
-        DebugOut(L"[INFO] Swap to IDLE success\n");
+        DebugOut(L"[INFO] Swap to IDLE_LEFT success\n");
         break;
     }
-    case (int)Jason::Walk: {
-        Animation jason_Ani_Walk;
-        jason_Ani_Walk.textureID = JASON_WALK;
-        jason_Ani_Walk.delayValue = 1000;
-        jason_Ani_Walk.isFinished = false;
+    case (int)Jason::Idle_Right: {
+        Animation jason_Ani_Idle_Right;
+        jason_Ani_Idle_Right.textureID = JASON_IDLE;
+        jason_Ani_Idle_Right.delayValue = 100;
+        jason_Ani_Idle_Right.isFinished = false;
+
+        State jasonState;
+        jasonState.endFrame = 1;
+        jasonState.startFrame = 1;
+        jasonState.isLoopable = true;
+        jason_Ani_Idle_Right.stateDictionary.emplace(JASON_IDLE_RIGHT, jasonState);
+
+        jason_Ani_Idle_Right.currentState = JASON_IDLE_RIGHT;
+        jason_Ani_Idle_Right.currentFrame = 1;
+        jason_Ani_Idle_Right.defaultState = JASON_IDLE_RIGHT;
+
+        /*
+           TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
+       */
+
+       //Swap Animation
+        animationNeedToSwap = jason_Ani_Idle_Right;
+        currentAnimation = Jason::Idle_Right;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to IDLE_RIGHT success\n");
+        break;
+    }
+    case (int)Jason::Walk_Left: {
+        Animation jason_Ani_Walk_Left;
+        jason_Ani_Walk_Left.textureID = JASON_WALK;
+        jason_Ani_Walk_Left.delayValue = 100;
+        jason_Ani_Walk_Left.isFinished = false;
 
         State jasonState;
         jasonState.endFrame = 3;
         jasonState.startFrame = 0;
         jasonState.isLoopable = true;
-        jason_Ani_Walk.stateDictionary.emplace(JASON_GO_LEFT, jasonState);
-
-        jasonState.endFrame = 7;
-        jasonState.startFrame = 4;
-        jasonState.isLoopable = true;
-        jason_Ani_Walk.stateDictionary.emplace(JASON_GO_RIGHT, jasonState);
-        
+        jason_Ani_Walk_Left.stateDictionary.emplace(JASON_GO_LEFT, jasonState);
         
         /*
            TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
        */
-        jason_Ani_Walk.currentState = JASON_GO_LEFT;
-        jason_Ani_Walk.currentFrame = 0;
-        jason_Ani_Walk.defaultState = JASON_GO_LEFT;
+        jason_Ani_Walk_Left.currentState = JASON_GO_LEFT;
+        jason_Ani_Walk_Left.currentFrame = 0;
+        jason_Ani_Walk_Left.defaultState = JASON_GO_LEFT;
 
        //Swap Animation
-        animationNeedToSwap = jason_Ani_Walk;
-        currentAnimation = Jason::Walk;
+        animationNeedToSwap = jason_Ani_Walk_Left;
+        currentAnimation = Jason::Walk_Left;
 
         //For testing only
-        DebugOut(L"[INFO] Swap to WALK success\n");
+        DebugOut(L"[INFO] Swap to WALK_LEFT success\n");
         break;
     }
-    case (int)Jason::Crawl: {
-        Animation jason_Ani_Crawl;
+    case (int)Jason::Walk_Right: {
+        Animation jason_Ani_Walk_Right;
+        jason_Ani_Walk_Right.textureID = JASON_WALK;
+        jason_Ani_Walk_Right.delayValue = 100;
+        jason_Ani_Walk_Right.isFinished = false;
+
+        State jasonState;
+        jasonState.endFrame = 7;
+        jasonState.startFrame = 4;
+        jasonState.isLoopable = true;
+        jason_Ani_Walk_Right.stateDictionary.emplace(JASON_GO_RIGHT, jasonState);
+
+
+        /*
+           TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
+       */
+        jason_Ani_Walk_Right.currentState = JASON_GO_RIGHT;
+        jason_Ani_Walk_Right.currentFrame = 4;
+        jason_Ani_Walk_Right.defaultState = JASON_GO_RIGHT;
+
+        //Swap Animation
+        animationNeedToSwap = jason_Ani_Walk_Right;
+        currentAnimation = Jason::Walk_Right;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to WALK_RIGHT success\n");
+        break;
+    }
+    case (int)Jason::Crawl_Idle_Left: {
+        Animation jason_Ani_Crawl_Idle_Left;
 
         State jasonState;
 
-        jason_Ani_Crawl.textureID = JASON_CRAWL;
-        jason_Ani_Crawl.delayValue = 1000;
-        jason_Ani_Crawl.isFinished = false;
+        jason_Ani_Crawl_Idle_Left.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Idle_Left.delayValue = 100;
+        jason_Ani_Crawl_Idle_Left.isFinished = false;
+
+        jasonState.endFrame = 0;
+        jasonState.startFrame = 0;
+        jasonState.isLoopable = true;
+        jason_Ani_Crawl_Idle_Left.stateDictionary.emplace(JASON_CRAWL_IDLE_LEFT, jasonState);
+
+        /*
+           TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
+       */
+        jason_Ani_Crawl_Idle_Left.currentState = JASON_CRAWL_IDLE_LEFT;
+        jason_Ani_Crawl_Idle_Left.currentFrame = 0;
+        jason_Ani_Crawl_Idle_Left.defaultState = JASON_CRAWL_IDLE_LEFT;
+
+       //Swap Animation
+        animationNeedToSwap = jason_Ani_Crawl_Idle_Left;
+        currentAnimation = Jason::Crawl_Idle_Left;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to CRAWL_IDLE_LEFT success\n");
+        break;
+    }
+    case (int)Jason::Crawl_Idle_Right: {
+        Animation jason_Ani_Crawl_Idle_Right;
+
+        State jasonState;
+
+        jason_Ani_Crawl_Idle_Right.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Idle_Right.delayValue = 100;
+        jason_Ani_Crawl_Idle_Right.isFinished = false;
+
+        jasonState.endFrame = 3;
+        jasonState.startFrame = 3;
+        jasonState.isLoopable = true;
+        jason_Ani_Crawl_Idle_Right.stateDictionary.emplace(JASON_CRAWL_IDLE_RIGHT, jasonState);
+
+        /*
+           TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
+       */
+        jason_Ani_Crawl_Idle_Right.currentState = JASON_CRAWL_IDLE_RIGHT;
+        jason_Ani_Crawl_Idle_Right.currentFrame = 3;
+        jason_Ani_Crawl_Idle_Right.defaultState = JASON_CRAWL_IDLE_RIGHT;
+
+       //Swap Animation
+        animationNeedToSwap = jason_Ani_Crawl_Idle_Right;
+        currentAnimation = Jason::Crawl_Idle_Right;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to CRAWL_IDLE_RIGHT success\n");
+        break;
+    }
+    case (int)Jason::Crawl_Left: {
+        Animation jason_Ani_Crawl_Left;
+
+        State jasonState;
+
+        jason_Ani_Crawl_Left.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Left.delayValue = 100;
+        jason_Ani_Crawl_Left.isFinished = false;
 
         jasonState.endFrame = 1;
         jasonState.startFrame = 0;
         jasonState.isLoopable = true;
-        jason_Ani_Crawl.stateDictionary.emplace(JASON_CRAWL_LEFT, jasonState);
-
-        jasonState.endFrame = 3;
-        jasonState.startFrame = 2;
-        jasonState.isLoopable = true;
-        jason_Ani_Crawl.stateDictionary.emplace(JASON_CRAWL_RIGHT, jasonState);
+        jason_Ani_Crawl_Left.stateDictionary.emplace(JASON_CRAWL_LEFT, jasonState);
 
         /*
            TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
        */
-        jason_Ani_Crawl.currentState = JASON_CRAWL_LEFT;
-        jason_Ani_Crawl.currentFrame = 0;
-        jason_Ani_Crawl.defaultState = JASON_CRAWL_LEFT;
+        jason_Ani_Crawl_Left.currentState = JASON_CRAWL_LEFT;
+        jason_Ani_Crawl_Left.currentFrame = 0;
+        jason_Ani_Crawl_Left.defaultState = JASON_CRAWL_LEFT;
 
        //Swap Animation
-        animationNeedToSwap = jason_Ani_Crawl;
-        currentAnimation = Jason::Crawl;
+        animationNeedToSwap = jason_Ani_Crawl_Left;
+        currentAnimation = Jason::Crawl_Left;
 
         //For testing only
-        DebugOut(L"[INFO] Swap to CRAWL success\n");
+        DebugOut(L"[INFO] Swap to CRAWL_LEFT success\n");
+        break;
+    }
+    case (int)Jason::Crawl_Right: {
+        Animation jason_Ani_Crawl_Right;
+
+        State jasonState;
+
+        jason_Ani_Crawl_Right.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Right.delayValue = 100;
+        jason_Ani_Crawl_Right.isFinished = false;
+
+        jasonState.endFrame = 3;
+        jasonState.startFrame = 2;
+        jasonState.isLoopable = true;
+        jason_Ani_Crawl_Right.stateDictionary.emplace(JASON_CRAWL_RIGHT, jasonState);
+
+        /*
+           TODO: Thuan should check whether jason is facing left or right to adjust current state and default state appropriately
+       */
+        jason_Ani_Crawl_Right.currentState = JASON_CRAWL_RIGHT;
+        jason_Ani_Crawl_Right.currentFrame = 2;
+        jason_Ani_Crawl_Right.defaultState = JASON_CRAWL_RIGHT;
+
+       //Swap Animation
+        animationNeedToSwap = jason_Ani_Crawl_Right;
+        currentAnimation = Jason::Crawl_Right;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to CRAWL_RIGHT success\n");
         break;
     }
     case (int)Jason::Climb: {
@@ -176,7 +304,7 @@ void Jason::SwitchState(int aniID)
         State jasonState;
 
         jason_Ani_Climb.textureID = JASON_CLIMB;
-        jason_Ani_Climb.delayValue = 1000;
+        jason_Ani_Climb.delayValue = 100;
         jason_Ani_Climb.isFinished = false;
 
         jasonState.endFrame = 1;
