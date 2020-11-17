@@ -24,14 +24,22 @@ void GoRightExteriorCommand::execute(PlayerType * EntityID) {
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
             dir.nx = 1;
 
-            if (EntityID->jason->currentState == Jason::Idle_Right 
-                || EntityID->jason->currentState == Jason::Walk_Right 
-                || EntityID->jason->currentState == Jason::Idle_Left
-                ||EntityID->jason->currentState == Jason::Walk_Left)
-               
+            switch (EntityID->jason->currentState)
+            {
+            case Jason::Walk_Left:
+            case Jason::Idle_Left:
+            case Jason::Walk_Right:
+            case Jason::Idle_Right:
                 EntityID->jason->SwitchState(Jason::Walk_Right);
-            else {
+                break;
+            case Jason::Crawl_Left:
+            case Jason::Crawl_Idle_Left:
+            case Jason::Crawl_Idle_Right:
+            case Jason::Crawl_Right:
                 EntityID->jason->SwitchState(Jason::Crawl_Right);
+                break;
+            default:
+                break;
             }
         }
         break;
@@ -42,9 +50,19 @@ void GoRightExteriorCommand::execute(PlayerType * EntityID) {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
             velocity.vx = 0;
             
-            if (EntityID->jason->currentState == Jason::Walk_Right || EntityID->jason->currentState == Jason::Idle_Right)
+            switch (EntityID->jason->currentState)
+            {
+            case Jason::Walk_Right:
+            case Jason::Idle_Right:
                 EntityID->jason->SwitchState(Jason::Idle_Right);
-            else EntityID->jason->SwitchState(Jason::Crawl_Idle_Right);
+                break;
+            case Jason::Crawl_Right:
+            case Jason::Crawl_Idle_Right:
+                EntityID->jason->SwitchState(Jason::Crawl_Idle_Right);
+                break;
+            default:
+                break;
+            }
         }
         break;
         default:

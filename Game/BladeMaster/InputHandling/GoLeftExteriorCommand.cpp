@@ -57,6 +57,7 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             case Jason::Crawl_Idle_Right:
             case Jason::Crawl_Right:
                 EntityID->jason->SwitchState(Jason::Crawl_Left);
+                break;
             default:
                 break;
             }
@@ -70,9 +71,19 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
             velocity.vx = 0;
             
-            if (EntityID->jason->currentState == Jason::Walk_Left || EntityID->jason->currentState == Jason::Idle_Left)
+            switch (EntityID->jason->currentState)
+            {
+            case Jason::Walk_Left:
+            case Jason::Idle_Left:
                 EntityID->jason->SwitchState(Jason::Idle_Left);
-            else EntityID->jason->SwitchState(Jason::Crawl_Idle_Left);
+                break;
+            case Jason::Crawl_Left:
+            case Jason::Crawl_Idle_Left:
+                EntityID->jason->SwitchState(Jason::Crawl_Idle_Left);
+                break;
+            default:
+                break;
+            }
         }
             break;
         default:

@@ -68,6 +68,10 @@ void ExteriorSideScrollingContext::OnKeyDown(int KeyCode)
         b_button->currentKeyEventType = Command::KeyDown;
         b_button->execute(input->player);
         break;
+    case DIK_UP:
+        up->currentKeyEventType= Command::KeyDown;
+        up->execute(input->player);
+        break;
     default:
         break;
     }
