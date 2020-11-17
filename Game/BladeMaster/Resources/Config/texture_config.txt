@@ -18,4 +18,4 @@
 14|4|1|Resources/Human/O_GoDown.png
 15|4|1|Resources/Human/O_GoLeft.png
 16|4|1|Resources/Human/O_GoRight.png
-17|16|1|Resources/Human/O_Die.png
+17|18|1|Resources/Human/O_Die.png

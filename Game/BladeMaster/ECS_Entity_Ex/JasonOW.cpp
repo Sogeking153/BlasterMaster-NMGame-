@@ -29,9 +29,9 @@ JasonOW::JasonOW(Coordinator* coordinator) {
     jason_OW_UP.delayValue = 100;
     jason_OW_UP.isFinished = false;
 
-    jasonState.endFrame = 3;
+    jasonState.endFrame = 17;
     jasonState.startFrame = 0;
-    jasonState.isLoopable = false;
+    jasonState.isLoopable = true;
     jason_OW_UP.stateDictionary.emplace(JASON_O_UP, jasonState);
 
     jason_OW_UP.currentState = JASON_O_UP;
@@ -72,26 +72,34 @@ JasonOW::JasonOW(Coordinator* coordinator) {
     jason_OW_RIGHT.delayValue = 100;
     jason_OW_RIGHT.isFinished = false;
 
+    jasonState.endFrame = 3;
+    jasonState.startFrame = 0;
+    jasonState.isLoopable = false;
+    jason_OW_RIGHT.stateDictionary.emplace(JASON_O_RIGHT, jasonState);
+
+    jason_OW_RIGHT.currentState = JASON_O_RIGHT;
+    jason_OW_RIGHT.currentFrame = 0;
+    jason_OW_RIGHT.defaultState = JASON_O_RIGHT;
+
     Animation jason_OW_DIE;
-    jason_OW_DIE.textureID = JASON_O_UP;
+    jason_OW_DIE.textureID = JASON_O_DIE;
     jason_OW_DIE.delayValue = 100;
     jason_OW_DIE.isFinished = false;
 
+    jasonState.endFrame = 15;
+    jasonState.startFrame = 0;
+    jasonState.isLoopable = false;
+    jason_OW_DIE.stateDictionary.emplace(JASON_O_DIE, jasonState);
 
-
-
-
-
-
-
+    jason_OW_DIE.currentState = JASON_O_DIE;
+    jason_OW_DIE.currentFrame = 0;
+    jason_OW_DIE.defaultState = JASON_O_DIE;
 
 
     coordinator->AddComponent<Animation>(entityID, jason_OW_UP, ComponentType::Animation);
     coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(entityID);
 
 }
-
-
 
 
 
