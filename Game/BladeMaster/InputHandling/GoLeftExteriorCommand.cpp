@@ -10,7 +10,7 @@
 #include "../System/AnimationSystem.h"
 #include "../UtilHeader.h"
 
-/*void GoLeftExteriorCommand::execute(PlayerType * EntityID) 
+/*void GoLeftExteriorCommand::execute(PlayerType * EntityID)
 {
     DebugOut(L"Go Left Exterior Command\n");
     InputContext* context = InputContext::GetInstance();
@@ -29,10 +29,10 @@
     context->coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(EntityID);*/
 
 
-void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
+void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
     DebugOut(L"Go Left Exterior Command\n\n");
     InputContext* context = InputContext::GetInstance();
-    
+
     switch (EntityID->currentPlayerType) {
     case PlayerType::JASON:
     {
@@ -44,18 +44,18 @@ void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
         animation.currentFrame = 0;
         animation.defaultState = JASON_IDLE_LEFT;*/
 
-        animation.textureID = JASON_WALK;
+        animation.textureID = JASON_O_LEFT;
         animation.delayValue = 100;
         animation.isFinished = false;
         State jasonState;
         jasonState.endFrame = 3;
         jasonState.startFrame = 0;
         jasonState.isLoopable = true;
-        animation.stateDictionary.emplace(JASON_GO_LEFT, jasonState);
+        animation.stateDictionary.emplace(JASON_O_LEFT, jasonState);
 
-        animation.currentState = JASON_GO_LEFT;
+        animation.currentState = JASON_O_LEFT;
         animation.currentFrame = 0;
-        animation.defaultState = JASON_GO_LEFT;
+        animation.defaultState = JASON_O_LEFT;
 
         break;
     }

@@ -1,6 +1,7 @@
 #include "Map_1_Actors.h"
 #include "../ECS_Entity_Ex/Sophia.h"
 #include "../ECS_Entity_Ex/Jason.h"
+#include "../ECS_Entity_Ex/JasonOW.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
 #include "../Core/Coordinator.h"
@@ -19,6 +20,8 @@ Map_1_Actors::Map_1_Actors(short id) {
     sophia = new Sophia(coordinator.get());
 
     jason = new Jason(coordinator.get());
+
+    jasonow = new JasonOW(coordinator.get());
 
     //jason = new Jason();
     InputContext* input = InputContext::GetInstance();
