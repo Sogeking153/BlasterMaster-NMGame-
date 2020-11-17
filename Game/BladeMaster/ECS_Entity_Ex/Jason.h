@@ -1,13 +1,28 @@
 #pragma once
+#include <memory>
+#include "../Component/SpeedComponent.h"
 class Coordinator;
+
+
 class Jason {
 public:
-	Jason(Coordinator*);
-	//Jason();
+	Jason(std::shared_ptr<Coordinator>);
 	int GetID();
 	void Test();
+	void SwitchState(int);
 private:
 	int entityID;
-
-	
+	Velocity jason_vel;
+	enum {
+		Idle_Left,
+		Idle_Right,
+		Walk_Left,
+		Walk_Right,
+		Crawl_Idle_Left,
+		Crawl_Idle_Right,
+		Crawl_Left,
+		Crawl_Right,
+		Climb
+	} currentAnimation;
+	std::shared_ptr<Coordinator> coordinator;
 };

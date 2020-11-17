@@ -1,5 +1,4 @@
 #include "GoLeftExteriorCommand.h"
-#include "../HelperHeader/PlayerType.h"
 //For testing purpose
 #include "../Debug.h"
 #include "Core/InputContext.h"
@@ -9,6 +8,7 @@
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
 #include "../UtilHeader.h"
+#include "../HelperHeader/PlayerType.h"
 
 /*void GoLeftExteriorCommand::execute(PlayerType * EntityID)
 {

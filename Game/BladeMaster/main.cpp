@@ -77,8 +77,6 @@ void LoadResource(HWND hWnd)
 	IMPORTANT: no render-related code should be used inside this function.
 */
 void Update(DWORD dt) {
-	InputContext* input = InputContext::GetInstance();
-	input->Dispatch();
 	sceneManager->Update(dt);
 
 }
@@ -164,6 +162,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 
 int Run()
 {
+	InputContext* input = InputContext::GetInstance();
 	MSG msg;
 	int done = 0;
 	DWORD frameStart = GetTickCount();
@@ -187,6 +186,9 @@ int Run()
 		if (dt >= tickPerFrame)
 		{
 			frameStart = now;
+
+			input->Dispatch();
+
 			Update(dt);
 			Render();
 		}
