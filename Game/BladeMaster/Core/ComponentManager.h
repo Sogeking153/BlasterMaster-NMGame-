@@ -7,7 +7,8 @@ enum class ComponentType {
 	Position,
 	BoundingBox,
 	Speed,
-	Transformation
+	Transformation, 
+	Direction
 };
 
 class ComponentManager

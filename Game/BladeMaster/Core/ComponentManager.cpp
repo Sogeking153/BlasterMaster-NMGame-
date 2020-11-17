@@ -5,6 +5,7 @@
 #include "../Component/SpeedComponent.h"
 #include "../Component/BoundingBoxComponent.h"
 #include "../Component/TransformationComponent.h"
+#include "../Component/DirectionComponent.h"
 ComponentManager::ComponentManager()
 {
 	RegisterComponent<Sprite>(ComponentType::Sprite);
@@ -13,4 +14,5 @@ ComponentManager::ComponentManager()
 	RegisterComponent<Velocity>(ComponentType::Speed);
 	RegisterComponent<BoundingBox>(ComponentType::BoundingBox);
 	RegisterComponent<Transformation>(ComponentType::Transformation);
+	RegisterComponent<Direction>(ComponentType::Direction);
 }

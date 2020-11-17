@@ -66,7 +66,8 @@ void Jason::Test()
 */
 void Jason::SwitchState(int aniID)
 {
-    if (aniID == (int)currentAnimation) return;
+    if (aniID == (int)currentAnimation) return; //Avoid animation override when jason's animation in the middle of render and 
+
     Animation & animationNeedToSwap = coordinator->GetComponent<Animation>(entityID, ComponentType::Animation);
     switch (aniID)
     {
