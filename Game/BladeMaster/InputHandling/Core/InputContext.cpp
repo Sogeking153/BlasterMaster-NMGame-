@@ -12,23 +12,32 @@ InputContext::InputContext() {}
 
 void InputContext::Dispatch()
 {
-    MappedInput mappedInput = lowLevelHandler->ProcessKeyboard();
-    for(std::list<std::unique_ptr<Context>>::iterator it = mListContexts.begin(); it != mListContexts.end() ; it++) {
-      if(it->get()->Handle(mappedInput) == true) {
-        return;
-      }
-    }
-
+    lowLevelHandler->ProcessKeyboard();
 }
 void InputContext::Init(HWND hWnd)
 {
-    mListContexts.push_front(std::make_unique<InteriorTopDownContext>());
-    mListContexts.push_front(std::make_unique<ExteriorSideScrollingContext>());
-    mListContexts.front()->isActive = true;
+    mListContexts.emplace(ContextType::Interior,std::make_unique<InteriorTopDownContext>());
+    mListContexts.emplace(ContextType::Exterior,std::make_unique<ExteriorSideScrollingContext>());
     lowLevelHandler = new DirectInput();
     lowLevelHandler->InitKeyboard(hWnd);
 
     player = new PlayerType();
+}
+void InputContext::HandleKeyState(BYTE * keyState)
+{
+    mListContexts[currentContext]->KeyState(keyState);
+}
+void InputContext::OnKeyDown(int keyCode)
+{
+    mListContexts[currentContext]->OnKeyDown(keyCode);
+}
+void InputContext::OnKeyUp(int keyCode)
+{
+    mListContexts[currentContext]->OnKeyUp(keyCode);
+}
+void InputContext::SwitchContext(ContextType newContext)
+{
+    currentContext = newContext;
 }
 InputContext* InputContext::GetInstance() {
     if (__instance == nullptr) __instance = new InputContext();

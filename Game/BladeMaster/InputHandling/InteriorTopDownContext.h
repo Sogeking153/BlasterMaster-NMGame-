@@ -7,6 +7,10 @@ public:
     InteriorTopDownContext();
     bool Handle(MappedInput &);
 
+    // Inherited via Context
+    virtual void KeyState(BYTE* keyStates) override;
+    virtual void OnKeyDown(int KeyCode) override;
+    virtual void OnKeyUp(int KeyCode) override;
 private:
     Command * up;
     Command * left;
@@ -15,4 +19,6 @@ private:
     Command * a_button;
     Command * b_button;
     Command * start_button;
+
+    
 };

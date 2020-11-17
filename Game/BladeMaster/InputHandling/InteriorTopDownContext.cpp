@@ -19,31 +19,54 @@ InteriorTopDownContext::InteriorTopDownContext() {
     b_button = new ShootInteriorCommand();
 }
 
-bool InteriorTopDownContext::Handle(MappedInput & mappedInput) {
-    if(!isActive) return false;
+void InteriorTopDownContext::KeyState(BYTE* keyStates)
+{
     InputContext* input = InputContext::GetInstance();
-
-    if (mappedInput.KeyCode != -1 && (mappedInput.KeyData & 0x80) > 0) {
-        if (mappedInput.KeyCode == DIK_RETURN) {
-            start_button->execute(input->player);
-        } else if (mappedInput.KeyCode ==DIK_Z) {
-            a_button->execute(input->player);
-        }
-        else if (mappedInput.KeyCode == DIK_X) {
-            b_button->execute(input->player);
-        }
-    }
-    
-
-    if(mappedInput.keyStates[DIK_UP] & 0x80) {
+    if (keyStates[DIK_UP] & 0x80) {
+        up->currentKeyEventType = Command::Press;
         up->execute(input->player);
-    } else if(mappedInput.keyStates[DIK_LEFT] & 0x80) {
+    }
+    else if (keyStates[DIK_LEFT] & 0x80) {
+        left->currentKeyEventType = Command::Press;
         left->execute(input->player);
-    } else if(mappedInput.keyStates[DIK_RIGHT] & 0x80) {
+    }
+    else if (keyStates[DIK_RIGHT] & 0x80) {
+        right->currentKeyEventType = Command::Press;
         right->execute(input->player);
-    } else if (mappedInput.keyStates[DIK_DOWN] & 0x80) {
+    }
+    else if (keyStates[DIK_DOWN] & 0x80) {
+        down->currentKeyEventType = Command::Press;
         down->execute(input->player);
     }
+}
 
-    return true;
+void InteriorTopDownContext::OnKeyDown(int KeyCode)
+{
+    InputContext* input = InputContext::GetInstance();
+    switch (KeyCode)
+    {
+    case DIK_RETURN:
+        start_button->currentKeyEventType = Command::KeyDown;
+        start_button->execute(input->player);
+        break;
+    case DIK_Z:
+        a_button->currentKeyEventType = Command::KeyDown;
+        a_button->execute(input->player);
+        break;
+    case DIK_X:
+        b_button->currentKeyEventType = Command::KeyDown;
+        b_button->execute(input->player);
+        break;
+    default:
+        break;
+    }
+}
+
+void InteriorTopDownContext::OnKeyUp(int KeyCode)
+{
+    switch (KeyCode)
+    {
+    default:
+        break;
+    }
 }

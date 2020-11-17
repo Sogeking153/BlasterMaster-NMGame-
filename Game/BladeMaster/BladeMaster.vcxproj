@@ -154,6 +154,7 @@
     <ClCompile Include="Core\SystemBase.cpp" />
     <ClCompile Include="Core\SystemManager.cpp" />
     <ClCompile Include="ECS_Entity_Ex\Jason.cpp" />
+    <ClCompile Include="ECS_Entity_Ex\JasonOW.cpp" />
     <ClCompile Include="ECS_Entity_Ex\Sophia.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EventHandler\EventHandling.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Core\Type.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="ECS_Entity_Ex\Jason.h" />
+    <ClInclude Include="ECS_Entity_Ex\JasonOW.h" />
     <ClInclude Include="ECS_Entity_Ex\Sophia.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EventHandler\EventBase.h" />

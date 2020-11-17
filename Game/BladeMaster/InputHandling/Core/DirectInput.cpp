@@ -8,12 +8,12 @@
 	return (keyStates[KeyCode] & 0x80) > 0;
 }*/
 
-MappedInput DirectInput::ProcessKeyboard()
+void DirectInput::ProcessKeyboard()
 {
+	InputContext* context = InputContext::GetInstance();
 	HRESULT hr;
-	MappedInput mappedInput;
 	// Collect all key states first
-	hr = didv->GetDeviceState(sizeof(mappedInput.keyStates), mappedInput.keyStates);
+	hr = didv->GetDeviceState(sizeof(keyStates), keyStates);
 	if (FAILED(hr))
 	{
 		 //If the keyboard lost focus or was not acquired then try to get control back.
@@ -24,14 +24,16 @@ MappedInput DirectInput::ProcessKeyboard()
 			{
 				DebugOut(L"[INFO] Keyboard re-acquired!\n");
 			}
-			else return MappedInput();
+			else return;
 		}
 		else
 		{
 			DebugOut(L"[ERROR] DINPUT::GetDeviceState failed. Error: %d\n", hr);
-			return MappedInput();
+			return;
 		}
 	}
+
+	context->HandleKeyState(keyStates);
 
 	// Collect all buffered events
 	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
@@ -39,22 +41,19 @@ MappedInput DirectInput::ProcessKeyboard()
 	if (FAILED(hr))
 	{
 		DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
-		return MappedInput();
+		return;
 	}
 
 	for (DWORD i = 0; i < dwElements; i++)
 	{
-		/*int KeyCode = keyEvents[i].dwOfs;
+		int KeyCode = keyEvents[i].dwOfs;
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
-			inputSys->OnKeyDown(KeyCode);
+			context->OnKeyDown(KeyCode);
 		else
-			inputSys->OnKeyUp(KeyCode);*/
-		mappedInput.KeyCode = keyEvents[i].dwOfs;
-		mappedInput.KeyData = keyEvents[i].dwData;
+			context->OnKeyUp(KeyCode);
 	}
 
-	return mappedInput;
 }
 
 void DirectInput::InitKeyboard(HWND hWnd)
