@@ -1,5 +1,4 @@
 #include "GoLeftExteriorCommand.h"
-#include "../HelperHeader/PlayerType.h"
 //For testing purpose
 #include "../Debug.h"
 #include "Core/InputContext.h"
@@ -9,6 +8,7 @@
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
 #include "../UtilHeader.h"
+#include "../HelperHeader/PlayerType.h"
 
 /*void GoLeftExteriorCommand::execute(PlayerType * EntityID) 
 {
@@ -37,8 +37,8 @@ void GoLeftExteriorCommand::execute(PlayerType * EntityID) {
     case PlayerType::JASON:
     {
         Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
-        pos.x += 10;
-        EntityID->jason->SwitchState(1);
+        pos.x -= JASON_WALKING_SPEED;
+        EntityID->jason->SwitchState(2);
         break;
     }
     case PlayerType::SOPHIA:
