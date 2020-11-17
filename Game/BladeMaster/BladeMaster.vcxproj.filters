@@ -346,6 +346,7 @@
     </ClInclude>
     <ClInclude Include="Component\DirectionComponent.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\Jason.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
