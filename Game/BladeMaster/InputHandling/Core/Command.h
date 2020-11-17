@@ -17,7 +17,7 @@ public:
   virtual void execute(PlayerType * EntityID) = 0;
 public:
 	enum {
-		Press,
+		Hold,
 		KeyDown,
 		KeyUp
 	} currentKeyEventType;

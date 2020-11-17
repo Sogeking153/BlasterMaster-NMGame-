@@ -23,19 +23,19 @@ void InteriorTopDownContext::KeyState(BYTE* keyStates)
 {
     InputContext* input = InputContext::GetInstance();
     if (keyStates[DIK_UP] & 0x80) {
-        up->currentKeyEventType = Command::Press;
+        up->currentKeyEventType = Command::Hold;
         up->execute(input->player);
     }
     else if (keyStates[DIK_LEFT] & 0x80) {
-        left->currentKeyEventType = Command::Press;
+        left->currentKeyEventType = Command::Hold;
         left->execute(input->player);
     }
     else if (keyStates[DIK_RIGHT] & 0x80) {
-        right->currentKeyEventType = Command::Press;
+        right->currentKeyEventType = Command::Hold;
         right->execute(input->player);
     }
     else if (keyStates[DIK_DOWN] & 0x80) {
-        down->currentKeyEventType = Command::Press;
+        down->currentKeyEventType = Command::Hold;
         down->execute(input->player);
     }
 }

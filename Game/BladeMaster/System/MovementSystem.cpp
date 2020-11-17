@@ -3,11 +3,13 @@
 #include "../EventHandler/PhysicEvent.h"
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
+#include "../Component/DirectionComponent.h"
 MovementSystem::MovementSystem()
 {
 	Bitmask requirement;
 	requirement.set((int)ComponentType::Speed, true);
 	requirement.set((int)ComponentType::Position, true);
+	requirement.set((int)ComponentType::Direction, true);
 	mRequiredComponents.push_back(requirement);
 }
 
@@ -34,8 +36,9 @@ void MovementSystem::Update(DWORD dt)
 	for (EntityID const & entity : mEntityList) {
 		Position& pos = coordinator->GetComponent<Position>(entity, ComponentType::Position);
 		Velocity& speed = coordinator->GetComponent<Velocity>(entity, ComponentType::Speed);
-		speed.dx = speed.vx * dt;
-		speed.dy = speed.vy * dt;
+		Direction & dir = coordinator->GetComponent<Direction>(entity, ComponentType::Direction);
+		speed.dx =  dir.nx * speed.vx * dt;
+		speed.dy = dir.ny* speed.vy * dt;
 
 		pos.x += speed.dx;
 		pos.y += speed.dy;

@@ -5,9 +5,11 @@
 #include "../Component/AnimationComponent.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/TransformationComponent.h"
+#include "../Component/DirectionComponent.h"
 #include "../UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
+#include "../System/MovementSystem.h"
 #include "../Debug.h"
 
 
@@ -25,7 +27,7 @@ Jason::Jason(std::shared_ptr<Coordinator> coordinator) {
     State jasonState;
 
     Animation jason_Ani_Idle;
-    jason_Ani_Idle.textureID = JASON_IDLE;
+    jason_Ani_Idle.textureID = JASON_IDLE_LEFT;
     jason_Ani_Idle.delayValue = 100;
     jason_Ani_Idle.isFinished = false;
 
@@ -48,7 +50,18 @@ Jason::Jason(std::shared_ptr<Coordinator> coordinator) {
     coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(entityID);
 
     //Default Animation
-    currentAnimation = Jason::Idle_Left;
+    currentState = Jason::Idle_Left;
+
+    Direction dir;
+    coordinator->AddComponent<Direction>(entityID, dir, ComponentType::Direction);
+
+    Velocity velocity;
+    velocity.vx = 0;
+    velocity.vy = 0;
+
+    coordinator->AddComponent<Velocity>(entityID, velocity, ComponentType::Speed);
+
+    coordinator->GetSystem<MovementSystem>(SystemType::Movement)->AddEntity(entityID);
 }
 
 int Jason::GetID() {
@@ -67,14 +80,14 @@ void Jason::Test()
 */
 void Jason::SwitchState(int aniID)
 {
-    if (aniID == (int)currentAnimation) return; //Avoid animation override when jason's animation in the middle of render and 
+    if (aniID == (int)currentState) return; //Avoid animation override when jason's animation in the middle of render and 
 
     Animation & animationNeedToSwap = coordinator->GetComponent<Animation>(entityID, ComponentType::Animation);
     switch (aniID)
     {
     case (int)Jason::Idle_Left: {
         Animation jason_Ani_Idle_Left;
-        jason_Ani_Idle_Left.textureID = JASON_IDLE;
+        jason_Ani_Idle_Left.textureID = JASON_IDLE_LEFT;
         jason_Ani_Idle_Left.delayValue = 100;
         jason_Ani_Idle_Left.isFinished = false;
 
@@ -94,7 +107,7 @@ void Jason::SwitchState(int aniID)
 
         //Swap Animation
         animationNeedToSwap = jason_Ani_Idle_Left;
-        currentAnimation = Jason::Idle_Left;
+        currentState = Jason::Idle_Left;
 
         //For testing only
         DebugOut(L"[INFO] Swap to IDLE_LEFT success\n");
@@ -102,7 +115,7 @@ void Jason::SwitchState(int aniID)
     }
     case (int)Jason::Idle_Right: {
         Animation jason_Ani_Idle_Right;
-        jason_Ani_Idle_Right.textureID = JASON_IDLE;
+        jason_Ani_Idle_Right.textureID = JASON_IDLE_RIGHT;
         jason_Ani_Idle_Right.delayValue = 100;
         jason_Ani_Idle_Right.isFinished = false;
 
@@ -122,7 +135,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Idle_Right;
-        currentAnimation = Jason::Idle_Right;
+        currentState = Jason::Idle_Right;
 
         //For testing only
         DebugOut(L"[INFO] Swap to IDLE_RIGHT success\n");
@@ -130,7 +143,7 @@ void Jason::SwitchState(int aniID)
     }
     case (int)Jason::Walk_Left: {
         Animation jason_Ani_Walk_Left;
-        jason_Ani_Walk_Left.textureID = JASON_WALK;
+        jason_Ani_Walk_Left.textureID = JASON_GO_LEFT;
         jason_Ani_Walk_Left.delayValue = 100;
         jason_Ani_Walk_Left.isFinished = false;
 
@@ -149,7 +162,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Walk_Left;
-        currentAnimation = Jason::Walk_Left;
+        currentState = Jason::Walk_Left;
 
         //For testing only
         DebugOut(L"[INFO] Swap to WALK_LEFT success\n");
@@ -157,7 +170,7 @@ void Jason::SwitchState(int aniID)
     }
     case (int)Jason::Walk_Right: {
         Animation jason_Ani_Walk_Right;
-        jason_Ani_Walk_Right.textureID = JASON_WALK;
+        jason_Ani_Walk_Right.textureID = JASON_GO_RIGHT;
         jason_Ani_Walk_Right.delayValue = 100;
         jason_Ani_Walk_Right.isFinished = false;
 
@@ -177,7 +190,7 @@ void Jason::SwitchState(int aniID)
 
         //Swap Animation
         animationNeedToSwap = jason_Ani_Walk_Right;
-        currentAnimation = Jason::Walk_Right;
+        currentState = Jason::Walk_Right;
 
         //For testing only
         DebugOut(L"[INFO] Swap to WALK_RIGHT success\n");
@@ -188,7 +201,7 @@ void Jason::SwitchState(int aniID)
 
         State jasonState;
 
-        jason_Ani_Crawl_Idle_Left.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Idle_Left.textureID = JASON_CRAWL_LEFT;
         jason_Ani_Crawl_Idle_Left.delayValue = 100;
         jason_Ani_Crawl_Idle_Left.isFinished = false;
 
@@ -206,7 +219,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Crawl_Idle_Left;
-        currentAnimation = Jason::Crawl_Idle_Left;
+        currentState = Jason::Crawl_Idle_Left;
 
         //For testing only
         DebugOut(L"[INFO] Swap to CRAWL_IDLE_LEFT success\n");
@@ -217,7 +230,7 @@ void Jason::SwitchState(int aniID)
 
         State jasonState;
 
-        jason_Ani_Crawl_Idle_Right.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Idle_Right.textureID = JASON_CRAWL_RIGHT;
         jason_Ani_Crawl_Idle_Right.delayValue = 100;
         jason_Ani_Crawl_Idle_Right.isFinished = false;
 
@@ -235,7 +248,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Crawl_Idle_Right;
-        currentAnimation = Jason::Crawl_Idle_Right;
+        currentState = Jason::Crawl_Idle_Right;
 
         //For testing only
         DebugOut(L"[INFO] Swap to CRAWL_IDLE_RIGHT success\n");
@@ -246,7 +259,7 @@ void Jason::SwitchState(int aniID)
 
         State jasonState;
 
-        jason_Ani_Crawl_Left.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Left.textureID = JASON_CRAWL_LEFT;
         jason_Ani_Crawl_Left.delayValue = 100;
         jason_Ani_Crawl_Left.isFinished = false;
 
@@ -264,7 +277,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Crawl_Left;
-        currentAnimation = Jason::Crawl_Left;
+        currentState = Jason::Crawl_Left;
 
         //For testing only
         DebugOut(L"[INFO] Swap to CRAWL_LEFT success\n");
@@ -275,7 +288,7 @@ void Jason::SwitchState(int aniID)
 
         State jasonState;
 
-        jason_Ani_Crawl_Right.textureID = JASON_CRAWL;
+        jason_Ani_Crawl_Right.textureID = JASON_CRAWL_RIGHT;
         jason_Ani_Crawl_Right.delayValue = 100;
         jason_Ani_Crawl_Right.isFinished = false;
 
@@ -293,7 +306,7 @@ void Jason::SwitchState(int aniID)
 
        //Swap Animation
         animationNeedToSwap = jason_Ani_Crawl_Right;
-        currentAnimation = Jason::Crawl_Right;
+        currentState = Jason::Crawl_Right;
 
         //For testing only
         DebugOut(L"[INFO] Swap to CRAWL_RIGHT success\n");
@@ -303,7 +316,7 @@ void Jason::SwitchState(int aniID)
         Animation jason_Ani_Climb;
         State jasonState;
 
-        jason_Ani_Climb.textureID = JASON_CLIMB;
+        jason_Ani_Climb.textureID = JASON_CLIMB_UP;
         jason_Ani_Climb.delayValue = 100;
         jason_Ani_Climb.isFinished = false;
 
@@ -321,7 +334,7 @@ void Jason::SwitchState(int aniID)
 
         //Swap Animation
         animationNeedToSwap = jason_Ani_Climb;
-        currentAnimation = Jason::Climb;
+        currentState = Jason::Climb;
 
         //For testing only
         DebugOut(L"[INFO] Swap to CLIMB success\n");

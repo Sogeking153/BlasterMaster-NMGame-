@@ -26,19 +26,19 @@ void ExteriorSideScrollingContext::KeyState(BYTE* keyStates)
 {
     InputContext* input = InputContext::GetInstance();
     if (keyStates[DIK_UP] & 0x80) {
-        up->currentKeyEventType = Command::Press;
+        up->currentKeyEventType = Command::Hold;
         up->execute(input->player);
     }
     else if (keyStates[DIK_LEFT] & 0x80) {
-        left->currentKeyEventType = Command::Press;
+        left->currentKeyEventType = Command::Hold;
         left->execute(input->player);
     }
     else if (keyStates[DIK_RIGHT] & 0x80) {
-        right->currentKeyEventType = Command::Press;
+        right->currentKeyEventType = Command::Hold;
         right->execute(input->player);
     }
     else if (keyStates[DIK_Z] & 0x80) {
-        a_button->currentKeyEventType = Command::Press;
+        a_button->currentKeyEventType = Command::Hold;
         a_button->execute(input->player);
     }
 }

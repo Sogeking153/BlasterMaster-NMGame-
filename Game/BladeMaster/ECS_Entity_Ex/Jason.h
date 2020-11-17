@@ -10,9 +10,8 @@ public:
 	int GetID();
 	void Test();
 	void SwitchState(int);
-private:
-	int entityID;
-	Velocity jason_vel;
+
+public:
 	enum {
 		Idle_Left,
 		Idle_Right,
@@ -23,6 +22,10 @@ private:
 		Crawl_Left,
 		Crawl_Right,
 		Climb
-	} currentAnimation;
+	} currentState;
+private:
+	int entityID;
+	Velocity jason_vel;
+	
 	std::shared_ptr<Coordinator> coordinator;
 };

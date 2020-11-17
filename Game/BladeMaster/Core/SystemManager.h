@@ -6,7 +6,9 @@
 
 enum class SystemType {
 	Sprite = 0,
-	Animation
+	Animation,
+	Movement,
+	Physic
 };
 
 class SystemManager

@@ -1,11 +1,9 @@
 #include "GoLeftExteriorCommand.h"
-//For testing purpose
 #include "../Debug.h"
 #include "Core/InputContext.h"
 #include "../Core/Coordinator.h"
 #include"../Component/SpeedComponent.h"
-#include "../Component/PositionComponent.h"
-#include "../Component/AnimationComponent.h"
+#include "../Component/DirectionComponent.h"
 #include "../System/AnimationSystem.h"
 #include "../UtilHeader.h"
 #include "../HelperHeader/PlayerType.h"
@@ -36,27 +34,51 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
     switch (EntityID->currentPlayerType) {
     case PlayerType::JASON:
     {
-        Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
-        pos.x += 10;
+        switch (currentKeyEventType)
+        {
+        case Command::Hold:
+        {
+            
+            Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
+            velocity.vx = JASON_WALKING_SPEED;
+            Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
+            dir.nx = -1;
 
-        Animation& animation = context->coordinator->GetComponent<Animation>(EntityID->jason->GetID(), ComponentType::Animation);
-        /*animation.currentState = JASON_GO_LEFT;
-        animation.currentFrame = 0;
-        animation.defaultState = JASON_IDLE_LEFT;*/
-
-        animation.textureID = JASON_O_LEFT;
-        animation.delayValue = 100;
-        animation.isFinished = false;
-        State jasonState;
-        jasonState.endFrame = 3;
-        jasonState.startFrame = 0;
-        jasonState.isLoopable = true;
-        animation.stateDictionary.emplace(JASON_O_LEFT, jasonState);
-
-        animation.currentState = JASON_O_LEFT;
-        animation.currentFrame = 0;
-        animation.defaultState = JASON_O_LEFT;
-
+            switch (EntityID->jason->currentState)
+            {
+            case Jason::Walk_Left:
+            case Jason::Idle_Left:
+            case Jason::Walk_Right:
+            case Jason::Idle_Right:
+                EntityID->jason->SwitchState(Jason::Walk_Left);
+                break;
+            case Jason::Crawl_Left:
+            case Jason::Crawl_Idle_Left:
+            case Jason::Crawl_Idle_Right:
+            case Jason::Crawl_Right:
+                EntityID->jason->SwitchState(Jason::Crawl_Left);
+            default:
+                break;
+            }
+            
+        }
+            break;
+        case Command::KeyDown:
+            break;
+        case Command::KeyUp:
+        {
+            Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
+            velocity.vx = 0;
+            
+            if (EntityID->jason->currentState == Jason::Walk_Left || EntityID->jason->currentState == Jason::Idle_Left)
+                EntityID->jason->SwitchState(Jason::Idle_Left);
+            else EntityID->jason->SwitchState(Jason::Crawl_Idle_Left);
+        }
+            break;
+        default:
+            break;
+        }
+        
         break;
     }
     case PlayerType::SOPHIA:
