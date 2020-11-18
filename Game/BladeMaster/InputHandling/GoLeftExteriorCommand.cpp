@@ -1,11 +1,11 @@
 #include "GoLeftExteriorCommand.h"
-#include "../Debug.h"
+#include "../HelperHeader/Debug.h"
 #include "Core/InputContext.h"
 #include "../Core/Coordinator.h"
 #include"../Component/SpeedComponent.h"
 #include "../Component/DirectionComponent.h"
 #include "../System/AnimationSystem.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/UtilHeader.h"
 #include "../HelperHeader/PlayerType.h"
 
 /*void GoLeftExteriorCommand::execute(PlayerType * EntityID)

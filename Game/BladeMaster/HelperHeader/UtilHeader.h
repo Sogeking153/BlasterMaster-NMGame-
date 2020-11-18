@@ -26,6 +26,7 @@
 // Scene ID
 #define MAP_1_BACKGROUND 0
 #define MAP_1_ACTORS 1
+#define PHYSICS_SCENE 2
 
 //Animation state ID
 #define BODY_CAR_IDLE_LEFT 0

@@ -1,5 +1,5 @@
 #include "DirectInput.h"
-#include "../../Debug.h"
+#include "../../HelperHeader/Debug.h"
 #include "MappedInput.h"
 #include "InputContext.h"
 

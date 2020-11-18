@@ -1,5 +1,5 @@
 #include "EntityManager.h"
-#include "../Debug.h"
+#include "../HelperHeader/Debug.h"
 EntityManager::EntityManager()
 {
 	mLivingEntityCounter = 0;

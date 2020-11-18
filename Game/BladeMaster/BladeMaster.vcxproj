@@ -180,6 +180,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\Map_1_Actors.cpp" />
     <ClCompile Include="Scene\Map_1_Background.cpp" />
+    <ClCompile Include="Scene\Physics_Scene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="SpriteDatabase.cpp" />
@@ -204,7 +205,6 @@
     <ClInclude Include="Core\SystemBase.h" />
     <ClInclude Include="Core\SystemManager.h" />
     <ClInclude Include="Core\Type.h" />
-    <ClInclude Include="Debug.h" />
     <ClInclude Include="ECS_Entity_Ex\Jason.h" />
     <ClInclude Include="ECS_Entity_Ex\JasonOW.h" />
     <ClInclude Include="ECS_Entity_Ex\Sophia.h" />
@@ -213,7 +213,10 @@
     <ClInclude Include="EventHandler\EventHandling.h" />
     <ClInclude Include="EventHandler\HandlerFunctionBase.h" />
     <ClInclude Include="EventHandler\PhysicEvent.h" />
+    <ClInclude Include="HelperHeader\Debug.h" />
     <ClInclude Include="HelperHeader\PlayerType.h" />
+    <ClInclude Include="HelperHeader\stdafx.h" />
+    <ClInclude Include="HelperHeader\UtilHeader.h" />
     <ClInclude Include="InputHandling\AimUpCommand.h" />
     <ClInclude Include="InputHandling\Core\Command.h" />
     <ClInclude Include="InputHandling\Core\Context.h" />
@@ -237,6 +240,7 @@
     <ClInclude Include="InputHandling\WeaponSelectCommand.h" />
     <ClInclude Include="Scene\Map_1_Actors.h" />
     <ClInclude Include="Scene\Map_1_Background.h" />
+    <ClInclude Include="Scene\Physics_Scene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="SpriteDatabase.h" />
@@ -244,9 +248,7 @@
     <ClInclude Include="System\MovementSystem.h" />
     <ClInclude Include="System\PhysicSystem.h" />
     <ClInclude Include="TextureDatabase.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="System\SpriteSystem.h" />
-    <ClInclude Include="UtilHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

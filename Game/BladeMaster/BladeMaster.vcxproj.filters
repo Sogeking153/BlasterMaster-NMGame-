@@ -180,12 +180,12 @@
     <ClCompile Include="ECS_Entity_Ex\JasonOW.cpp">
       <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Physics_Scene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\ComponentArray.h">
@@ -335,12 +335,6 @@
     <ClInclude Include="Component\TransformationComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files\HelperHeader</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilHeader.h">
-      <Filter>Header Files\HelperHeader</Filter>
-    </ClInclude>
     <ClInclude Include="HelperHeader\PlayerType.h">
       <Filter>Header Files\HelperHeader</Filter>
     </ClInclude>
@@ -352,6 +346,18 @@
     </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\JasonOW.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Physics_Scene.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperHeader\Debug.h">
+      <Filter>Header Files\HelperHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperHeader\stdafx.h">
+      <Filter>Header Files\HelperHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperHeader\UtilHeader.h">
+      <Filter>Header Files\HelperHeader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

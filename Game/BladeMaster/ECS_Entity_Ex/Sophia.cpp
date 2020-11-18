@@ -5,10 +5,10 @@
 #include "../Component/AnimationComponent.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/TransformationComponent.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
-#include "../Debug.h"
+#include "../HelperHeader/Debug.h"
 
 Sophia::Sophia(Coordinator * coordinator) {
     entityID = coordinator->CreateEntity();

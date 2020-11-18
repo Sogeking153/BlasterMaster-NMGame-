@@ -1,6 +1,6 @@
 #pragma once
 #include"SystemBase.h"
-#include"../Debug.h"
+#include"../HelperHeader/Debug.h"
 #include<unordered_map>
 #include<memory>
 

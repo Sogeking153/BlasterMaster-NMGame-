@@ -1,14 +1,14 @@
 #include "GoUpInteriorCommand.h"
 #include "../HelperHeader/PlayerType.h"
 //For testing purpose
-#include "../Debug.h"
+#include "../HelperHeader/Debug.h"
 #include "Core/InputContext.h"
 #include "../Core/Coordinator.h"
 #include"../Component/SpeedComponent.h"
 #include "../Component/PositionComponent.h"
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/UtilHeader.h"
 
 /*void GoRightExteriorCommand::execute(PlayerType * EntityID)
 {

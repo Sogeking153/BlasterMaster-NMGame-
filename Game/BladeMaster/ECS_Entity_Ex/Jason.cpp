@@ -6,11 +6,11 @@
 #include "../Component/SpriteComponent.h"
 #include "../Component/TransformationComponent.h"
 #include "../Component/DirectionComponent.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
 #include "../System/MovementSystem.h"
-#include "../Debug.h"
+#include "../HelperHeader/Debug.h"
 
 
 Jason::Jason(std::shared_ptr<Coordinator> coordinator) {
