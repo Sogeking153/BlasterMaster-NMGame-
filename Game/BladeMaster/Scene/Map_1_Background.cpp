@@ -4,7 +4,7 @@
 #include "../Component/SpriteComponent.h"
 #include "../Component/AnimationComponent.h"
 #include "../System/SpriteSystem.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/UtilHeader.h"
 #include <fstream>
 #include <iostream>
 

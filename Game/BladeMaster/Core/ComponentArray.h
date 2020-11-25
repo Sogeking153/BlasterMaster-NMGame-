@@ -1,6 +1,6 @@
 #pragma once
 #include"Type.h"
-#include"../Debug.h"
+#include"../HelperHeader/Debug.h"
 #include<array>
 #include<unordered_map>
 

@@ -1,9 +1,10 @@
 #include "SceneManager.h"
 #include "SceneBase.h"
-#include "../Debug.h"
-#include "../UtilHeader.h"
+#include "../HelperHeader/Debug.h"
+#include "../HelperHeader/UtilHeader.h"
 #include "Map_1_Background.h"
 #include "Map_1_Actors.h"
+#include "Physics_Scene.h"
 SceneManager * SceneManager::__instance = NULL;
 
 SceneManager::SceneManager()
@@ -79,6 +80,7 @@ SceneBase* SceneManager::createScene(SceneID id)
     switch (id) {
     case MAP_1_BACKGROUND: return new Map_1_Background(MAP_1_BACKGROUND); break;
     case MAP_1_ACTORS : return new Map_1_Actors(MAP_1_ACTORS); break;
+    case PHYSICS_SCENE: return new Physics_scene(PHYSICS_SCENE); break;
     default:
         DebugOut(L"Scene with id %d is defined", id);
     }

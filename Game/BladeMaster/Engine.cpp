@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Debug.h"
+#include "HelperHeader/Debug.h"
 Engine* Engine::__instance = NULL;
 
 Engine::Engine()

@@ -20,7 +20,7 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 ================================================================ */
 #pragma once
 #include "Engine.h"
-#include "Debug.h"
+#include "HelperHeader/Debug.h"
 #include "Core/Coordinator.h"
 #include "System/SpriteSystem.h"
 #include "TextureDatabase.h"
@@ -28,7 +28,7 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 #include "Scene/SceneManager.h"
 #include "SpriteDatabase.h"
 #include "InputHandling/Core/InputContext.h"
-#include "UtilHeader.h"
+#include "HelperHeader/UtilHeader.h"
 #include <thread>
 
 

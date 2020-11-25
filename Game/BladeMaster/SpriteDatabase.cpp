@@ -1,5 +1,5 @@
 #include "SpriteDatabase.h"
-#include "Debug.h"
+#include "HelperHeader/Debug.h"
 #include "TextureDatabase.h"
 
 void SpriteDatabase::AddSprite(short textureID)

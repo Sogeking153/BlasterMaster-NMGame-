@@ -1,5 +1,6 @@
 #include "JumpCommand.h"
 //For testing purpose
+
 #include "../Debug.h"
 #include "Core/InputContext.h"
 #include "../Core/Coordinator.h"
@@ -8,6 +9,7 @@
 #include "../System/AnimationSystem.h"
 #include "../UtilHeader.h"
 #include "../HelperHeader/PlayerType.h"
+#include "../HelperHeader/Debug.h"
 
 void JumpCommand::execute(PlayerType * EntityID) {
     DebugOut(L"Jump Command\n");
