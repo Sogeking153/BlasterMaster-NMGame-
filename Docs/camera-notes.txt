@@ -1,0 +1,46 @@
+According to link: 
+https://gamedev.stackexchange.com/questions/32693/how-do-i-implement-features-in-an-entity-system
+
+The entity you create that has a camera component would use the position and rotation components of that entity. Then you'd have a camera system that looks for entities that have a camera, position and rotation components. The system takes that entity and draws all the entities it can "see" from it's position, rotation, depth of view and field of view, to the specified portion of the screen. That give lots of options simulating multiple view ports, "character view" windows, local multiplayer, different layers of GUI and so on. 
+
+Note: tưởng tượng như
+
+                            Camera
+                                ||
+                                V
+        Sprite System / Animation System
+        
+Camera cần biết được nó sẽ thấy những entity nào và nó sẽ lấy được id của entity và draw nó ra.
+=> Sprite System sẽ có hàm Draw(ID) và animation system cũng sẽ có hàm draw(ID)
+
+Camera cũng sẽ chạy theo người chơi
+
+According to link:
+https://tl.net/blogs/396594-game-programming-the-camera#
+
+I'd like to make complex level shapes; levels that look like Ls, Ts or other weird shapes. That means I'll need several modes for my camera that aren't based on the level's width/ height. I'll also need the ability to switch those modes. There are two types of unlocked modes I'd like to support: free follow and platform locked. In the latter case the idea is that the camera will only move on the y-axis when the player lands on a platform. This is nice for level sections that feature a series of ascending platforms. By using a platform locked camera the player jump on the platforms while keeping the camera level. In a free form mode an ascending player will continuously be at the top of their camera box and each jump will move the camera. Plus this creates a nice delay effect in the camera motion, the camera moves a shorter distance when the player lands rather than tracking them through the air. Super Mario Brothers World used this type of camera technique (see video at end of blog).
+
+So now I have my list of camera types:
+    * x-axis
+    * y-axis
+    * platform locked
+    * free follow
+    
+Each one is easily coded up and ready to go. There are some easing and panning issues to be dealt with later, but they're minor enough to push off for now. Each mode takes the box's current position and uses it to update the intermediate position I referred to earlier. When a transition happens the intermediate position may jump somewhat dramatically so it'll be up to clever transitioning and good camera easing to smooth it all out.
+
+To handle transitioning between camera modes I make some new entities for my game world. I add invinsible trigger can be placed as a game object in a level. When the player colliders with them their velocity is used to determine which way the player is going. Each side of trigger, the trigger can be horizontal or vertical, has an associated camera type that will be switched to based on the direction of the player. It's straightforward and simple; exactly what I need. I'll be transitioning the camera during levels, but I don't think I'll need anything too fancy in how I do it
+
+According to link:
+https://www.reddit.com/r/gamedev/comments/lrewu/super_mario_world_camera_logic_review/
+
+Super Mario World has four scroll modes, which set by hand for each level. For our purposes here, going down a pipe to a different area takes you to a different level. (Fun fact: every time you go through a pipe it takes you to a different level - that one spot where you go down a pipe and it immediately shoots you out a nearby pipe at a 45 degree angle? There are acually two copies of that level to do that. The ROM editor for the game automatically inserts a small hack that fixes this.)
+
+Two scroll modes are super easy to understand: mode 0 disable vertical scroll entirely, while mode 3 disable both vertical and horizontal scroll. The more complex modes are Mode 1 - What the author of this review called "Platform locking," and Mode 2, which locks the vertical scroll to the bottom of the screen.
+
+All modes uses a 16 pixels leeway, and scroll the screen freely when moving horizontally (except Mode 3, natch). Filling your P-meter (including flying), climbing and swimming all make the screen vertically freely (probably some other actions I forgot do too).
+
+In Mode 1 the game keeps track of "ground level" at whatever platform you've lasted landed on. Heading downwards below ground level you scroll freely. Heading upwards there is no scrolling (except actions that enable free scroll) until you land on a platform, which will scroll up and set ground level (no scrolling if you don't meet the 16 pixels leeway though).
+
+In Mode 2 the game will refuse to vertically scroll from the bottom level unless you do something that enable free scrolling. The "no vertical scrolling" rule only applies on the bottom, so it is functionally Mode 1 if the level doesn't touch the bottom, or you swim up to an area above the bottom of the level, or whatever. There is no top-of-screen locking but the game won't scroll past the top of the level and prefers to keep Mario slightly below the center, so levels hugging the ceiling won't scrolling much.
+
+Note: camera của mình cũng sẽ có 4 mode như trên và mình sẽ có 1 loại entity gọi là trigger. Khi mà người chơi va chạm với trigger thì mình sẽ thay đổi mode của camera

@@ -12,12 +12,13 @@ private:
   virtual void call(const Event *) = 0;
 };
 // MemberFunctionHandler's purpose is to safely cast to proper event type.
-template<typename T, typename EvenT>
+template<typename T, typename EventT>
 class MemberFunctionHandler : public HandlerFunctionBase{
 public:
-  typedef void (T::*memFunction)(Event *); //Forwar declaration
+  typedef void (T::*memFunction)(const EventT *); //Forwar declaration
+  MemberFunctionHandler(T* obj, memFunction _memfunction): _instance(obj), _function (_memfunction){}
   void call(const Event * event) {
-    (_instance->*_function)(static_cast<EventT *>(event));
+    (_instance->*_function)(static_cast<const EventT *>(event));
   }
 private:
   T* _instance;

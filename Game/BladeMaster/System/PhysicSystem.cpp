@@ -6,7 +6,6 @@
 #include "../EventHandler/EventHandling.h"
 
 extern Coordinator coordinator;
-extern EventHandling eventHandling;
 
 PhysicSystem::PhysicSystem()
 {
@@ -18,6 +17,7 @@ PhysicSystem::PhysicSystem()
 
 void PhysicSystem::Update(DWORD dt)
 {
+	EventHandling* eventHandling = EventHandling::GetInstance();
 	for (EntityID const& entity : mEntityList) {
 		std::vector<LPCOLLISIONEVENT> coEvents;
 		std::vector<LPCOLLISIONEVENT> coEventsResult;
@@ -30,7 +30,7 @@ void PhysicSystem::Update(DWORD dt)
 			float rdy = 0;
 			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 			CollisionEvent* collisionEvent = new CollisionEvent(min_tx, min_ty, nx, ny, coEventsResult, entity);
-			eventHandling.handleEvent(collisionEvent);
+			eventHandling->handleEvent(collisionEvent);
 		}
 
 		// clean up collision events

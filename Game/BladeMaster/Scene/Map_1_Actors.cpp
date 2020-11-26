@@ -27,8 +27,8 @@ Map_1_Actors::Map_1_Actors(short id) {
     //jason = new Jason();
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();
-    input->player->currentPlayerType = PlayerType::JASON;
-    input->player->jason = jason;
+    input->player->currentPlayerType = PlayerType::JASONOW;
+    input->player->jasonow = jasonow;
 
 
 }

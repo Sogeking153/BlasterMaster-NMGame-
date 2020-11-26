@@ -29,14 +29,13 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 #include "SpriteDatabase.h"
 #include "InputHandling/Core/InputContext.h"
 #include "HelperHeader/UtilHeader.h"
+#include "Camera.h"
 #include <thread>
-
-
 
 Engine* engine;
 TextureDatabase* textureDb;
 SpriteDatabase* spriteDb;
-EventHandling eventHandling;
+Camera camera;
 SceneManager* sceneManager;
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -78,7 +77,7 @@ void LoadResource(HWND hWnd)
 */
 void Update(DWORD dt) {
 	sceneManager->Update(dt);
-
+	camera.Update();
 }
 
 /*
