@@ -35,7 +35,7 @@ WARNING: This one file example has a hell LOT of *sinful* programming practices
 Engine* engine;
 TextureDatabase* textureDb;
 SpriteDatabase* spriteDb;
-Camera camera;
+Camera* camera = Camera::GetInstance();
 SceneManager* sceneManager;
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -77,7 +77,7 @@ void LoadResource(HWND hWnd)
 */
 void Update(DWORD dt) {
 	sceneManager->Update(dt);
-	camera.Update();
+	camera->Update();
 }
 
 /*

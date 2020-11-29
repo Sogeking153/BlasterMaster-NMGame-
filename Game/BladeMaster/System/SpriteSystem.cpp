@@ -6,7 +6,7 @@
 #include "../Component/TransformationComponent.h"
 #include "../TextureDatabase.h"
 #include "../SpriteDatabase.h"
-
+#include "../Camera.h"
 SpriteSystem::SpriteSystem()
 {
 	Bitmask requirement;
@@ -26,13 +26,17 @@ void SpriteSystem::SpriteRender()
 	LPD3DXSPRITE spriteHandler = Engine::GetInstance()->GetSpriteHandler();
 	TextureDatabase* textureDb = TextureDatabase::GetInstance();
 	SpriteDatabase* spriteDb = SpriteDatabase::GetInstance();
+	Camera* camera = Camera::GetInstance();
 	for (EntityID const& entity : mEntityList) {
 
 		Sprite& sprite = coordinator->GetComponent<Sprite>(entity, ComponentType::Sprite);
 		Position& position = coordinator->GetComponent<Position>(entity, ComponentType::Position);
-		std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)sprite.textureID);
 		RECT r = spriteDb->GetSprite(sprite.textureID, sprite.spriteID);
-		D3DXVECTOR3 p(position.x, position.y, 0);
+
+		if(camera->isWithinCamera(r, position.x, position.y, true) == false) continue;
+
+		std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)sprite.textureID);
+		D3DXVECTOR3 p(position.x - camera->x, position.y - camera->y, 0);
 		
 		if ((coordinator->GetEntityBitmask(entity) & mRequiredComponents[1]) == mRequiredComponents[1]) {
 			D3DXMATRIX mat;

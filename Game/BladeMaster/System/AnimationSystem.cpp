@@ -6,6 +6,7 @@
 #include "../TextureDatabase.h"
 #include "../SpriteDatabase.h"
 #include "../Engine.h"
+#include "../Camera.h"
 
 AnimationSystem::AnimationSystem() {
     Bitmask requirement;
@@ -23,12 +24,13 @@ AnimationSystem::AnimationSystem() {
 void AnimationSystem::AnimationRender() {
     LPD3DXSPRITE spriteHandler = Engine::GetInstance()->GetSpriteHandler();
 	TextureDatabase* textureDb = TextureDatabase::GetInstance();
+	Camera* camera = Camera::GetInstance();
 	for (EntityID const& entity : mEntityList) {
 
 		Animation& animation = coordinator->GetComponent<Animation>(entity, ComponentType::Animation);
 		Position& position = coordinator->GetComponent<Position>(entity, ComponentType::Position);
 		std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)animation.textureID);
-		D3DXVECTOR3 p(position.x, position.y, 0);
+		D3DXVECTOR3 p(position.x - camera->x, position.y - camera->y, 0);
 		RECT r;
 		r.left = animation.currentFrame % texture->columns * texture->size_width;
 		r.top = animation.currentFrame % texture->rows * texture->size_height;
