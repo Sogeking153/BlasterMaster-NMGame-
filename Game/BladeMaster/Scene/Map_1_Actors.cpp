@@ -8,8 +8,10 @@
 #include "../InputHandling/Core/InputContext.h"
 #include "../HelperHeader/PlayerType.h"
 #include "../System/MovementSystem.h"
+#include "../Camera.h"
 Map_1_Actors::Map_1_Actors(short id) {
     this->id = id;
+    //Setup System
     coordinator = std::make_shared<Coordinator>();
     std::shared_ptr<AnimationSystem> animationSystem = coordinator->GetSystem<AnimationSystem>(SystemType::Animation);
     animationSystem->coordinator = coordinator;
@@ -19,19 +21,20 @@ Map_1_Actors::Map_1_Actors(short id) {
     movementSystem->coordinator = coordinator;
 
     sophia = new Sophia(coordinator);
-
+    //Setup player
     jason = new Jason(coordinator);
-
     jasonow = new JasonOW(coordinator.get());
 
-    //jason = new Jason();
+    //Setup Input
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();
     input->player->currentPlayerType = PlayerType::SOPHIA;
     //input->player->jason = jason;
     input->player->sophia = sophia;
 
-
+    //Setup Camera
+    Camera* camera = Camera::GetInstance();
+    camera->Init(jasonow->GetID(), coordinator);
 }
 
 void Map_1_Actors::Update(DWORD dt) {

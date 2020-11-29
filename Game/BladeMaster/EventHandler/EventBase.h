@@ -2,5 +2,4 @@
 class Event {
 protected:
 	virtual ~Event() {};
-
 };

@@ -183,6 +183,12 @@
     <ClCompile Include="Scene\Physics_Scene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler\CameraSwitchModeEvent.cpp">
+      <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -358,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="HelperHeader\UtilHeader.h">
       <Filter>Header Files\HelperHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler\CameraSwitchModeEvent.h">
+      <Filter>Header Files\EventHandler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

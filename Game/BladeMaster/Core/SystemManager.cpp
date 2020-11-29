@@ -9,3 +9,4 @@ SystemManager::SystemManager()
 	mSystems.insert({ SystemType::Movement, std::make_shared<MovementSystem>() });
 
 }
+

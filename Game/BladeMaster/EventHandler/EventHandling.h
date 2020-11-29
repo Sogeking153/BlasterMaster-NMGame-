@@ -1,5 +1,6 @@
 #pragma once
 #include "HandlerFunctionBase.h"
+#include "../HelperHeader/Debug.h"
 #include<typeinfo>
 #include<typeindex>
 #include<map>
@@ -20,15 +21,16 @@ class EventHandling
 {
 public:
   void handleEvent(const Event *);
-
+  static EventHandling* GetInstance();
   // T -> HandlerFunctionBase derived class
   // EventT -> kinda like message. this class derive from Event base class
   template<typename T, typename EventT>
-  void registerEventFunction(T* obj, void (T::*memFunction)(EventT *) ) {
+  void registerEventFunction(T* obj, void (T::*memFunction)(const EventT *) ) {
       mHandlers.emplace(std::type_index(typeid(EventT)), nullptr);
       mHandlers[typeid(EventT)] = new MemberFunctionHandler<T, EventT>(obj, memFunction);
   }
 
 private:
   std::map<std::type_index , HandlerFunctionBase *> mHandlers;
+  static EventHandling* __instance;
 };
