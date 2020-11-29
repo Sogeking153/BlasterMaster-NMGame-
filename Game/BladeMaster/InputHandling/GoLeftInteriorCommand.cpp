@@ -38,7 +38,7 @@ void GoLeftInteriorCommand::execute(PlayerType* EntityID) {
     case PlayerType::JASONOW:
     {
         Position& pos = context->coordinator->GetComponent<Position>(EntityID->jasonow->GetID(), ComponentType::Position);
-        pos.x += 10;
+        pos.x += -10;
 
         Animation& animation = context->coordinator->GetComponent<Animation>(EntityID->jasonow->GetID(), ComponentType::Animation);
         /*animation.currentState = JASON_GO_LEFT;

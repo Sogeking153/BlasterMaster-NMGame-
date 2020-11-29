@@ -1,5 +1,5 @@
+
 #include "GoUpInteriorCommand.h"
-#include "../HelperHeader/PlayerType.h"
 //For testing purpose
 #include "../HelperHeader/Debug.h"
 #include "Core/InputContext.h"
@@ -9,10 +9,11 @@
 #include "../Component/AnimationComponent.h"
 #include "../System/AnimationSystem.h"
 #include "../HelperHeader/UtilHeader.h"
+#include "../HelperHeader/PlayerType.h"
 
-/*void GoRightExteriorCommand::execute(PlayerType * EntityID)
+/*void GoLeftExteriorCommand::execute(PlayerType * EntityID)
 {
-    DebugOut(L"Go Right Exterior Command\n");
+    DebugOut(L"Go Left Exterior Command\n");
     InputContext* context = InputContext::GetInstance();
     DebugOut(L"%d\n", context->coordinator);
     //context->coordinator->GetComponent<Animation>(EntityID, ComponentType::Animation);
@@ -30,14 +31,16 @@
 
 
 void GoUpInteriorCommand::execute(PlayerType* EntityID) {
-    DebugOut(L"Go Up Iterior Command\n\n");
+    DebugOut(L"Go Up Interior Command\n\n");
     InputContext* context = InputContext::GetInstance();
 
     switch (EntityID->currentPlayerType) {
-        Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
-        pos.x += 10;
+    case PlayerType::JASONOW:
+    {
+        Position& pos = context->coordinator->GetComponent<Position>(EntityID->jasonow->GetID(), ComponentType::Position);
+        pos.y += -10;
 
-        Animation& animation = context->coordinator->GetComponent<Animation>(EntityID->jason->GetID(), ComponentType::Animation);
+        Animation& animation = context->coordinator->GetComponent<Animation>(EntityID->jasonow->GetID(), ComponentType::Animation);
         /*animation.currentState = JASON_GO_LEFT;
         animation.currentFrame = 0;
         animation.defaultState = JASON_IDLE_LEFT;*/
@@ -56,7 +59,10 @@ void GoUpInteriorCommand::execute(PlayerType* EntityID) {
         animation.defaultState = JASON_O_UP;
 
         break;
-
+    }
+    case PlayerType::SOPHIA:
+        EntityID->sophia->Test();
+        break;
     }
 
 }
