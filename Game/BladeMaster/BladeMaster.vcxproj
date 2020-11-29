@@ -185,6 +185,7 @@
     <ClCompile Include="Scene\Physics_Scene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\Section\Grid.cpp" />
     <ClCompile Include="SpriteDatabase.cpp" />
     <ClCompile Include="System\AnimationSystem.cpp" />
     <ClCompile Include="System\MovementSystem.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Scene\Physics_Scene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\Section\Grid.h" />
     <ClInclude Include="SpriteDatabase.h" />
     <ClInclude Include="System\AnimationSystem.h" />
     <ClInclude Include="System\MovementSystem.h" />
