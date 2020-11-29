@@ -42,5 +42,6 @@ void MovementSystem::Update(DWORD dt)
 
 		pos.x += speed.dx;
 		pos.y += speed.dy;
+
 	}
 }

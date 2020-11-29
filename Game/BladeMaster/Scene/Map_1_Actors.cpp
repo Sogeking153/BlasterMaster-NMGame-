@@ -18,7 +18,7 @@ Map_1_Actors::Map_1_Actors(short id) {
     std::shared_ptr<MovementSystem> movementSystem = coordinator->GetSystem<MovementSystem>(SystemType::Movement);
     movementSystem->coordinator = coordinator;
 
-    sophia = new Sophia(coordinator.get());
+    sophia = new Sophia(coordinator);
 
     jason = new Jason(coordinator);
 
@@ -27,8 +27,9 @@ Map_1_Actors::Map_1_Actors(short id) {
     //jason = new Jason();
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();
-    input->player->currentPlayerType = PlayerType::JASON;
-    input->player->jason = jason;
+    input->player->currentPlayerType = PlayerType::SOPHIA;
+    //input->player->jason = jason;
+    input->player->sophia = sophia;
 
 
 }

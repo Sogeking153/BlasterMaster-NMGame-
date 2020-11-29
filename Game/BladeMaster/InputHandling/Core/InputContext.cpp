@@ -18,7 +18,7 @@ void InputContext::Init(HWND hWnd)
 {
     mListContexts.emplace(ContextType::Interior,std::make_unique<InteriorTopDownContext>());
     mListContexts.emplace(ContextType::Exterior,std::make_unique<ExteriorSideScrollingContext>());
-    currentContext = ContextType::Interior;
+    currentContext = ContextType::Exterior;
     lowLevelHandler = new DirectInput();
     lowLevelHandler->InitKeyboard(hWnd);
 

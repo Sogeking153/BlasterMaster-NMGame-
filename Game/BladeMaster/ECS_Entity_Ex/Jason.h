@@ -21,7 +21,9 @@ public:
 		Crawl_Idle_Right,
 		Crawl_Left,
 		Crawl_Right,
-		Climb
+		Climb,
+		Jump_Left,
+		Jump_Right,
 	} currentState;
 private:
 	int entityID;

@@ -1,5 +1,5 @@
 #include "TextureDatabase.h"
-#include "Debug.h"
+#include "HelperHeader/Debug.h"
 #include "Engine.h"
 #include "SpriteDatabase.h"
 #include <iostream>

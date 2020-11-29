@@ -16,12 +16,16 @@
 #define JASON_CRAWL_LEFT 10
 #define JASON_CRAWL_RIGHT 11
 #define JASON_CLIMB_UP 12
+#define JASON_JUMP_LEFT 18
+#define JASON_JUMP_RIGHT 19
 
 #define JASON_O_UP 13
 #define JASON_O_DOWN 14
 #define JASON_O_LEFT 15
 #define JASON_O_RIGHT 16
 #define JASON_O_DIE 17
+
+
 
 // Scene ID
 #define MAP_1_BACKGROUND 0
@@ -46,4 +50,4 @@
 
 //
 #define JASON_WALKING_SPEED 0.005
-#define JASON_JUMPING_SPEED 0.005
+#define JASON_JUMPING_SPEED 0.05

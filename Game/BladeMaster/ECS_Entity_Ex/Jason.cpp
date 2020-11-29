@@ -340,6 +340,54 @@ void Jason::SwitchState(int aniID)
         DebugOut(L"[INFO] Swap to CLIMB success\n");
         break;
     }
+    case (int)Jason::Jump_Left: {
+        Animation jason_Ani_Jump_Left;
+        State jasonState;
+
+        jason_Ani_Jump_Left.textureID = JASON_JUMP_LEFT;
+        jason_Ani_Jump_Left.delayValue = 100;
+        jason_Ani_Jump_Left.isFinished = false;
+
+        jasonState.endFrame = 0;
+        jasonState.startFrame = 0;
+        jasonState.isLoopable = true;
+        jason_Ani_Jump_Left.stateDictionary.emplace(JASON_JUMP_LEFT, jasonState);
+
+        jason_Ani_Jump_Left.currentState = JASON_JUMP_LEFT;
+        jason_Ani_Jump_Left.currentFrame = 0;
+        jason_Ani_Jump_Left.defaultState = JASON_JUMP_LEFT;
+
+        animationNeedToSwap = jason_Ani_Jump_Left;
+        currentState = Jason::Jump_Left;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to Jump_Left success\n");
+        break;
+    }
+    case (int)Jason::Jump_Right: {
+        Animation jason_Ani_Jump_Right;
+        State jasonState;
+
+        jason_Ani_Jump_Right.textureID = JASON_JUMP_RIGHT;
+        jason_Ani_Jump_Right.delayValue = 100;
+        jason_Ani_Jump_Right.isFinished = false;
+
+        jasonState.endFrame = 0;
+        jasonState.startFrame = 0;
+        jasonState.isLoopable = true;
+        jason_Ani_Jump_Right.stateDictionary.emplace(JASON_JUMP_RIGHT, jasonState);
+
+        jason_Ani_Jump_Right.currentState = JASON_JUMP_RIGHT;
+        jason_Ani_Jump_Right.currentFrame = 0;
+        jason_Ani_Jump_Right.defaultState = JASON_JUMP_RIGHT;
+
+        animationNeedToSwap = jason_Ani_Jump_Right;
+        currentState = Jason::Jump_Right;
+
+        //For testing only
+        DebugOut(L"[INFO] Swap to Jump_Right success\n");
+        break;
+    }
     default:
         DebugOut(L"[ERROR] %d is incompatible with Jason animation's type\n");
         break;
