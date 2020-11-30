@@ -1,6 +1,6 @@
-﻿  GoRightExteriorCommand.cpp
-D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\Command.h(13,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+﻿  Map_1_Actors.cpp
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(15,27): warning C4091: 'typedef ': ignored on left of 'MappedInput' when no variable is declared
-D:\Games\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(17,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
-  BladeMaster.vcxproj -> D:\Games\BlasterMaster-NMGame-\Game\Debug\BladeMaster.exe
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(19,27): warning C4091: 'typedef ': ignored on left of 'MappedInput' when no variable is declared
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(21,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Camera.h(1,1): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+  BladeMaster.vcxproj -> D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\Debug\BladeMaster.exe

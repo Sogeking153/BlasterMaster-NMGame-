@@ -61,6 +61,12 @@
     <Filter Include="Header Files\HelperHeader">
       <UniqueIdentifier>{c2453198-a1a2-460c-a159-7a1543546c2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scene\Section">
+      <UniqueIdentifier>{d58a59e8-0259-45df-9272-bd89376b650b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Section">
+      <UniqueIdentifier>{334be9a1-f02a-473a-a150-9e3e718568ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -188,6 +194,12 @@
     </ClCompile>
     <ClCompile Include="EventHandler\CameraSwitchModeEvent.cpp">
       <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Section\Grid.cpp">
+      <Filter>Source Files\Scene\Section</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS_Entity_Ex\Bullet1.cpp">
+      <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +382,12 @@
     </ClInclude>
     <ClInclude Include="EventHandler\CameraSwitchModeEvent.h">
       <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Section\Grid.h">
+      <Filter>Header Files\Scene\Section</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS_Entity_Ex\Bullet1.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
