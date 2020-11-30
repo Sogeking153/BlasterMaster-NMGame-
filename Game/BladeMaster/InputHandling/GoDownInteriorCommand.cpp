@@ -31,7 +31,7 @@
 
 
 void GoDownInteriorCommand::execute(PlayerType* EntityID) {
-    DebugOut(L"Go Down Interior Command\n\n");
+    //DebugOut(L"Go Down Interior Command\n\n");
     InputContext* context = InputContext::GetInstance();
 
     switch (EntityID->currentPlayerType) {
@@ -61,7 +61,7 @@ void GoDownInteriorCommand::execute(PlayerType* EntityID) {
         break;
     }
     case PlayerType::SOPHIA:
-        EntityID->sophia->Test();
+        
         break;
     }
 

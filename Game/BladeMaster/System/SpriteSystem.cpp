@@ -14,11 +14,8 @@ SpriteSystem::SpriteSystem()
 	requirement.set((int)ComponentType::Sprite, true);
 	mRequiredComponents.push_back(requirement);
 	
-	Bitmask requirement2;
-	requirement2.set((int)ComponentType::Position, true);
-	requirement2.set((int)ComponentType::Sprite, true);
-	requirement2.set((int)ComponentType::Transformation, true);
-	mRequiredComponents.push_back(requirement2);
+	requirement.set((int)ComponentType::Transformation, true);
+	mRequiredComponents.push_back(requirement);
 }
 
 void SpriteSystem::SpriteRender()
@@ -28,17 +25,16 @@ void SpriteSystem::SpriteRender()
 	SpriteDatabase* spriteDb = SpriteDatabase::GetInstance();
 	Camera* camera = Camera::GetInstance();
 	for (EntityID const& entity : mEntityList) {
+		if ((coordinator->GetEntityBitmask(entity) & mRequiredComponents[2]) == mRequiredComponents[2]) {
+			Sprite& sprite = coordinator->GetComponent<Sprite>(entity, ComponentType::Sprite);
+			Position& position = coordinator->GetComponent<Position>(entity, ComponentType::Position);
+			RECT r = spriteDb->GetSprite(sprite.textureID, sprite.spriteID);
 
-		Sprite& sprite = coordinator->GetComponent<Sprite>(entity, ComponentType::Sprite);
-		Position& position = coordinator->GetComponent<Position>(entity, ComponentType::Position);
-		RECT r = spriteDb->GetSprite(sprite.textureID, sprite.spriteID);
+			if (camera->isWithinCamera(r, position.x, position.y, true) == false) continue;
 
-		if(camera->isWithinCamera(r, position.x, position.y, true) == false) continue;
+			std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)sprite.textureID);
+			D3DXVECTOR3 p(position.x - camera->x, position.y - camera->y, 0);
 
-		std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)sprite.textureID);
-		D3DXVECTOR3 p(position.x - camera->x, position.y - camera->y, 0);
-		
-		if ((coordinator->GetEntityBitmask(entity) & mRequiredComponents[1]) == mRequiredComponents[1]) {
 			D3DXMATRIX mat;
 			Transformation transformMatrix = coordinator->GetComponent<Transformation>(entity, ComponentType::Transformation);
 			spriteHandler->GetTransform(&mat);
@@ -46,9 +42,21 @@ void SpriteSystem::SpriteRender()
 			spriteHandler->Draw(texture->texture, &r, NULL, &p, D3DCOLOR_XRGB(255, 255, 255));
 
 			spriteHandler->SetTransform(&mat);
+			continue;
 		}
-		else {
+
+		if((coordinator->GetEntityBitmask(entity) & mRequiredComponents[1]) == mRequiredComponents[1]) {
+			Sprite& sprite = coordinator->GetComponent<Sprite>(entity, ComponentType::Sprite);
+			Position& position = coordinator->GetComponent<Position>(entity, ComponentType::Position);
+			RECT r = spriteDb->GetSprite(sprite.textureID, sprite.spriteID);
+
+			if (camera->isWithinCamera(r, position.x, position.y, true) == false) continue;
+
+			std::shared_ptr<TextureData> texture = textureDb->GetTexture((TextureID)sprite.textureID);
+			D3DXVECTOR3 p(position.x - camera->x, position.y - camera->y, 0);
+
 			spriteHandler->Draw(texture->texture, &r, NULL, &p, D3DCOLOR_XRGB(255, 255, 255));
+			continue;
 		}
 		
 	}

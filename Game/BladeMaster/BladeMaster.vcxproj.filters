@@ -201,6 +201,9 @@
     <ClCompile Include="ECS_Entity_Ex\Bullet1.cpp">
       <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
+    <ClCompile Include="System\GraphicSystem.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -388,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\Bullet1.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GraphicSystem.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

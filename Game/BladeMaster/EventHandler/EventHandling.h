@@ -27,7 +27,7 @@ public:
   template<typename T, typename EventT>
   void registerEventFunction(T* obj, void (T::*memFunction)(const EventT *) ) {
       mHandlers.emplace(std::type_index(typeid(EventT)), nullptr);
-      mHandlers[typeid(EventT)] = new MemberFunctionHandler<T, EventT>(obj, memFunction);
+      mHandlers[std::type_index(typeid(EventT))] = new MemberFunctionHandler<T, EventT>(obj, memFunction);
   }
 
 private:

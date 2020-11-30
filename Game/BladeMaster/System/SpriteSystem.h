@@ -1,5 +1,5 @@
 #pragma once
-#include "../Core/SystemBase.h"
+#include "GraphicSystem.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 
@@ -14,7 +14,7 @@
 	More information about sprite, SpriteComponent.h
 	
 */
-class SpriteSystem : public SystemBase {
+class SpriteSystem : public GraphicSystem {
 public:
 	SpriteSystem();
 	void SpriteRender();

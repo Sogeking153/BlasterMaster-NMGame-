@@ -189,6 +189,7 @@
     <ClCompile Include="Scene\Section\Grid.cpp" />
     <ClCompile Include="SpriteDatabase.cpp" />
     <ClCompile Include="System\AnimationSystem.cpp" />
+    <ClCompile Include="System\GraphicSystem.cpp" />
     <ClCompile Include="System\MovementSystem.cpp" />
     <ClCompile Include="System\PhysicSystem.cpp" />
     <ClCompile Include="TextureDatabase.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="Scene\Section\Grid.h" />
     <ClInclude Include="SpriteDatabase.h" />
     <ClInclude Include="System\AnimationSystem.h" />
+    <ClInclude Include="System\GraphicSystem.h" />
     <ClInclude Include="System\MovementSystem.h" />
     <ClInclude Include="System\PhysicSystem.h" />
     <ClInclude Include="TextureDatabase.h" />

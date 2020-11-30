@@ -9,7 +9,7 @@
 #include "../HelperHeader/PlayerType.h"
 
 void GoRightExteriorCommand::execute(PlayerType * EntityID) {
-    DebugOut(L"Go Right Exterior Command\n");
+    //DebugOut(L"Go Right Exterior Command\n");
     InputContext* context = InputContext::GetInstance();
 
     switch (EntityID->currentPlayerType) {
@@ -89,7 +89,7 @@ void GoRightExteriorCommand::execute(PlayerType * EntityID) {
            
 
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
-            velocity.vx = 0.005;
+            velocity.vx = 0.05;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
             dir.nx = 1;
             switch (EntityID->jason->currentState)

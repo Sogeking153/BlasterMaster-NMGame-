@@ -13,7 +13,6 @@ public:
 	void Test();
 private:
 	int entityID;
-	Velocity bullet_vel;
 
 	std::shared_ptr<Coordinator> coordinator;
 };

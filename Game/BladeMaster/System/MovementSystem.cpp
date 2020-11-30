@@ -1,6 +1,7 @@
 #include "MovementSystem.h"
 #include "../Core/Coordinator.h"
 #include "../EventHandler/PhysicEvent.h"
+#include "../EventHandler/EventHandling.h"
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
 #include "../Component/DirectionComponent.h"
@@ -12,6 +13,10 @@ MovementSystem::MovementSystem()
 	requirement.set((int)ComponentType::Position, true);
 	requirement.set((int)ComponentType::Direction, true);
 	mRequiredComponents.push_back(requirement);
+
+	//Register PhysicEvent
+	EventHandling* eventHandling = EventHandling::GetInstance();
+	eventHandling->registerEventFunction<MovementSystem, CollisionEvent>(this, &MovementSystem::onEvent);
 }
 
 void MovementSystem::onEvent(const CollisionEvent * _event)

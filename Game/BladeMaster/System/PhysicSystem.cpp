@@ -10,8 +10,10 @@ extern Coordinator coordinator;
 PhysicSystem::PhysicSystem()
 {
 	Bitmask requirement;
-	requirement.set((int)ComponentType::Speed);
 	requirement.set((int)ComponentType::BoundingBox);
+	mRequiredComponents.push_back(requirement);
+
+	requirement.set((int)ComponentType::Speed);
 	mRequiredComponents.push_back(requirement);
 }
 
@@ -88,10 +90,28 @@ void PhysicSystem::FilterCollision(
 
 LPCOLLISIONEVENT PhysicSystem::SweptAABBEx(EntityID movingID, EntityID staticID, DWORD dt)
 {
+	DebugOut(L"Checking Collide %d and %d\n", movingID, staticID);
 	BoundingBox & staticObject = coordinator->GetComponent<BoundingBox>(staticID, ComponentType::BoundingBox);;
 	BoundingBox & movingObject = coordinator->GetComponent<BoundingBox>(movingID, ComponentType::BoundingBox);
-	Velocity& movingObjectSpeed = coordinator->GetComponent<Velocity>(movingID, ComponentType::Speed);
-	Velocity & staticObjectSpeed = coordinator->GetComponent<Velocity>(staticID, ComponentType::Speed);
+	
+	Velocity staticObjectSpeed;
+	Velocity movingObjectSpeed;
+	if ((coordinator->GetEntityBitmask(movingID) & mRequiredComponents[1]) == mRequiredComponents[1]) {
+		movingObjectSpeed = coordinator->GetComponent<Velocity>(movingID, ComponentType::Speed);
+	}
+	else {
+		movingObjectSpeed.vx = 0;
+		movingObjectSpeed.vy = 0;
+	}
+
+	if ((coordinator->GetEntityBitmask(staticID) & mRequiredComponents[1]) == mRequiredComponents[1]) {
+		staticObjectSpeed = coordinator->GetComponent<Velocity>(staticID, ComponentType::Speed);
+	}
+	else {
+		staticObjectSpeed.vx = 0;
+		staticObjectSpeed.vy = 0;
+	}
+
 	float t, nx, ny;
 
 	// (rdx, rdy) is RELATIVE movement distance/velocity 

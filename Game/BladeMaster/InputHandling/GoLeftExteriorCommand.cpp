@@ -8,27 +8,8 @@
 #include "../HelperHeader/UtilHeader.h"
 #include "../HelperHeader/PlayerType.h"
 
-/*void GoLeftExteriorCommand::execute(PlayerType * EntityID)
-{
-    DebugOut(L"Go Left Exterior Command\n");
-    InputContext* context = InputContext::GetInstance();
-    DebugOut(L"%d\n", context->coordinator);
-    //context->coordinator->GetComponent<Animation>(EntityID, ComponentType::Animation);
-
-    Position pos = context->coordinator->GetComponent<Position>(EntityID, ComponentType::Position);;
-
-    pos.x = pos.x + 10;
-   // DebugOut(L"%d, %d\n", pos.x, &pos.y);
-   /* Velocity vel;
-    vel.vx = 10;
-
-    pos.x = pos.x + vel.vx;
-    context->coordinator->AddComponent<Position>(EntityID, pos, ComponentType::Position);
-    context->coordinator->GetSystem<AnimationSystem>(SystemType::Animation)->AddEntity(EntityID);*/
-
-
 void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
-    DebugOut(L"Go Left Exterior Command\n\n");
+    //DebugOut(L"Go Left Exterior Command\n\n");
     InputContext* context = InputContext::GetInstance();
 
     switch (EntityID->currentPlayerType) {
@@ -121,7 +102,7 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             }
 
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
-            velocity.vx = 0.005;
+            velocity.vx = 0.05;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
             dir.nx = -1;  
             switch (EntityID->jason->currentState)
@@ -137,7 +118,6 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             }
            // EntityID->sophia->BaitLeft();
             EntityID->sophia->SwitchState(Sophia::Go_Left);
-            EntityID->sophia->PartPosUpdateLeft();
             
         }
             break;
@@ -151,7 +131,6 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
             velocity.vx = 0;
             EntityID->sophia->SwitchState(Sophia::Idle_Left);
-            EntityID->sophia->PartPosUpdateLeft();
         }
             break;
         default:

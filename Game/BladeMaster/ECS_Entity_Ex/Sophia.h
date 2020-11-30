@@ -8,16 +8,20 @@
  * There is an invisible point. That point will be pivot to other parts of the car adjust their positions and stuff
  * 
  * */
+#define SOPHIA_BBOX_WIDTH 16
+#define SOPHIA_BBOX_HEIGHT 16
 class Coordinator;
 class Sophia {
 public:
-    Sophia(std::shared_ptr<Coordinator>);
+    Sophia(std::shared_ptr<Coordinator>, int x, int y);
     int GetID();
-    void Test();
     void SwitchState(int);
     void PartPosUpdateLeft();
     void PartPosUpdateRight();
     void BaitLeft();
+
+    void Update(unsigned long);
+
 public:
     enum 
     {

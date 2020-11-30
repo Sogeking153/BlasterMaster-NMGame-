@@ -1,10 +1,11 @@
 #pragma once
 #include "SceneBase.h"
+#include "Section/Grid.h"
 #include<memory>
+#include<vector>
 class Sophia;
 class Jason;
 class JasonOW;
-class Bullet1;
 class Coordinator;
 class Map_1_Actors : public SceneBase {
 public: 
@@ -14,9 +15,12 @@ public:
     void Render();
     std::shared_ptr<Coordinator> Get_coordinator();
 private:
+    void LoadSections(LPCWSTR path);
+private:
     Sophia * sophia;
     Jason * jason;
     JasonOW* jasonow;
-    Bullet1* bullet1;
     std::shared_ptr<Coordinator> coordinator;
+
+    Grid grid;
 };

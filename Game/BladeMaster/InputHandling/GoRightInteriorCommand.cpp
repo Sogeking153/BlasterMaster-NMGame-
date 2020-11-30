@@ -61,7 +61,7 @@ void GoRightInteriorCommand::execute(PlayerType* EntityID) {
         break;
     }
     case PlayerType::SOPHIA:
-        EntityID->sophia->Test();
+        
         break;
     }
 

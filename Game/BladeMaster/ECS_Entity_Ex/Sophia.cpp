@@ -6,23 +6,26 @@
 #include "../Component/SpriteComponent.h"
 #include "../Component/TransformationComponent.h"
 #include "../Component/DirectionComponent.h"
+#include "../Component/BoundingBoxComponent.h"
 #include "../HelperHeader/UtilHeader.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
 #include "../System/MovementSystem.h"
+#include "../System/PhysicSystem.h"
 #include "../HelperHeader/Debug.h"
 
-Sophia::Sophia(std::shared_ptr<Coordinator> coordinator) {
+Sophia::Sophia(std::shared_ptr<Coordinator> coordinator, int x, int y) {
     this->coordinator = coordinator;
 
     entityID = coordinator->CreateEntity();
     Position Pos,temp;
-    Pos.x = 64;  
-    Pos.y = 64;
+    Pos.x = x;  
+    Pos.y = y;
 
     coordinator->AddComponent<Position>(entityID, Pos, ComponentType::Position);
 
     bodyID = coordinator->CreateEntity();
+
     coordinator->AddComponent<Position>(bodyID, Pos, ComponentType::Position);
     Animation bodyAni;
     bodyAni.textureID = BODY_SOPHIA;
@@ -167,15 +170,19 @@ Sophia::Sophia(std::shared_ptr<Coordinator> coordinator) {
     coordinator->GetSystem<MovementSystem>(SystemType::Movement)->AddEntity(entityID);
 
     currentState = Sophia::Idle_Left;
+
+    BoundingBox bbox;
+    bbox.left = x - 8;
+    bbox.right = x + SOPHIA_BBOX_WIDTH;
+    bbox.top = y - 8;
+    bbox.bottom = y + SOPHIA_BBOX_HEIGHT;
+    coordinator->AddComponent<BoundingBox>(entityID, bbox, ComponentType::BoundingBox);
+    coordinator->GetSystem<SpriteSystem>(SystemType::Sprite)->AddEntity(entityID);
+    coordinator->GetSystem<PhysicSystem>(SystemType::Physic)->AddEntity(entityID);
 }
 
 int Sophia::GetID() {
     return entityID;
-}
-
-void Sophia::Test()
-{
-    DebugOut(L"This is Sophia\n");
 }
 
 void Sophia::BaitLeft()
@@ -199,6 +206,31 @@ void Sophia::BaitLeft()
 
     axelPos.x = entityPos.x + 4;
     axelPos.y = entityPos.y + 8 + 1;
+}
+
+void Sophia::Update(unsigned long dt)
+{
+    //Applied Gravity
+    Velocity& velocity = coordinator->GetComponent<Velocity>(entityID, ComponentType::Speed);
+    velocity.vy += GRAVITY * dt;
+
+    //Update Bounding Box
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+    BoundingBox & bbox = coordinator->GetComponent<BoundingBox>(entityID, ComponentType::BoundingBox);
+    bbox.left = entityPos.x - 8;
+    bbox.right = entityPos.x + SOPHIA_BBOX_WIDTH;
+    bbox.top = entityPos.y - 8;
+    bbox.bottom = entityPos.y + SOPHIA_BBOX_HEIGHT;
+
+    //Update Part of Sophia based on position
+    //TODO: don't update part when sophia don't move or switch direction
+    Direction& dir = coordinator->GetComponent<Direction>(entityID, ComponentType::Direction);
+    if (dir.nx < 0) {
+        PartPosUpdateLeft();
+    }
+    else {
+        PartPosUpdateRight();
+    }
 }
 
 void Sophia::PartPosUpdateLeft()
@@ -249,7 +281,7 @@ void Sophia::PartPosUpdateRight()
 
 void Sophia::SwitchState(int aniID)
 {
-    DebugOut(L"aniID %d\n   ", aniID);
+    //DebugOut(L"aniID %d\n   ", aniID);
     if (aniID == (int)currentState) return; 
     Animation& animationNeedToSwap = coordinator->GetComponent<Animation>(bodyID, ComponentType::Animation);
 
@@ -337,7 +369,7 @@ void Sophia::SwitchState(int aniID)
 
         spriteAxel.textureID = AXEL_SOPHIA_RIGHT;
 
-        DebugOut(L"Idling Right\n");
+        //DebugOut(L"Idling Right\n");
         Animation sophia_Ani_Idle_Right;
         sophia_Ani_Idle_Right.textureID = BODY_SOPHIA;
         sophia_Ani_Idle_Right.delayValue = 100;
@@ -402,7 +434,7 @@ void Sophia::SwitchState(int aniID)
         
         currentState = Sophia::Bait;
         //For testing only
-        DebugOut(L"[INFO] Swap to GO_LEFT success\n");
+        //DebugOut(L"[INFO] Swap to GO_LEFT success\n");
         break;
     }
     case (int)Sophia::Go_Right:
@@ -450,7 +482,7 @@ void Sophia::SwitchState(int aniID)
 
         currentState = Sophia::Bait;
         //For testing only
-        DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
+        //DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
         break;
     }
     case (int)Sophia::Right_To_Left:
@@ -498,7 +530,7 @@ void Sophia::SwitchState(int aniID)
 
         currentState = Sophia::Bait;
         //For testing only
-        DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
+        //DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
         break;
     }
     case (int)Sophia::Left_To_Right:
@@ -546,7 +578,7 @@ void Sophia::SwitchState(int aniID)
 
         currentState = Sophia::Bait;
         //For testing only
-        DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
+        //DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
         break;
     }
     case Sophia::Body_Shift_Right:
@@ -571,7 +603,7 @@ void Sophia::SwitchState(int aniID)
         animationBody = bodyAni_Shift;
 
         currentState = Sophia::Body_Shift_Right;
-        DebugOut(L"Switch to shift success!!!!!!!!!!\n");
+       // DebugOut(L"Switch to shift success!!!!!!!!!!\n");
     }
     break;
     case Sophia::Body_Shift_Left:
@@ -596,7 +628,7 @@ void Sophia::SwitchState(int aniID)
         animationBody = bodyAni_Shift;
 
         currentState = Sophia::Body_Shift_Left;
-        DebugOut(L"Switch to shift success!!!!!!!!!!\n");
+        //DebugOut(L"Switch to shift success!!!!!!!!!!\n");
     }
     break;
     default:

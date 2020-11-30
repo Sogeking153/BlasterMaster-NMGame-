@@ -1,5 +1,5 @@
 #pragma once 
-#include "../Core/SystemBase.h"
+#include "GraphicSystem.h"
 /*
     For an entity to be qualified to use this system, it must have:
 		-> animation component
@@ -14,7 +14,7 @@
 
     More information about animation, AnimationComponent.h
 */
-class AnimationSystem : public SystemBase {
+class AnimationSystem : public GraphicSystem {
 public:
 	AnimationSystem();
     void AnimationRender();
