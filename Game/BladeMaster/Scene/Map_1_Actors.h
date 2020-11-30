@@ -4,6 +4,7 @@
 class Sophia;
 class Jason;
 class JasonOW;
+class Bullet1;
 class Coordinator;
 class Map_1_Actors : public SceneBase {
 public: 
@@ -16,5 +17,6 @@ private:
     Sophia * sophia;
     Jason * jason;
     JasonOW* jasonow;
+    Bullet1* bullet1;
     std::shared_ptr<Coordinator> coordinator;
 };

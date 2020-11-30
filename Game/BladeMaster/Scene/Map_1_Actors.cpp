@@ -2,6 +2,7 @@
 #include "../ECS_Entity_Ex/Sophia.h"
 #include "../ECS_Entity_Ex/Jason.h"
 #include "../ECS_Entity_Ex/JasonOW.h"
+#include "../ECS_Entity_Ex/Bullet1.h"
 #include "../System/AnimationSystem.h"
 #include "../System/SpriteSystem.h"
 #include "../Core/Coordinator.h"
@@ -24,7 +25,7 @@ Map_1_Actors::Map_1_Actors(short id) {
     //Setup player
     jason = new Jason(coordinator);
     jasonow = new JasonOW(coordinator.get());
-
+    bullet1 = new Bullet1(coordinator);
     //Setup Input
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();

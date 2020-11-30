@@ -198,6 +198,9 @@
     <ClCompile Include="Scene\Section\Grid.cpp">
       <Filter>Source Files\Scene\Section</Filter>
     </ClCompile>
+    <ClCompile Include="ECS_Entity_Ex\Bullet1.cpp">
+      <Filter>Source Files\ECS_Entity_Ex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Scene\Section\Grid.h">
       <Filter>Header Files\Scene\Section</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS_Entity_Ex\Bullet1.h">
+      <Filter>Header Files\ECS_Entity_Ex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

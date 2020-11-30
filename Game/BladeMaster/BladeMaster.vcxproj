@@ -154,6 +154,7 @@
     <ClCompile Include="Core\EntityManager.cpp" />
     <ClCompile Include="Core\SystemBase.cpp" />
     <ClCompile Include="Core\SystemManager.cpp" />
+    <ClCompile Include="ECS_Entity_Ex\Bullet1.cpp" />
     <ClCompile Include="ECS_Entity_Ex\Jason.cpp" />
     <ClCompile Include="ECS_Entity_Ex\JasonOW.cpp" />
     <ClCompile Include="ECS_Entity_Ex\Sophia.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Core\SystemBase.h" />
     <ClInclude Include="Core\SystemManager.h" />
     <ClInclude Include="Core\Type.h" />
+    <ClInclude Include="ECS_Entity_Ex\Bullet1.h" />
     <ClInclude Include="ECS_Entity_Ex\Jason.h" />
     <ClInclude Include="ECS_Entity_Ex\JasonOW.h" />
     <ClInclude Include="ECS_Entity_Ex\Sophia.h" />
