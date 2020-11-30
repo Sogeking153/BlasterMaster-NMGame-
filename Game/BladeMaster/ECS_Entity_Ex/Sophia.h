@@ -15,7 +15,9 @@ public:
     int GetID();
     void Test();
     void SwitchState(int);
-    void PartPosUpdate();
+    void PartPosUpdateLeft();
+    void PartPosUpdateRight();
+    void BaitLeft();
 public:
     enum 
     {
@@ -26,6 +28,8 @@ public:
         Go_Right,
         Right_To_Left,
         Left_To_Right,
+        Body_Shift_Right,
+        Body_Shift_Left,
     } currentState;
 private:
     int entityID;

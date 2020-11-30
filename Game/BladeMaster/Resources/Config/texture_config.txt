@@ -2,11 +2,11 @@
 # Note: không có dấu cách
 # id | column | rows | texture file path
 0|12|12|Resources/TileMap/lvl2_side.png
-1|3|1|Resources/Car/Body.png
+1|3|1|Resources/Car/Body_Left.png
 2|3|2|Resources/Car/Barrel.png
 3|2|2|Resources/Car/GetOutOfCar.png
 4|4|1|Resources/Car/Wheel.png
-5|1|1|Resources/Car/Axel.png
+5|1|1|Resources/Car/Axel_Left.png
 6|1|1|Resources/Human/StandbyLeft.png
 7|1|1|Resources/Human/StandbyRight.png
 8|4|1|Resources/Human/WalkLeft.png
@@ -21,3 +21,6 @@
 17|18|1|Resources/Human/O_Die.png
 18|1|1|Resources/Human/JumpLeft.png
 19|1|1|Resources/Human/JumpRight.png
+20|1|1|Resources/Car/Body_Shift_Right.png
+21|1|1|Resources/Car/Body_Shift_Left.png
+22|1|1|Resources/Car/Axel_Right.png

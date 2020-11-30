@@ -76,6 +76,18 @@ void GoRightExteriorCommand::execute(PlayerType * EntityID) {
         {
         case Command::Hold:
         {
+            if (EntityID->jason->currentState == Sophia::Go_Left || EntityID->jason->currentState == Sophia::Idle_Left)
+            {
+                EntityID->sophia->SwitchState(Sophia::Body_Shift_Left);
+
+            }
+
+            if (EntityID->jason->currentState == Sophia::Body_Shift_Left)
+            {
+                EntityID->sophia->SwitchState(Sophia::Idle_Right);
+            }
+           
+
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
             velocity.vx = 0.005;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
@@ -93,19 +105,21 @@ void GoRightExteriorCommand::execute(PlayerType * EntityID) {
             }
             EntityID->sophia->SwitchState(Sophia::Go_Right);
 
-            EntityID->sophia->PartPosUpdate();
+            EntityID->sophia->PartPosUpdateRight();
 
         }
         break;
         case Command::KeyDown:
+        {
 
+        }
             break;
         case Command::KeyUp:
         {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
             velocity.vx = 0;
             EntityID->sophia->SwitchState(Sophia::Idle_Right);
-            EntityID->sophia->PartPosUpdate();
+            EntityID->sophia->PartPosUpdateRight();
         }
         break;
         default:

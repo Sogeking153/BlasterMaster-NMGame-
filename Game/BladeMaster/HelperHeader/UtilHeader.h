@@ -5,7 +5,7 @@
 #define BODY_SOPHIA 1
 #define BARREL_SOPHIA 2
 #define WHEEL_SOPHIA 4
-#define AXEL_SOPHIA 5
+#define AXEL_SOPHIA_LEFT 5
 
 #define GET_OUT_OF_CAR_ANI 3
 
@@ -25,6 +25,9 @@
 #define JASON_O_RIGHT 16
 #define JASON_O_DIE 17
 
+#define SOPHIA_BODY_SHIFT_RIGHT 20
+#define SOPHIA_BODY_SHIFT_LEFT 21
+#define AXEL_SOPHIA_RIGHT 22
 
 
 // Scene ID
@@ -46,6 +49,9 @@
 
 #define JASON_CRAWL_IDLE_LEFT 18
 #define JASON_CRAWL_IDLE_RIGHT 19
+
+#define BODY_CAR_SHIFT_RIGHT 0
+#define BODY_CAR_SHIFT_LEFT 1
 
 
 //

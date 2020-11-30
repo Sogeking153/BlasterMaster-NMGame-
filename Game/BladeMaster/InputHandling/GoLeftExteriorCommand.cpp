@@ -107,6 +107,19 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
         {
         case Command::Hold:
         {
+            
+            //switch to turn success but it too fast to see
+            if (EntityID->jason->currentState == Sophia::Go_Right || EntityID->jason->currentState == Sophia::Idle_Right)
+            {
+                EntityID->sophia->SwitchState(Sophia::Body_Shift_Right);
+                
+            }
+
+            if (EntityID->jason->currentState == Sophia::Body_Shift_Right)
+            {
+                EntityID->sophia->SwitchState(Sophia::Idle_Left);
+            }
+
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
             velocity.vx = 0.005;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
@@ -122,20 +135,23 @@ void GoLeftExteriorCommand::execute(PlayerType* EntityID) {
             default:
                 break;
             }
+           // EntityID->sophia->BaitLeft();
             EntityID->sophia->SwitchState(Sophia::Go_Left);
-            EntityID->sophia->PartPosUpdate();
+            EntityID->sophia->PartPosUpdateLeft();
             
         }
             break;
         case Command::KeyDown:
-
+        {
+            
+        }
             break;
         case Command::KeyUp:
         {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
             velocity.vx = 0;
             EntityID->sophia->SwitchState(Sophia::Idle_Left);
-            EntityID->sophia->PartPosUpdate();
+            EntityID->sophia->PartPosUpdateLeft();
         }
             break;
         default:

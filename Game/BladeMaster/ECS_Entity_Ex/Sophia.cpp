@@ -68,7 +68,7 @@ Sophia::Sophia(std::shared_ptr<Coordinator> coordinator) {
     temp.y = Pos.y + 8; //Entity Pos.y + 8
     Sprite sprite;
     sprite.spriteID = 0;
-    sprite.textureID = AXEL_SOPHIA;
+    sprite.textureID = AXEL_SOPHIA_LEFT;
     coordinator->AddComponent<Position>(axelID, temp, ComponentType::Position);
     coordinator->AddComponent<Sprite>(axelID, sprite, ComponentType::Sprite);
 
@@ -178,7 +178,53 @@ void Sophia::Test()
     DebugOut(L"This is Sophia\n");
 }
 
-void Sophia::PartPosUpdate()
+void Sophia::BaitLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y + 1;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y + 1;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8 + 1;
+}
+
+void Sophia::PartPosUpdateLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateRight()
 {
     Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
 
@@ -193,7 +239,7 @@ void Sophia::PartPosUpdate()
 
     bodyPos = entityPos;
 
-    barrelPos.x = entityPos.x - 3;
+    barrelPos.x = entityPos.x + 11;
     barrelPos.y = entityPos.y;
 
     axelPos.x = entityPos.x + 4;
@@ -211,6 +257,34 @@ void Sophia::SwitchState(int aniID)
     {
     case (int)Sophia::Idle_Left:
     {
+        Transformation& transform = coordinator->GetComponent<Transformation>(bodyID, ComponentType::Transformation);
+        D3DXMatrixTransformation2D(
+            &transform.transformMatrix,
+            NULL,
+            NULL,
+            NULL,
+            //rotation for aim up sophia
+           // &D3DXVECTOR2(90,58),
+            NULL,
+            0, //radiant
+            &D3DXVECTOR2(5, 0)
+        );
+
+        Animation& animationBarrel = coordinator->GetComponent<Animation>(barrelID, ComponentType::Animation);
+
+        animationBarrel.currentState = BARREL_IDLE_LEFT;
+        animationBarrel.currentFrame = 3;
+        animationBarrel.defaultState = BARREL_IDLE_LEFT;
+
+        Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+        Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+
+        barrelPos.x = entityPos.x - 3;
+        barrelPos.y = entityPos.y;
+
+        Sprite& spriteAxel = coordinator->GetComponent<Sprite>(axelID, ComponentType::Sprite);
+
+        spriteAxel.textureID = AXEL_SOPHIA_LEFT;
         
         Animation sophia_Ani_Idle_Left;
         sophia_Ani_Idle_Left.textureID = BODY_SOPHIA;
@@ -233,6 +307,36 @@ void Sophia::SwitchState(int aniID)
     break;
     case (int)Sophia::Idle_Right:
     {
+
+        Transformation& transform = coordinator->GetComponent<Transformation>(bodyID, ComponentType::Transformation);
+        D3DXMatrixTransformation2D(
+            &transform.transformMatrix,
+            NULL,
+            NULL,
+            NULL,
+            //rotation for aim up sophia
+           // &D3DXVECTOR2(90,58),
+            NULL,
+            0, //radiant
+            &D3DXVECTOR2(-5, 0)
+        );
+
+        Animation& animationBarrel = coordinator->GetComponent<Animation>(barrelID, ComponentType::Animation);
+
+        animationBarrel.currentState = BARREL_IDLE_RIGHT;
+        animationBarrel.currentFrame = 0;
+        animationBarrel.defaultState = BARREL_IDLE_RIGHT;
+
+        Position &entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+        Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+
+        barrelPos.x = entityPos.x + 11;
+        barrelPos.y = entityPos.y;
+
+        Sprite& spriteAxel = coordinator->GetComponent<Sprite>(axelID, ComponentType::Sprite);
+
+        spriteAxel.textureID = AXEL_SOPHIA_RIGHT;
+
         DebugOut(L"Idling Right\n");
         Animation sophia_Ani_Idle_Right;
         sophia_Ani_Idle_Right.textureID = BODY_SOPHIA;
@@ -259,7 +363,6 @@ void Sophia::SwitchState(int aniID)
         Sprite& sprite2wheel = coordinator->GetComponent<Sprite>(wheel2ID, ComponentType::Sprite);
         sprite1wheel.textureID = WHEEL_SOPHIA;
         sprite2wheel.textureID = WHEEL_SOPHIA;
-
        
         switch (sprite1wheel.spriteID)
         {
@@ -446,6 +549,56 @@ void Sophia::SwitchState(int aniID)
         DebugOut(L"[INFO] Swap to GO_RIGHT success\n");
         break;
     }
+    case Sophia::Body_Shift_Right:
+    {
+        Animation& animationBody = coordinator->GetComponent<Animation>(bodyID, ComponentType::Animation);
+
+        Animation bodyAni_Shift;
+        bodyAni_Shift.textureID = SOPHIA_BODY_SHIFT_RIGHT;
+        bodyAni_Shift.delayValue = 1000;
+        bodyAni_Shift.isFinished = false;
+
+        State state;
+        state.endFrame = 0;
+        state.startFrame = 0;
+        state.isLoopable = true;
+        bodyAni_Shift.stateDictionary.emplace(BODY_CAR_SHIFT_RIGHT, state);
+
+        bodyAni_Shift.currentState = BODY_CAR_SHIFT_RIGHT;
+        bodyAni_Shift.currentFrame = 0;
+        bodyAni_Shift.defaultState = BODY_CAR_SHIFT_RIGHT;
+
+        animationBody = bodyAni_Shift;
+
+        currentState = Sophia::Body_Shift_Right;
+        DebugOut(L"Switch to shift success!!!!!!!!!!\n");
+    }
+    break;
+    case Sophia::Body_Shift_Left:
+    {
+        Animation& animationBody = coordinator->GetComponent<Animation>(bodyID, ComponentType::Animation);
+
+        Animation bodyAni_Shift;
+        bodyAni_Shift.textureID = SOPHIA_BODY_SHIFT_LEFT;
+        bodyAni_Shift.delayValue = 1000;
+        bodyAni_Shift.isFinished = false;
+
+        State state;
+        state.endFrame = 0;
+        state.startFrame = 0;
+        state.isLoopable = true;
+        bodyAni_Shift.stateDictionary.emplace(BODY_CAR_SHIFT_LEFT, state);
+
+        bodyAni_Shift.currentState = BODY_CAR_SHIFT_LEFT;
+        bodyAni_Shift.currentFrame = 0;
+        bodyAni_Shift.defaultState = BODY_CAR_SHIFT_LEFT;
+
+        animationBody = bodyAni_Shift;
+
+        currentState = Sophia::Body_Shift_Left;
+        DebugOut(L"Switch to shift success!!!!!!!!!!\n");
+    }
+    break;
     default:
         DebugOut(L"[ERROR] %d is incompatible with Sophia animation's type\n");
         break;
