@@ -4,6 +4,7 @@
 #include "../Component/PositionComponent.h"
 #include "../Component/SpeedComponent.h"
 #include "../Component/DirectionComponent.h"
+#include "../HelperHeader/UtilHeader.h"
 MovementSystem::MovementSystem()
 {
 	Bitmask requirement;
@@ -37,6 +38,18 @@ void MovementSystem::Update(DWORD dt)
 		Position& pos = coordinator->GetComponent<Position>(entity, ComponentType::Position);
 		Velocity& speed = coordinator->GetComponent<Velocity>(entity, ComponentType::Speed);
 		Direction & dir = coordinator->GetComponent<Direction>(entity, ComponentType::Direction);
+
+		//simple gravity but need fixing
+		/*if (pos.y < 64)
+		{
+			speed.vy = GRAVITY;
+		}
+		else if (pos.y > 64)
+		{
+			speed.vy = 0;
+			pos.y = 64;
+		}*/
+
 		speed.dx =  dir.nx * speed.vx * dt;
 		speed.dy = dir.ny* speed.vy * dt;
 

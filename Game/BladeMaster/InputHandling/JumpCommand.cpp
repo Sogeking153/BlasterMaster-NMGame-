@@ -28,6 +28,7 @@ void JumpCommand::execute(PlayerType * EntityID) {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
             velocity.vy = -JASON_JUMPING_SPEED;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
+            Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
 
             switch (EntityID->jason->currentState)
             {
@@ -35,7 +36,7 @@ void JumpCommand::execute(PlayerType * EntityID) {
             case Jason::Idle_Left:
             case Jason::Jump_Right:
             {
-                if (dir.nx == -1)
+                if (dir.nx == -1 && pos.y==64)
                     EntityID->jason->SwitchState(Jason::Jump_Left);
                 break;
             }
@@ -43,7 +44,7 @@ void JumpCommand::execute(PlayerType * EntityID) {
             case Jason::Idle_Right:
             case Jason::Jump_Left:
             {
-                if (dir.nx == 1)
+                if (dir.nx == 1 && pos.y == 64)
                     EntityID->jason->SwitchState(Jason::Jump_Right);
                 break;
             }
@@ -58,6 +59,7 @@ void JumpCommand::execute(PlayerType * EntityID) {
         {
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
             velocity.vy = 0;
+
 
             switch (EntityID->jason->currentState)
             {
