@@ -12,13 +12,12 @@
 #include "../System/MovementSystem.h"
 #include "../HelperHeader/Debug.h"
 
-Bullet1::Bullet1(std::shared_ptr<Coordinator> coordinator) {
-    this->coordinator = coordinator;
+Bullet1::Bullet1(Coordinator* coordinator, Position position, Direction direction) {
     entityID = coordinator->CreateEntity();
 
     Position pos;
-    pos.x = 100;
-    pos.y = 64;
+    pos.x = position.x;
+    pos.y = position.y;
 
     coordinator->AddComponent<Position>(entityID, pos, ComponentType::Position);
 
@@ -31,6 +30,7 @@ Bullet1::Bullet1(std::shared_ptr<Coordinator> coordinator) {
 
     
     Direction dir;
+    dir = direction;
     coordinator->AddComponent<Direction>(entityID, dir, ComponentType::Direction);
 
     Velocity velocity;

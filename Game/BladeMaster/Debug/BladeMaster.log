@@ -1,6 +1,23 @@
-﻿  Map_1_Actors.cpp
+﻿  Bullet1.cpp
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\ECS_Entity_Ex\Bullet1.cpp(37,23): warning C4305: '=': truncation from 'double' to 'float'
+  ShootExteriorCommand.cpp
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\Command.h(13,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(19,27): warning C4091: 'typedef ': ignored on left of 'MappedInput' when no variable is declared
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(21,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
+  Map_1_Actors.cpp
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(19,27): warning C4091: 'typedef ': ignored on left of 'MappedInput' when no variable is declared
 D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\InputHandling\Core\InputContext.h(21,26): warning C4091: 'typedef ': ignored on left of 'PlayerType' when no variable is declared
 D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Camera.h(1,1): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+  SceneManager.cpp
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Scene\SceneManager.cpp(26,23): warning C4018: '<': signed/unsigned mismatch
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Scene\SceneManager.cpp(40,23): warning C4018: '<': signed/unsigned mismatch
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Scene\SceneManager.cpp(51,23): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Scene\SceneManager.cpp(87): warning C4715: 'SceneManager::createScene': not all control paths return a value
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Core\ComponentManager.h(51): warning C4172: returning address of local variable or temporary
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Core\ComponentManager.h(51): warning C4172: returning address of local variable or temporary
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Core\ComponentArray.h(43): warning C4172: returning address of local variable or temporary
+D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\BladeMaster\Core\ComponentArray.h(43): warning C4172: returning address of local variable or temporary
   BladeMaster.vcxproj -> D:\Workout - 4th half year\Game Github 2\BlasterMaster-NMGame-\Game\Debug\BladeMaster.exe

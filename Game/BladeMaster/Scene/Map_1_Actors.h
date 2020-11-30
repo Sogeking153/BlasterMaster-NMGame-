@@ -12,7 +12,7 @@ public:
     Map_1_Actors(short id);
     void Update(DWORD dt);
     void Render();
-
+    std::shared_ptr<Coordinator> Get_coordinator();
 private:
     Sophia * sophia;
     Jason * jason;

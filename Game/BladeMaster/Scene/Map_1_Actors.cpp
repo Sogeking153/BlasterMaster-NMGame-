@@ -25,7 +25,7 @@ Map_1_Actors::Map_1_Actors(short id) {
     //Setup player
     jason = new Jason(coordinator);
     jasonow = new JasonOW(coordinator.get());
-    bullet1 = new Bullet1(coordinator);
+    //bullet1 = new Bullet1(coordinator);
     //Setup Input
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();
@@ -51,4 +51,9 @@ void Map_1_Actors::Render() {
 
     animationSystem->AnimationRender();
     spriteSystem->SpriteRender();
+}
+
+std::shared_ptr<Coordinator> Map_1_Actors::Get_coordinator()
+{
+    return coordinator;
 }
