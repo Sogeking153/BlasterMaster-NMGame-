@@ -26,7 +26,7 @@ void JumpCommand::execute(PlayerType * EntityID) {
         {
 
             Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->jason->GetID(), ComponentType::Speed);
-            velocity.vy = -JASON_JUMPING_SPEED;
+            //velocity.vy = -JASON_JUMPING_SPEED;
             Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
             Position& pos = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
 
@@ -82,6 +82,77 @@ void JumpCommand::execute(PlayerType * EntityID) {
     }
     case PlayerType::SOPHIA:
         
+
+
+
+
+
+
+
+
+        switch (currentKeyEventType)
+        {
+        case Command::Hold:
+            break;
+        case Command::KeyDown:
+        {
+
+            Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
+            //velocity.vy = -JASON_JUMPING_SPEED;
+            Direction& dir = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
+            Position& pos = context->coordinator->GetComponent<Position>(EntityID->sophia->GetID(), ComponentType::Position);
+
+            switch (EntityID->sophia->currentState)
+            {
+            case Sophia::Go_Left:
+            case Sophia::Idle_Left:
+            case Sophia::Jump_Right:
+            {
+                if (dir.nx == -1 && pos.y == 64)
+                    EntityID->sophia->SwitchState(Sophia::Jump_Left);
+                break;
+            }
+            case Sophia::Go_Right:
+            case Sophia::Idle_Right:
+            case Sophia::Jump_Left:
+            {
+                if (dir.nx == 1 && pos.y == 64)
+                    EntityID->sophia->SwitchState(Sophia::Jump_Right);
+                break;
+            }
+
+            default:
+                break;
+            }
+
+        }
+        break;
+        case Command::KeyUp:
+        {
+            Velocity& velocity = context->coordinator->GetComponent<Velocity>(EntityID->sophia->GetID(), ComponentType::Speed);
+            velocity.vy = 0;
+
+
+            switch (EntityID->sophia->currentState)
+            {
+            case Jason::Jump_Left:
+                EntityID->sophia->SwitchState(Sophia::Idle_Left);
+                break;
+            case Jason::Jump_Right:
+                EntityID->sophia->SwitchState(Sophia::Idle_Right);
+                break;
+            default:
+                break;
+            }
+        }
+        break;
+        default:
+            break;
+        }
+
+
+
+
         break;
     }
 }

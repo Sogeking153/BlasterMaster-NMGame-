@@ -18,6 +18,16 @@ public:
     void SwitchState(int);
     void PartPosUpdateLeft();
     void PartPosUpdateRight();
+    void PartPosUpdateAimUpLeft();
+    void PartPosUpdateAimUpRight();
+    void PartPosUpdateDownLeft();
+    void PartPosUpdateDownRight();
+    void PartPosUpdateJumpLeft();
+    void PartPosUpdateJumpRight();
+    void PartPosUpdateLandLeft();
+    void PartPosUpdateLandRight();
+    void PartPosUpdateEjectLeft();
+    void PartPosUpdateEjectRight();
     void BaitLeft();
 
     void Update(unsigned long);
@@ -34,6 +44,8 @@ public:
         Left_To_Right,
         Body_Shift_Right,
         Body_Shift_Left,
+        Jump_Left,
+        Jump_Right,
     } currentState;
 private:
     int entityID;

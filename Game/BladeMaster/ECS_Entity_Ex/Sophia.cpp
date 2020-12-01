@@ -279,6 +279,240 @@ void Sophia::PartPosUpdateRight()
 
 }
 
+//Pos during jumping
+void Sophia::PartPosUpdateJumpLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateJumpRight()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos = entityPos;
+
+    barrelPos.x = entityPos.x + 11;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+
+}
+
+void Sophia::PartPosUpdateLandLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateLandRight()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos = entityPos;
+
+    barrelPos.x = entityPos.x + 11;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+
+}
+
+void Sophia::PartPosUpdateAimUpLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateAimUpRight()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos = entityPos;
+
+    barrelPos.x = entityPos.x + 11;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+
+}
+
+void Sophia::PartPosUpdateDownLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateDownRight()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos = entityPos;
+
+    barrelPos.x = entityPos.x + 11;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+
+}
+
+void Sophia::PartPosUpdateEjectLeft()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos.x = entityPos.x;
+    bodyPos.y = entityPos.y;
+
+    barrelPos.x = entityPos.x - 3;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+}
+
+void Sophia::PartPosUpdateEjectRight()
+{
+    Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+
+    Position& wheel1Pos = coordinator->GetComponent<Position>(wheel1ID, ComponentType::Position);
+    Position& wheel2Pos = coordinator->GetComponent<Position>(wheel2ID, ComponentType::Position);
+    Position& bodyPos = coordinator->GetComponent<Position>(bodyID, ComponentType::Position);
+    Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+    Position& axelPos = coordinator->GetComponent<Position>(axelID, ComponentType::Position);
+
+    wheel1Pos = entityPos;
+    wheel2Pos = entityPos;
+
+    bodyPos = entityPos;
+
+    barrelPos.x = entityPos.x + 11;
+    barrelPos.y = entityPos.y;
+
+    axelPos.x = entityPos.x + 4;
+    axelPos.y = entityPos.y + 8;
+
+}
+
+
+
+
 void Sophia::SwitchState(int aniID)
 {
     //DebugOut(L"aniID %d\n   ", aniID);
@@ -631,6 +865,85 @@ void Sophia::SwitchState(int aniID)
         //DebugOut(L"Switch to shift success!!!!!!!!!!\n");
     }
     break;
+
+    /*
+    case Sophia::Jump_Left:
+    {
+        Transformation& transform = coordinator->GetComponent<Transformation>(bodyID, ComponentType::Transformation);
+        D3DXMatrixTransformation2D(
+            &transform.transformMatrix,
+            NULL,
+            NULL,
+            NULL,
+            //rotation for aim up sophia
+           // &D3DXVECTOR2(90,58),
+            NULL,
+            0, //radiant
+            &D3DXVECTOR2(5, 0)
+        );
+
+        Animation& animationBarrel = coordinator->GetComponent<Animation>(barrelID, ComponentType::Animation);
+
+        animationBarrel.currentState = BARREL_IDLE_LEFT;
+        animationBarrel.currentFrame = 3;
+        animationBarrel.defaultState = BARREL_IDLE_LEFT;
+
+        Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
+        Position& barrelPos = coordinator->GetComponent<Position>(barrelID, ComponentType::Position);
+
+        barrelPos.x = entityPos.x - 3;
+        barrelPos.y = entityPos.y;
+
+        Sprite& spriteAxel = coordinator->GetComponent<Sprite>(axelID, ComponentType::Sprite);
+
+        spriteAxel.textureID = AXEL_SOPHIA_LEFT;
+        
+        Animation sophia_Ani_Idle_Left;
+        sophia_Ani_Idle_Left.textureID = BODY_SOPHIA;
+        sophia_Ani_Idle_Left.delayValue = 100;
+        sophia_Ani_Idle_Left.isFinished = false;
+
+        State sophiaState;
+        sophiaState.endFrame = 0;
+        sophiaState.startFrame = 0;
+        sophiaState.isLoopable = true;
+        sophia_Ani_Idle_Left.stateDictionary.emplace(BODY_CAR_IDLE_LEFT, sophiaState);
+
+        sophia_Ani_Idle_Left.currentState = BODY_CAR_IDLE_LEFT;
+        sophia_Ani_Idle_Left.currentFrame = 0;
+        sophia_Ani_Idle_Left.defaultState = BODY_CAR_IDLE_LEFT;
+
+        animationNeedToSwap = sophia_Ani_Idle_Left;
+        currentState = Sophia::Idle_Left;
+    }
+    break;
+
+    case Sophia::Jump_Right:
+    {
+        Animation& animationBody = coordinator->GetComponent<Animation>(bodyID, ComponentType::Animation);
+
+        Animation bodyAni_Shift;
+        bodyAni_Shift.textureID = SOPHIA_BODY_SHIFT_LEFT;
+        bodyAni_Shift.delayValue = 1000;
+        bodyAni_Shift.isFinished = false;
+
+        State state;
+        state.endFrame = 0;
+        state.startFrame = 0;
+        state.isLoopable = true;
+        bodyAni_Shift.stateDictionary.emplace(BODY_CAR_SHIFT_LEFT, state);
+
+        bodyAni_Shift.currentState = BODY_CAR_SHIFT_LEFT;
+        bodyAni_Shift.currentFrame = 0;
+        bodyAni_Shift.defaultState = BODY_CAR_SHIFT_LEFT;
+
+        animationBody = bodyAni_Shift;
+
+        currentState = Sophia::Body_Shift_Left;
+        //DebugOut(L"Switch to shift success!!!!!!!!!!\n");
+    }
+    break;
+    */
     default:
         DebugOut(L"[ERROR] %d is incompatible with Sophia animation's type\n");
         break;
