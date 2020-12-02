@@ -43,6 +43,15 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
         case Command::Hold:
         {
             while (true) {
+                //time Get_current_time
+                /*if (Get_current_time - Last_shot < Rate_of_fire)
+                {
+                    continue; //Bypass bullet creation and go for another loop if gun is still in cooldown
+                }
+                else 
+                {
+                    Last_shot = Get_current_time;
+                }*/
                 Position position;
                 position = context->coordinator->GetComponent<Position>(EntityID->jason->GetID(), ComponentType::Position);
                 Direction direction;
