@@ -8,9 +8,9 @@ class Coordinator;
 class Bullet1
 {
 public:
-	Bullet1(Coordinator*, Position, Direction);
+	Bullet1(Coordinator*, Position, Direction); //int bullet_type
 	int GetID();
-	void Test();
+	void Test(); //int Get_bullet_type()
 private:
 	int entityID;
 
