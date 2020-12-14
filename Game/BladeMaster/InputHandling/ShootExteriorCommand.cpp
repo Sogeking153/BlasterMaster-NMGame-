@@ -15,7 +15,7 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
     DebugOut(L"Shoot Exterior Command\n");
 
     InputContext* context = InputContext::GetInstance();
-    switch (EntityID->currentPlayerType) 
+    switch (EntityID->currentPlayerType)
     {
         //time Last_shot = 0 //Variable storing time the latest shot is fired, this variable value must not be lost during game run
         //time Rate_of_fire = 500 //Variable for rate-of-fire
@@ -25,11 +25,11 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
         {
         case Command::KeyDown: {
             //time Get_current_time //Variable storing time of the current keypress, may need an universal game time variable
-            /*if (Get_current_time - Last_shot < Rate_of_fire) //Check if the button is pressed before the cooldown needed for another shot 
+            /*if (Get_current_time - Last_shot < Rate_of_fire) //Check if the button is pressed before the cooldown needed for another shot
             {
                 break; //If gun is still in cooldown then bypass bullet creation
             }
-            else 
+            else
             {
                 Last_shot = Get_current_time; //If gun has completed cooldown then create bullet, then update last shot time
             }*/
@@ -39,7 +39,7 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
             direction = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
             Bullet1 bullet(context->coordinator, position, direction); //can add int bullet type to determine which bullet is it
         }
-        break;
+                             break;
         case Command::Hold:
         {
             while (true) {
@@ -48,7 +48,7 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
                 {
                     continue; //Bypass bullet creation and go for another loop if gun is still in cooldown
                 }
-                else 
+                else
                 {
                     Last_shot = Get_current_time;
                 }*/
@@ -57,11 +57,11 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
                 Direction direction;
                 direction = context->coordinator->GetComponent<Direction>(EntityID->jason->GetID(), ComponentType::Direction);
                 Bullet1 bullet(context->coordinator, position, direction);
-                }
             }
+        }
         break;
         case Command::KeyUp:
-        break;
+            break;
         default:
             break;
         }
@@ -78,7 +78,7 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
             direction = context->coordinator->GetComponent<Direction>(EntityID->sophia->GetID(), ComponentType::Direction);
             Bullet1 bullet(context->coordinator, position, direction); //can add int bullet type to determine which bullet is it
         }
-        break;
+                             break;
         case Command::Hold:
         {
             while (true) {
@@ -95,5 +95,6 @@ void ShootExteriorCommand::execute(PlayerType* EntityID) {
         default:
             break;
         }
+    }
     }
 }

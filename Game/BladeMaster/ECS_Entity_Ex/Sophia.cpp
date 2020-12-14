@@ -172,9 +172,9 @@ Sophia::Sophia(std::shared_ptr<Coordinator> coordinator, int x, int y) {
     currentState = Sophia::Idle_Left;
 
     BoundingBox bbox;
-    bbox.left = x - 8;
+    bbox.left = x;
     bbox.right = x + SOPHIA_BBOX_WIDTH;
-    bbox.top = y - 8;
+    bbox.top = y;
     bbox.bottom = y + SOPHIA_BBOX_HEIGHT;
     coordinator->AddComponent<BoundingBox>(entityID, bbox, ComponentType::BoundingBox);
     coordinator->GetSystem<SpriteSystem>(SystemType::Sprite)->AddEntity(entityID);
@@ -208,7 +208,7 @@ void Sophia::BaitLeft()
     axelPos.y = entityPos.y + 8 + 1;
 }
 
-void Sophia::Update(unsigned long dt)
+void Sophia::Update(DWORD dt)
 {
     //Applied Gravity
     Velocity& velocity = coordinator->GetComponent<Velocity>(entityID, ComponentType::Speed);
@@ -217,9 +217,9 @@ void Sophia::Update(unsigned long dt)
     //Update Bounding Box
     Position& entityPos = coordinator->GetComponent<Position>(entityID, ComponentType::Position);
     BoundingBox & bbox = coordinator->GetComponent<BoundingBox>(entityID, ComponentType::BoundingBox);
-    bbox.left = entityPos.x - 8;
+    bbox.left = entityPos.x ;
     bbox.right = entityPos.x + SOPHIA_BBOX_WIDTH;
-    bbox.top = entityPos.y - 8;
+    bbox.top = entityPos.y;
     bbox.bottom = entityPos.y + SOPHIA_BBOX_HEIGHT;
 
     //Update Part of Sophia based on position

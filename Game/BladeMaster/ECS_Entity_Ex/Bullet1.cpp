@@ -40,7 +40,7 @@ Bullet1::Bullet1(Coordinator* coordinator, Position position, Direction directio
         break;
     }
     */
-    bullet.textureID = JASON_GO_RIGHT;
+    bullet.textureID = BULLET;
     bullet.spriteID = 0;
 
     coordinator->AddComponent<Sprite>(entityID, bullet, ComponentType::Sprite);

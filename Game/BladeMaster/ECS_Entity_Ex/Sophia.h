@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <d3d9.h>
 #include "../Component/SpeedComponent.h"
 #include "../Component/PositionComponent.h"
 /**
@@ -8,8 +9,8 @@
  * There is an invisible point. That point will be pivot to other parts of the car adjust their positions and stuff
  * 
  * */
-#define SOPHIA_BBOX_WIDTH 16
-#define SOPHIA_BBOX_HEIGHT 16
+#define SOPHIA_BBOX_WIDTH 18
+#define SOPHIA_BBOX_HEIGHT 18
 class Coordinator;
 class Sophia {
 public:
@@ -30,7 +31,7 @@ public:
     void PartPosUpdateEjectRight();
     void BaitLeft();
 
-    void Update(unsigned long);
+    void Update(DWORD dt);
 
 public:
     enum 

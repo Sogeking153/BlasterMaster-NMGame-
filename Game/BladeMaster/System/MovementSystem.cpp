@@ -21,20 +21,14 @@ MovementSystem::MovementSystem()
 
 void MovementSystem::onEvent(const CollisionEvent * _event)
 {
-	Position& pos = coordinator->GetComponent<Position>(_event->entityID, ComponentType::Position);
-	Velocity & speed = coordinator->GetComponent<Velocity>(_event->entityID, ComponentType::Speed);
+	//Position& pos = coordinator->GetComponent<Position>(_event->entityID, ComponentType::Position);
+	//Velocity & speed = coordinator->GetComponent<Velocity>(_event->entityID, ComponentType::Speed);
 
 
-	// block every object first!
-	pos.x += _event->min_tx * speed.dx + _event->nx * 0.4f;
-	pos.y += _event->min_ty * speed.dy + _event->ny * 0.4f;
+	//
+	//for (UINT i = 0; i < _event->coEventResult.size(); i++) {
 
-	if (_event->nx != 0) speed.vx = 0;
-	if (_event->ny != 0) speed.vy = 0;
-
-	for (UINT i = 0; i < _event->coEventResult.size(); i++) {
-
-	}
+	//}
 }
 
 void MovementSystem::Update(DWORD dt)

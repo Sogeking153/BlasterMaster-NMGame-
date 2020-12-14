@@ -2,6 +2,7 @@
 #include "../Core/Coordinator.h"
 #include "../Component/BoundingBoxComponent.h"
 #include "../Component/SpeedComponent.h"
+#include "../Component/PositionComponent.h"
 #include "../EventHandler/PhysicEvent.h"
 #include "../EventHandler/EventHandling.h"
 
@@ -10,6 +11,7 @@ extern Coordinator coordinator;
 PhysicSystem::PhysicSystem()
 {
 	Bitmask requirement;
+	requirement.set((int)ComponentType::Position);
 	requirement.set((int)ComponentType::BoundingBox);
 	mRequiredComponents.push_back(requirement);
 
@@ -21,6 +23,8 @@ void PhysicSystem::Update(DWORD dt)
 {
 	EventHandling* eventHandling = EventHandling::GetInstance();
 	for (EntityID const& entity : mEntityList) {
+		if ((coordinator->GetEntityBitmask(entity) & mRequiredComponents[1]) != mRequiredComponents[1]) continue;
+
 		std::vector<LPCOLLISIONEVENT> coEvents;
 		std::vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -31,8 +35,24 @@ void PhysicSystem::Update(DWORD dt)
 			float rdx = 0;
 			float rdy = 0;
 			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
-			CollisionEvent* collisionEvent = new CollisionEvent(min_tx, min_ty, nx, ny, coEventsResult, entity);
-			eventHandling->handleEvent(collisionEvent);
+			DebugOut(L"Collide\n");
+			
+			Position& pos = coordinator->GetComponent<Position>(entity, ComponentType::Position);
+			Velocity & speed = coordinator->GetComponent<Velocity>(entity, ComponentType::Speed);
+			
+			// block every object first!
+			/*pos.x += min_tx * speed.vx * dt + nx * 0.4f;
+			pos.y += min_ty * speed.vy * dt + ny * 0.4f;*/
+			/*pos.x += -(min_tx * speed.vx * dt);
+			pos.y += -(min_ty * speed.vy * dt + 0.8f);*/
+			pos.x += nx * 0.4f;
+			pos.y += ny * 0.4f;
+
+			if (nx != 0) speed.vx = 0;
+			if (ny != 0) speed.vy = 0;
+
+			/*CollisionEvent* collisionEvent = new CollisionEvent(min_tx, min_ty, nx, ny, coEventsResult, entity);
+			eventHandling->handleEvent(collisionEvent);*/
 		}
 
 		// clean up collision events
@@ -44,7 +64,7 @@ void PhysicSystem::CalcPotentialCollisions(EntityID staticID, std::vector<LPCOLL
 {
 	for (EntityID const& entity : mEntityList) {
 		if (staticID == entity) continue;
-		LPCOLLISIONEVENT e = SweptAABBEx(entity, staticID, dt);
+		LPCOLLISIONEVENT e = SweptAABBEx(staticID, entity , dt);
 
 		if (e->t > 0 && e->t <= 1.0f)
 			coEvents.push_back(e);
@@ -90,8 +110,7 @@ void PhysicSystem::FilterCollision(
 
 LPCOLLISIONEVENT PhysicSystem::SweptAABBEx(EntityID movingID, EntityID staticID, DWORD dt)
 {
-	DebugOut(L"Checking Collide %d and %d\n", movingID, staticID);
-	BoundingBox & staticObject = coordinator->GetComponent<BoundingBox>(staticID, ComponentType::BoundingBox);;
+	BoundingBox & staticObject = coordinator->GetComponent<BoundingBox>(staticID, ComponentType::BoundingBox);
 	BoundingBox & movingObject = coordinator->GetComponent<BoundingBox>(movingID, ComponentType::BoundingBox);
 	
 	Velocity staticObjectSpeed;
@@ -115,8 +134,8 @@ LPCOLLISIONEVENT PhysicSystem::SweptAABBEx(EntityID movingID, EntityID staticID,
 	float t, nx, ny;
 
 	// (rdx, rdy) is RELATIVE movement distance/velocity 
-	float rdx = staticObjectSpeed.vx * dt - movingObjectSpeed.vx * dt;
-	float rdy = staticObjectSpeed.vy * dt - movingObjectSpeed.vy * dt;
+	float rdx = movingObjectSpeed.vx * dt - staticObjectSpeed.vx * dt;
+	float rdy = movingObjectSpeed.vy * dt - staticObjectSpeed.vy * dt;
 
 	SweptAABB(
 		movingObject.left, movingObject.top, movingObject.right, movingObject.bottom,
@@ -148,12 +167,12 @@ void PhysicSystem::SweptAABB(
 	// Broad-phase test 
 	//
 
-	float bl = dx > 0 ? ml : ml + dx;
+	/*float bl = dx > 0 ? ml : ml + dx;
 	float bt = dy > 0 ? mt : mt + dy;
 	float br = dx > 0 ? mr + dx : mr;
 	float bb = dy > 0 ? mb + dy : mb;
 
-	if (br < sl || bl > sr || bb < st || bt > sb) return;
+	if (br < sl || bl > sr || bb < st || bt > sb) return;*/
 
 
 	if (dx == 0 && dy == 0) return;		// moving object is not moving > obvious no collision

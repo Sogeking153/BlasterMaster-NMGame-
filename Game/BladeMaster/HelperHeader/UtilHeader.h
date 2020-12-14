@@ -29,6 +29,7 @@
 #define SOPHIA_BODY_SHIFT_LEFT 21
 #define AXEL_SOPHIA_RIGHT 22
 
+#define BULLET 24
 
 // Scene ID
 #define MAP_1_BACKGROUND 0

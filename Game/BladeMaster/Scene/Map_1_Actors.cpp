@@ -29,19 +29,14 @@ Map_1_Actors::Map_1_Actors(short id) {
     std::shared_ptr<PhysicSystem> physicSystem = coordinator->GetSystem<PhysicSystem>(SystemType::Physic);
     physicSystem->coordinator = coordinator;
 
-    //sophia = new Sophia(coordinator);
     //Setup player
-<<<<<<< Updated upstream
     jason = new Jason(coordinator);
-    jasonow = new JasonOW(coordinator.get());
     //bullet1 = new Bullet1(coordinator);
-=======
     /*jason = new Jason(coordinator);
     jasonow = new JasonOW(coordinator.get());*/
 
     LoadSections(L"Resources/Config/lvl2_sections.txt");
 
->>>>>>> Stashed changes
     //Setup Input
     InputContext* input = InputContext::GetInstance();
     input->coordinator = coordinator.get();
@@ -54,35 +49,34 @@ Map_1_Actors::Map_1_Actors(short id) {
 }
 
 void Map_1_Actors::Update(DWORD dt) {
-    //Object Update
-    sophia->Update(dt);
+    
 
     //System Update
     std::shared_ptr<AnimationSystem> animationSystem = coordinator->GetSystem<AnimationSystem>(SystemType::Animation);
     std::shared_ptr<MovementSystem> movementSystem = coordinator->GetSystem<MovementSystem>(SystemType::Movement);
     std::shared_ptr<PhysicSystem> physicSystem = coordinator->GetSystem<PhysicSystem>(SystemType::Physic);
-  
-    animationSystem->Update();
-    movementSystem->Update(dt);
     physicSystem->Update(dt);
+    movementSystem->Update(dt);
+
+    //Object Update
+    sophia->Update(dt);
+
+    animationSystem->Update();
 }
 
 void Map_1_Actors::Render() {
     std::shared_ptr<AnimationSystem> animationSystem = coordinator->GetSystem<AnimationSystem>(SystemType::Animation);
     std::shared_ptr<SpriteSystem> spriteSystem = coordinator->GetSystem<SpriteSystem>(SystemType::Sprite);
 
-    animationSystem->AnimationRender();
     spriteSystem->SpriteRender();
-<<<<<<< Updated upstream
+    animationSystem->AnimationRender();
+    spriteSystem->RenderBoundingBox();
+    animationSystem->RenderBoundingBox();
 }
 
 std::shared_ptr<Coordinator> Map_1_Actors::Get_coordinator()
 {
     return coordinator;
-=======
-
-    animationSystem->RenderBoundingBox();
-    spriteSystem->RenderBoundingBox();
 }
 
 void Map_1_Actors::LoadSections(LPCWSTR filePath)
@@ -151,5 +145,4 @@ void Map_1_Actors::LoadSections(LPCWSTR filePath)
     else {
         DebugOut(L"[ERROR] Failed to open %s\n", filePath);
     }
->>>>>>> Stashed changes
 }

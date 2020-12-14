@@ -25,3 +25,4 @@
 21|1|1|Resources/Car/Body_Shift_Left.png
 22|1|1|Resources/Car/Axel_Right.png
 23|1|1|Resources/bbox.png
+24|1|1|Resources/Human/Bullet.png

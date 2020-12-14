@@ -4,7 +4,7 @@
 #include "../HelperHeader/UtilHeader.h"
 #include "Map_1_Background.h"
 #include "Map_1_Actors.h"
-#include "Physics_Scene.h"
+#include <thread>
 SceneManager * SceneManager::__instance = NULL;
 
 SceneManager::SceneManager()
@@ -55,10 +55,14 @@ void SceneManager::RemoveAllScene()
 
 void SceneManager::Update(DWORD dt)
 {
+    std::vector <std::thread> threads;
     //Update from back to font
     for (int i = mCurrentScenes.size() - 1; i >= 0; i--) {
-        mCurrentScenes[i]->Update(dt);
+        threads.push_back(std::thread(&SceneBase::Update, mCurrentScenes[i], dt));
+        //mCurrentScenes[i]->Update(dt);
     }
+
+    for (int i = 0; i < threads.size(); i++) threads[i].join();
 }
 
 void SceneManager::Render()
@@ -80,7 +84,6 @@ SceneBase* SceneManager::createScene(SceneID id)
     switch (id) {
     case MAP_1_BACKGROUND: return new Map_1_Background(MAP_1_BACKGROUND); break;
     case MAP_1_ACTORS : return new Map_1_Actors(MAP_1_ACTORS); break;
-    case PHYSICS_SCENE: return new Physics_scene(PHYSICS_SCENE); break;
     default:
         DebugOut(L"Scene with id %d is defined", id);
     }

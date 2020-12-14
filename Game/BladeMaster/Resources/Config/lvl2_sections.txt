@@ -2,7 +2,7 @@
 #
 #PLAYER type
 #thông tin cần thiết tọa độ x,y 
-PLAYER|578|123|
+PLAYER|578|100|
 #BRICK
 #thông tin cần thiết tọa độ x,y
 BRICK|512|160|

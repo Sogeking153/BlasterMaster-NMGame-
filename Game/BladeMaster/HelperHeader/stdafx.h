@@ -17,7 +17,7 @@
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
 
-#define MAX_FRAME_RATE 120
+#define MAX_FRAME_RATE 60
 
 
 static HWND hWnd = 0;

@@ -186,9 +186,6 @@
     <ClCompile Include="ECS_Entity_Ex\JasonOW.cpp">
       <Filter>Source Files\ECS_Entity_Ex</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Physics_Scene.cpp">
-      <Filter>Source Files\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -367,9 +364,6 @@
     </ClInclude>
     <ClInclude Include="ECS_Entity_Ex\JasonOW.h">
       <Filter>Header Files\ECS_Entity_Ex</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Physics_Scene.h">
-      <Filter>Header Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="HelperHeader\Debug.h">
       <Filter>Header Files\HelperHeader</Filter>

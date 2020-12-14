@@ -33,6 +33,6 @@ void GraphicSystem::RenderBoundingBox()
 		r.top = 0;
 		r.bottom = bbox.bottom - bbox.top;
 
-		spriteHandler->Draw(texture->texture, &r, NULL, &p, D3DCOLOR_ARGB(32,255, 255, 255));
+		spriteHandler->Draw(texture->texture, &r, NULL, &p, D3DCOLOR_ARGB(100,255, 255, 255));
 	}
 }
